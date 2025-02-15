@@ -1,5 +1,5 @@
 class AppImages {
   AppImages._();
 
-  static const imagesSplash = 'assets/images/splash.svg';
+  static const imagesSplash = 'assets/images/splash.png';
 }
