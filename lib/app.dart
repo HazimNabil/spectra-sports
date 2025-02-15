@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'features/splash/presentation/views/splash_view.dart';
+
 class SpectraSports extends StatelessWidget {
   const SpectraSports({super.key});
 
@@ -8,6 +10,7 @@ class SpectraSports extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Spectra Sports',
+      home: SplashView(),
     );
   }
 }
