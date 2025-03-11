@@ -11,6 +11,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleRegular14(BuildContext context) {
+    return TextStyle(
+      fontSize: 14 * context.width / 375,
+      fontWeight: FontWeight.normal,
+      color: AppColors.hint,
+    );
+  }
+
   static TextStyle styleBold20(BuildContext context) {
     return TextStyle(
       fontSize: 20 * context.width / 375,
