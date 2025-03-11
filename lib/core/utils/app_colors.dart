@@ -8,4 +8,5 @@ abstract class AppColors {
   static const buttons = Color(0xFF006FFD);
   static const highlight = Color(0xFFFF5959);
   static const text = Color(0xFF000000);
+  static const logoBackground = Color(0xFFEAF2FF);
 }
