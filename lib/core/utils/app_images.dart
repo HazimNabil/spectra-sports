@@ -1,19 +1,21 @@
 class AppImages {
   AppImages._();
 
-  static const imagesAppLogo = "assets/images/app_logo.svg";
+  static const imagesAppLogo = "assets/images/app_logo.png";
 
-  static const imagesAttendance = "assets/images/attendance.svg";
+  static const imagesAttendance = "assets/images/attendance.png";
 
-  static const imagesCalendar = "assets/images/calendar.svg";
+  static const imagesCalendar = "assets/images/calendar.png";
 
-  static const imagesCoach = "assets/images/coach.svg";
+  static const imagesCoach = "assets/images/coach.png";
 
-  static const imagesFootballPlayer = "assets/images/football_player.svg";
+  static const imagesFootballPlayer = "assets/images/football_player.png";
 
-  static const imagesNearby = "assets/images/nearby.svg";
+  static const imagesNearby = "assets/images/nearby.png";
+
+  static const imagesPayment = "assets/images/payment.png";
 
   static const imagesSplash = "assets/images/splash.png";
 
-  static const imagesStadium = "assets/images/stadium.svg";
+  static const imagesStadium = "assets/images/stadium.png";
 }
