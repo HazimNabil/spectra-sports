@@ -22,6 +22,19 @@ class SignUpFormSection extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         const CustomTextField(hintText: 'Name'),
+        const SizedBox(height: 16),
+        Text(
+          'Email Address',
+          style: AppStyles.styleSemiBold12(
+            context,
+          ).copyWith(
+            color: AppColors.text,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 8),
+        const CustomTextField(hintText: 'name@gmail.com'),
+        const SizedBox(height: 16),
       ],
     );
   }
