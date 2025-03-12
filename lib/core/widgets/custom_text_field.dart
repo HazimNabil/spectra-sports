@@ -5,11 +5,13 @@ import 'package:spectra_sports/core/utils/app_styles.dart';
 class CustomTextField extends StatefulWidget {
   final String hintText;
   final bool isPasswordField;
+  final String? Function(String?)? validator;
 
   const CustomTextField({
     super.key,
     required this.hintText,
     this.isPasswordField = false,
+    this.validator,
   });
 
   @override
@@ -21,9 +23,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       cursorColor: AppColors.buttons,
       obscureText: widget.isPasswordField && _obscureText,
+      validator: widget.validator,
       decoration: InputDecoration(
         border: buildBorder(),
         focusedBorder: buildBorder(AppColors.buttons),
