@@ -4,8 +4,8 @@ import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_prompt_text.dart';
 
-class FormSection extends StatelessWidget {
-  const FormSection({super.key});
+class LoginFormSection extends StatelessWidget {
+  const LoginFormSection({super.key});
 
   @override
   Widget build(BuildContext context) {
