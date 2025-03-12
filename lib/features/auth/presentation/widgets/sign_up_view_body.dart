@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/features/auth/presentation/widgets/login_prompt_text.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_form_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_title_section.dart';
 
@@ -11,11 +12,15 @@ class SignUpViewBody extends StatelessWidget {
       padding: EdgeInsets.all(24),
       child: SingleChildScrollView(
         child: Column(
+          spacing: 24,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SignUpTitleSection(),
-            SizedBox(height: 24),
             SignUpFormSection(),
+            Align(
+              alignment: Alignment.center,
+              child: LoginPromptText(),
+            ),
           ],
         ),
       ),
