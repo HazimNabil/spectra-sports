@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_prompt_text.dart';
 
 class FormSection extends StatelessWidget {
   const FormSection({super.key});
@@ -25,8 +26,13 @@ class FormSection extends StatelessWidget {
           SizedBox(
             height: 48,
             width: double.infinity,
-            child: CustomButton(title: 'login', onPressed: () {}),
+            child: CustomButton(title: 'Login', onPressed: () {}),
           ),
+          const SizedBox(height: 32),
+          const Align(
+            alignment: Alignment.center,
+            child: SignUpPromptText(),
+          )
         ],
       ),
     );
