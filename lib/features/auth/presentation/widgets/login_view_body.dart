@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/logo_section.dart';
+import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_prompt_text.dart';
 
 class LoginViewBody extends StatelessWidget {
   const LoginViewBody({super.key});
@@ -14,6 +15,11 @@ class LoginViewBody extends StatelessWidget {
           LogoSection(),
           SizedBox(height: 40),
           LoginFormSection(),
+          SizedBox(height: 24),
+          Align(
+            alignment: Alignment.center,
+            child: SignUpPromptText(),
+          ),
         ],
       ),
     );
