@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 
 class FormSection extends StatelessWidget {
@@ -20,6 +21,12 @@ class FormSection extends StatelessWidget {
           const CustomTextField(hintText: 'Email Address'),
           const SizedBox(height: 16),
           const CustomTextField(hintText: 'Password', isPasswordField: true),
+          const SizedBox(height: 55),
+          SizedBox(
+            height: 48,
+            width: double.infinity,
+            child: CustomButton(title: 'login', onPressed: () {}),
+          ),
         ],
       ),
     );
