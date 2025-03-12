@@ -23,7 +23,7 @@ abstract class AppStyles {
     return TextStyle(
       fontSize: 20 * context.width / 375,
       fontWeight: FontWeight.bold,
-      color: AppColors.input,
+      color: AppColors.background,
     );
   }
 

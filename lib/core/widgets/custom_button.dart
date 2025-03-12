@@ -26,7 +26,7 @@ class CustomButton extends StatelessWidget {
         title,
         style: AppStyles.styleSemiBold12(
           context,
-        ).copyWith(color: AppColors.input),
+        ).copyWith(color: AppColors.background),
       ),
     );
   }

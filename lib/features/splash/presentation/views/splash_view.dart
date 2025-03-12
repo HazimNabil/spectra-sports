@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
-import 'package:spectra_sports/core/utils/app_colors.dart';
 
 import '../widgets/splash_view_body.dart';
 
@@ -30,7 +29,6 @@ class _SplashViewState extends State<SplashView> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      backgroundColor: AppColors.input,
       body: SplashViewBody(),
     );
   }
