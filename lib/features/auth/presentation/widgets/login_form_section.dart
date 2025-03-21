@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 
@@ -29,15 +30,15 @@ class _LoginFormSectionState extends State<LoginFormSection> {
               style: AppStyles.styleExtraBold24(context),
             ),
             const SizedBox(height: 24),
-            CustomTextField(
+            const CustomTextField(
               hintText: 'Email Address',
-              validator: emailValidator,
+              validator: AppValidators.emailValidator,
             ),
             const SizedBox(height: 16),
-            CustomTextField(
+            const CustomTextField(
               hintText: 'Password',
               isPasswordField: true,
-              validator: passwordValidator,
+              validator: AppValidators.passwordValidator,
             ),
             const SizedBox(height: 55),
             SizedBox(
@@ -57,24 +58,5 @@ class _LoginFormSectionState extends State<LoginFormSection> {
         ),
       ),
     );
-  }
-
-  String? passwordValidator(String? password) {
-    if (password?.isEmpty ?? true) {
-      return 'Please enter your password';
-    } else if (password!.length < 8) {
-      return 'Password must be at least 8 characters';
-    }
-    return null;
-  }
-
-  String? emailValidator(String? email) {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (email?.isEmpty ?? true) {
-      return 'Please enter your email address';
-    } else if (!emailRegex.hasMatch(email!)) {
-      return 'Please enter a valid email address';
-    }
-    return null;
   }
 }

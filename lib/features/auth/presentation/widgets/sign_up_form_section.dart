@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 
@@ -15,7 +16,7 @@ class SignUpFormSection extends StatefulWidget {
 
 class _SignUpFormSectionState extends State<SignUpFormSection> {
   final _formKey = GlobalKey<FormState>();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  final AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
 
   @override
   Widget build(BuildContext context) {
@@ -35,9 +36,9 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
             ),
           ),
           const SizedBox(height: 8),
-          CustomTextField(
+          const CustomTextField(
             hintText: 'Name',
-            validator: nameValidator,
+            validator: AppValidators.requiredFieldValidator,
           ),
           const SizedBox(height: 24),
           Text(
@@ -50,9 +51,9 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
             ),
           ),
           const SizedBox(height: 8),
-          CustomTextField(
+          const CustomTextField(
             hintText: 'name@gmail.com',
-            validator: emailValidator,
+            validator: AppValidators.emailValidator,
           ),
           const SizedBox(height: 24),
           Text(
@@ -65,10 +66,10 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
             ),
           ),
           const SizedBox(height: 8),
-          CustomTextField(
+          const CustomTextField(
             hintText: 'Create a password',
             isPasswordField: true,
-            validator: passwordValidator,
+            validator: AppValidators.passwordValidator,
           ),
           const SizedBox(height: 24),
           const CustomTextField(
@@ -93,31 +94,5 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
         ],
       ),
     );
-  }
-
-  String? passwordValidator(String? password) {
-    if (password?.isEmpty ?? true) {
-      return 'Please enter your password';
-    } else if (password!.length < 8) {
-      return 'Password must be at least 8 characters';
-    }
-    return null;
-  }
-
-  String? emailValidator(String? email) {
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (email?.isEmpty ?? true) {
-      return 'Please enter your email address';
-    } else if (!emailRegex.hasMatch(email!)) {
-      return 'Please enter a valid email address';
-    }
-    return null;
-  }
-
-  String? nameValidator(String? name) {
-    if (name?.isEmpty ?? true) {
-      return 'Please enter your name';
-    }
-    return null;
   }
 }
