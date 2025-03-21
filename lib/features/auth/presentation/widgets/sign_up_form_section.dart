@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
@@ -82,7 +84,8 @@ class _SignUpFormSectionState extends State<SignUpFormSection> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 } else {
-                  setState(() => _autovalidateMode = AutovalidateMode.always);
+                  context.pushReplacement(AppRouter.academyInfoRoute);
+                  // setState(() => _autovalidateMode = AutovalidateMode.always);
                 }
               },
             ),
