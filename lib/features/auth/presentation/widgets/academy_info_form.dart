@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/utils/app_validators.dart';
+import 'package:spectra_sports/core/utils/extensions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 
@@ -35,10 +37,11 @@ class _AcademyInfoFormState extends State<AcademyInfoForm> {
           const SizedBox(height: 8),
           const CustomTextField(
             hintText: 'Academy Name',
+            validator: AppValidators.requiredFieldValidator,
           ),
           const SizedBox(height: 48),
           Text(
-            'Academy Address',
+            'Academy Location',
             style: AppStyles.styleSemiBold12(
               context,
             ).copyWith(
@@ -48,7 +51,7 @@ class _AcademyInfoFormState extends State<AcademyInfoForm> {
           ),
           const SizedBox(height: 8),
           const CustomTextField(
-            hintText: 'Google Maps link',
+            hintText: 'Academy location',
           ),
           const SizedBox(height: 48),
           Text(
@@ -64,8 +67,9 @@ class _AcademyInfoFormState extends State<AcademyInfoForm> {
           const CustomTextField(
             hintText: '01077...',
             keyboardType: TextInputType.number,
+            validator: AppValidators.phoneNumberValidator,
           ),
-          const SizedBox(height: 55),
+          SizedBox(height: context.height * 0.25),
           SizedBox(
             height: 48,
             width: double.infinity,
