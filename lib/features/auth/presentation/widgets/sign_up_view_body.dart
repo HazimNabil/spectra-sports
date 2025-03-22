@@ -14,8 +14,21 @@ class SignUpViewBody extends StatefulWidget {
 }
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
-  final _formKey = GlobalKey<FormState>();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  late final GlobalKey<FormState> _formKey;
+  late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+  }
+
+  @override
+  void dispose() {
+    _autovalidateMode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +39,14 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SignUpTitleSection(),
-          SignUpFormSection(
-            formKey: _formKey,
-            autovalidateMode: _autovalidateMode,
+          ValueListenableBuilder(
+            valueListenable: _autovalidateMode,
+            builder: (_, value, __) {
+              return SignUpFormSection(
+                formKey: _formKey,
+                autovalidateMode: value,
+              );
+            },
           ),
           SizedBox(
             height: 48,
@@ -39,7 +57,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                 if (_formKey.currentState!.validate()) {
                 } else {
                   context.pushReplacement(AppRouter.academyInfoRoute);
-                  setState(() => _autovalidateMode = AutovalidateMode.always);
+                  _autovalidateMode.value = AutovalidateMode.always;
                 }
               },
             ),

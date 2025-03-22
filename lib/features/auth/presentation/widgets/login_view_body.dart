@@ -12,8 +12,21 @@ class LoginViewBody extends StatefulWidget {
 }
 
 class _LoginViewBodyState extends State<LoginViewBody> {
-  final _formKey = GlobalKey<FormState>();
-  AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
+  late final GlobalKey<FormState> _formKey;
+  late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+  }
+
+  @override
+  void dispose() {
+    _autovalidateMode.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +36,14 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         children: [
           const LogoSection(),
           const SizedBox(height: 40),
-          LoginFormSection(
-            formKey: _formKey,
-            autovalidateMode: _autovalidateMode,
+          ValueListenableBuilder(
+            valueListenable: _autovalidateMode,
+            builder: (_, value, __) {
+              return LoginFormSection(
+                formKey: _formKey,
+                autovalidateMode: value,
+              );
+            },
           ),
           Container(
             height: 48,
@@ -36,7 +54,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 } else {
-                  setState(() => _autovalidateMode = AutovalidateMode.always);
+                  _autovalidateMode.value = AutovalidateMode.always;
                 }
               },
             ),
