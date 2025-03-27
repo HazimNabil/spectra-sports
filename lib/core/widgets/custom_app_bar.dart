@@ -3,9 +3,17 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/extensions.dart';
+import 'package:spectra_sports/core/widgets/custom_back_button.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+  final String title;
+  final bool showBackButton;
+
+  const CustomAppBar({
+    super.key,
+    required this.title,
+    this.showBackButton = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +31,15 @@ class CustomAppBar extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      alignment: Alignment.center,
-      child: Text(
-        'Teams',
-        style: AppStyles.styleExtraBold30(context),
+      child: Center(
+        child: ListTile(
+          leading: showBackButton ? const CustomBackButton() : null,
+          title: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: AppStyles.styleExtraBold30(context),
+          ),
+        ),
       ),
     );
   }

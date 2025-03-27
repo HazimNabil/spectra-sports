@@ -10,7 +10,10 @@ class TeamsView extends StatelessWidget {
     return const Column(
       spacing: 22,
       children: [
-        CustomAppBar(),
+        CustomAppBar(
+          title: 'Teams',
+          showBackButton: false,
+        ),
         Expanded(
           child: TeamCardListView(),
         ),
