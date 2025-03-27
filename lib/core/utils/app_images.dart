@@ -20,4 +20,6 @@ class AppImages {
   static const imagesStadium = "assets/images/stadium.png";
 
   static const imagesStadiumLights = "assets/images/stadium_lights.png";
+
+  static const imagesTeamLogo = "assets/images/team_logo.png";
 }
