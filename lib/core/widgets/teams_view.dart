@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
-import 'package:spectra_sports/core/widgets/team_card.dart';
+import 'package:spectra_sports/core/widgets/team_card_list_view.dart';
 
 class TeamsView extends StatelessWidget {
   const TeamsView({super.key});
@@ -11,7 +11,9 @@ class TeamsView extends StatelessWidget {
       spacing: 22,
       children: [
         CustomAppBar(),
-        TeamCard(),
+        Expanded(
+          child: TeamCardListView(),
+        ),
       ],
     );
   }

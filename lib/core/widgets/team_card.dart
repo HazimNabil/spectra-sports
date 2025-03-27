@@ -10,16 +10,16 @@ class TeamCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       color: AppColors.background,
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      elevation: 10,
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 18),
+      elevation: 4,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: Image.asset(AppImages.imagesTeamLogo),
         title: Text(
           'Team 2010',
-          style: AppStyles.styleSemiBold16(context).copyWith(
-            color: AppColors.hint,
-          ),
+          style: AppStyles.styleSemiBold16(
+            context,
+          ).copyWith(color: AppColors.hint),
         ),
       ),
     );
