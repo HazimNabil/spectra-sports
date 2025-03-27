@@ -11,6 +11,14 @@ abstract class AppStyles {
     );
   }
 
+  static TextStyle styleExtraBold30(BuildContext context) {
+    return TextStyle(
+      fontSize: 30 * context.widthScaleFactor,
+      fontWeight: FontWeight.w800,
+      color: AppColors.background,
+    );
+  }
+
   static TextStyle styleRegular14(BuildContext context) {
     return TextStyle(
       fontSize: 14 * context.widthScaleFactor,
