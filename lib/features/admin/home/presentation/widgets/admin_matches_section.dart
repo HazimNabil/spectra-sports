@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_match_card.dart';
+import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_match_card_list_view.dart';
 
 class AdminMatchesSection extends StatelessWidget {
   const AdminMatchesSection({super.key});
@@ -7,8 +7,12 @@ class AdminMatchesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      spacing: 16,
       children: [
-        AdminMatchCard(),
+        Expanded(
+          child: AdminMatchCardListView(),
+        ),
+        SizedBox(height: 0),
       ],
     );
   }

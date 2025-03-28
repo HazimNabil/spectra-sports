@@ -10,7 +10,7 @@ class AdminMatchCard extends StatelessWidget {
     return Card(
       color: AppColors.background,
       elevation: 4,
-      margin: const EdgeInsets.only(left: 16, right: 16),
+      margin: const EdgeInsets.only(left: 16, right: 16, bottom: 12),
       child: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -46,8 +46,8 @@ class AdminMatchCard extends StatelessWidget {
               ],
             ),
             Visibility(
-              visible: true,
-              maintainState: true,
+              visible: false,
+              maintainState: false,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
