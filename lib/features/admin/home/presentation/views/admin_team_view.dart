@@ -13,12 +13,13 @@ class AdminTeamView extends StatelessWidget {
       length: 2,
       child: Scaffold(
         body: Column(
-          spacing: 20,
           children: [
             CustomAppBar(title: 'Team 2010'),
+            SizedBox(height: 8),
             CustomTabBar(
               tabs: ['Matches', 'Members'],
             ),
+            SizedBox(height: 16),
             Expanded(
               child: TabBarView(
                 children: [
