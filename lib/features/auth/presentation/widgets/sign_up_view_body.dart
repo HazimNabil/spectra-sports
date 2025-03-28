@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
+import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_prompt_text.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_form_section.dart';
@@ -53,6 +54,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
             width: double.infinity,
             child: CustomButton(
               title: 'Sign up',
+              color: AppColors.buttons,
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 } else {

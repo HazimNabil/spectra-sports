@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/logo_section.dart';
@@ -51,6 +52,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             margin: const EdgeInsets.symmetric(horizontal: 24),
             child: CustomButton(
               title: 'Login',
+              color: AppColors.buttons,
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 } else {
