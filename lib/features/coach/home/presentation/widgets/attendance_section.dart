@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card_list_view.dart';
 
 class AttendanceSection extends StatelessWidget {
   const AttendanceSection({super.key});
@@ -11,7 +11,9 @@ class AttendanceSection extends StatelessWidget {
       child: Column(
         spacing: 16,
         children: [
-          AttendanceCard(),
+          Expanded(
+            child: AttendanceCardListView(),
+          ),
         ],
       ),
     );
