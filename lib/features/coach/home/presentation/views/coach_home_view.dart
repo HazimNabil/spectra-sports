@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
 import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_matches_section.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_players_section.dart';
 
 class CoachHomeView extends StatelessWidget {
   const CoachHomeView({super.key});
@@ -19,14 +20,14 @@ class CoachHomeView extends StatelessWidget {
             ),
             SizedBox(height: 8),
             CustomTabBar(
-              tabs: ['Matches', 'Members', 'Attendance'],
+              tabs: ['Matches', 'Players', 'Attendance'],
             ),
             SizedBox(height: 16),
             Expanded(
               child: TabBarView(
                 children: [
                   CoachMatchesSection(),
-                  Center(child: Text('Members')),
+                  CoachPlayersSection(),
                   Center(child: Text('Attendance')),
                 ],
               ),
