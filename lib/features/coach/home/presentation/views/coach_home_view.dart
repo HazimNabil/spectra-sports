@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
 import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_matches_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_players_section.dart';
 
@@ -28,7 +29,7 @@ class CoachHomeView extends StatelessWidget {
                 children: [
                   CoachMatchesSection(),
                   CoachPlayersSection(),
-                  Center(child: Text('Attendance')),
+                  AttendanceSection(),
                 ],
               ),
             ),
