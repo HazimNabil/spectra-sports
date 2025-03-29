@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/core/widgets/teams_view.dart';
+import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_home_view_body.dart';
 
 class AdminHomeView extends StatelessWidget {
   const AdminHomeView({super.key});
@@ -7,7 +7,7 @@ class AdminHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: TeamsView(),
+      body: AdminHomeViewBody(),
     );
   }
 }
