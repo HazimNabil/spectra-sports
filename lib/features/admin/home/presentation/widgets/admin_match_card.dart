@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/widgets/match_result.dart';
 
 class AdminMatchCard extends StatelessWidget {
   const AdminMatchCard({super.key});
@@ -45,22 +46,10 @@ class AdminMatchCard extends StatelessWidget {
                 ),
               ],
             ),
-            Visibility(
+            const Visibility(
               visible: false,
               maintainState: false,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '1',
-                    style: AppStyles.styleExtraBold24(context),
-                  ),
-                  Text(
-                    '0',
-                    style: AppStyles.styleExtraBold24(context),
-                  ),
-                ],
-              ),
+              child: MatchResult(),
             ),
           ],
         ),
