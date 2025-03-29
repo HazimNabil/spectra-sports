@@ -51,7 +51,7 @@ class CoachMatchCard extends StatelessWidget {
               maintainState: false,
               child: Align(
                 child: CustomButton(
-                  title: 'Add Match Result',
+                  title: 'Add Result',
                   onPressed: () {},
                   color: AppColors.highlight,
                 ),
