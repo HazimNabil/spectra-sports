@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
-class PlayerCard extends StatelessWidget {
-  const PlayerCard({super.key});
+class AdminPlayerCard extends StatelessWidget {
+  const AdminPlayerCard({super.key});
 
   @override
   Widget build(BuildContext context) {
