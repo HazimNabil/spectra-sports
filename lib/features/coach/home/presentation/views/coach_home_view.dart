@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
 
 class CoachHomeView extends StatelessWidget {
   const CoachHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return const Scaffold(
+      body: Column(
+        children: [
+          CustomAppBar(
+            title: 'Team 2010',
+            showBackButton: false,
+          ),
+        ],
+      ),
+    );
   }
 }
