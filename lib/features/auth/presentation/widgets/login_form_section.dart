@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/auth/presentation/widgets/role_drop_down_button.dart';
 
 class LoginFormSection extends StatelessWidget {
   final GlobalKey<FormState> formKey;
@@ -38,7 +39,8 @@ class LoginFormSection extends StatelessWidget {
               isPasswordField: true,
               validator: AppValidators.passwordValidator,
             ),
-            const SizedBox(height: 55),
+            const SizedBox(height: 16),
+            const RoleDropDownButton(),
           ],
         ),
       ),

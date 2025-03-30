@@ -41,13 +41,12 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           const SizedBox(height: 40),
           ValueListenableBuilder(
             valueListenable: _autovalidateMode,
-            builder: (_, value, __) {
-              return LoginFormSection(
-                formKey: _formKey,
-                autovalidateMode: value,
-              );
-            },
+            builder: (_, value, __) => LoginFormSection(
+              formKey: _formKey,
+              autovalidateMode: value,
+            ),
           ),
+          const SizedBox(height: 55),
           Container(
             height: 48,
             width: double.infinity,
