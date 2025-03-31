@@ -6,12 +6,14 @@ class CustomButton extends StatelessWidget {
   final String title;
   final VoidCallback onPressed;
   final Color color;
+  final bool isLoading;
 
   const CustomButton({
     super.key,
     required this.title,
     required this.onPressed,
     required this.color,
+    this.isLoading = false,
   });
 
   @override
@@ -25,12 +27,14 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(
-        title,
-        style: AppStyles.styleSemiBold16(
-          context,
-        ).copyWith(color: AppColors.background),
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(color: AppColors.background)
+          : Text(
+              title,
+              style: AppStyles.styleSemiBold16(
+                context,
+              ).copyWith(color: AppColors.background),
+            ),
     );
   }
 }

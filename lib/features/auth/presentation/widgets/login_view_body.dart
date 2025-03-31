@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:spectra_sports/core/routes/app_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_form_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/logo_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_prompt_text.dart';
+import 'package:toastification/toastification.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -51,15 +53,20 @@ class _LoginViewBodyState extends State<LoginViewBody> {
             height: 48,
             width: double.infinity,
             margin: const EdgeInsets.symmetric(horizontal: 24),
-            child: CustomButton(
-              title: 'Login',
-              color: AppColors.buttons,
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                } else {
-                  context.go(AppRouter.coachHomeRoute);
-                  _autovalidateMode.value = AutovalidateMode.always;
-                }
+            child: BlocConsumer<AuthCubit, AuthState>(
+              listener: loginListener,
+              builder: (context, state) {
+                return CustomButton(
+                  title: 'Login',
+                  color: AppColors.buttons,
+                  isLoading: state is AuthLoading,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                    } else {
+                      _autovalidateMode.value = AutovalidateMode.always;
+                    }
+                  },
+                );
               },
             ),
           ),
@@ -72,5 +79,24 @@ class _LoginViewBodyState extends State<LoginViewBody> {
         ],
       ),
     );
+  }
+
+  void loginListener(BuildContext context, AuthState state) {
+    switch (state) {
+      case Authenticated(user: final user):
+        showToast(
+          context: context,
+          title: 'You are logged in successfully',
+          type: ToastificationType.success,
+        );
+        navigateByRole(user.role, context);
+      case AuthFailure():
+        showToast(
+          context: context,
+          title: state.message,
+          type: ToastificationType.error,
+        );
+      default:
+    }
   }
 }
