@@ -5,6 +5,7 @@ class ApiConstants {
   static const login = '/auth/login';
 
   static const messageKey = 'message';
+  static const tokenKey = 'token';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';
