@@ -14,6 +14,7 @@ class AuthCubit extends Cubit<AuthState> {
   AuthCubit(this._authRepo) : super(const AuthInitial());
 
   Future<void> login(LoginBodyModel loginBody) async {
+    emit(const AuthLoading());
     final result = await _authRepo.login(loginBody);
 
     result.fold(
@@ -23,6 +24,7 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> signUp(SignUpBodyModel signUpBody) async {
+    emit(const AuthLoading());
     final result = await _authRepo.signUp(signUpBody);
 
     result.fold(
