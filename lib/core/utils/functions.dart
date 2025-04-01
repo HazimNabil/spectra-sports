@@ -24,5 +24,6 @@ void showToast({
     title: Text(title),
     type: type,
     style: ToastificationStyle.minimal,
+    autoCloseDuration: const Duration(seconds: 3),
   );
 }
