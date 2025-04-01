@@ -58,7 +58,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
                 } else {
-                  context.go(AppRouter.adminHomeRoute);
+                  context.go(AppRouter.parentHomeRoute);
                   _autovalidateMode.value = AutovalidateMode.always;
                 }
               },

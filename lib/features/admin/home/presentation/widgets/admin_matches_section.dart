@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
-import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_match_card_list_view.dart';
+import 'package:spectra_sports/core/widgets/match_card_list_view.dart';
 
 class AdminMatchesSection extends StatelessWidget {
   const AdminMatchesSection({super.key});
@@ -12,7 +12,7 @@ class AdminMatchesSection extends StatelessWidget {
       spacing: 16,
       children: [
         const Expanded(
-          child: AdminMatchCardListView(),
+          child: MatchCardListView(),
         ),
         Container(
           width: double.infinity,
