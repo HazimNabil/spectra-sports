@@ -24,14 +24,4 @@ class AppValidators {
     }
     return null;
   }
-
-  static String? phoneNumberValidator(String? phoneNumber) {
-    final phoneNumberRegex = RegExp(r'^01(0|1|2|5)[0-9]{8}$');
-    if (phoneNumber?.isEmpty ?? true) {
-      return 'Please enter your password';
-    } else if (!phoneNumberRegex.hasMatch(phoneNumber!)) {
-      return 'Please enter a valid phone number';
-    }
-    return null;
-  }
 }

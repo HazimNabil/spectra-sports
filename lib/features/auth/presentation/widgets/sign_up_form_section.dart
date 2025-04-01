@@ -38,21 +38,6 @@ class SignUpFormSection extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Phone number',
-            style: AppStyles.styleSemiBold12(
-              context,
-            ).copyWith(
-              color: AppColors.text,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          const CustomTextField(
-            hintText: 'Phone number',
-            validator: AppValidators.phoneNumberValidator,
-          ),
-          const SizedBox(height: 24),
-          Text(
             'Email Address',
             style: AppStyles.styleSemiBold12(
               context,
