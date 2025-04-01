@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/features/auth/data/models/login_body_model.dart';
 
 class RoleDropDownButton extends StatefulWidget {
   const RoleDropDownButton({super.key});
@@ -9,20 +11,21 @@ class RoleDropDownButton extends StatefulWidget {
 }
 
 class _RoleDropDownButtonState extends State<RoleDropDownButton> {
-  String selectedRole = 'admin';
   final roles = const ['admin', 'coach', 'parent'];
 
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
-      value: selectedRole,
+      value: context.read<LoginBodyModel>().role,
       items: List.generate(3, dropDownItemGenerator),
       isExpanded: true,
       borderRadius: BorderRadius.circular(12),
       padding: const EdgeInsets.symmetric(horizontal: 16),
       focusColor: AppColors.background,
       dropdownColor: AppColors.background,
-      onChanged: (role) => setState(() => selectedRole = role!),
+      onChanged: (role) {
+        setState(() => context.read<LoginBodyModel>().role = role!);
+      },
     );
   }
 

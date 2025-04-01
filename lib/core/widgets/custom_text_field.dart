@@ -7,6 +7,8 @@ class CustomTextField extends StatefulWidget {
   final bool isPasswordField;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
+  final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
 
   const CustomTextField({
     super.key,
@@ -14,6 +16,8 @@ class CustomTextField extends StatefulWidget {
     this.isPasswordField = false,
     this.validator,
     this.keyboardType,
+    this.onChanged,
+    this.onSaved,
   });
 
   @override
@@ -30,6 +34,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
       obscureText: widget.isPasswordField && _obscureText,
       keyboardType: widget.keyboardType,
       validator: widget.validator,
+      onChanged: widget.onChanged,
+      onSaved: widget.onSaved,
       decoration: InputDecoration(
         border: buildBorder(),
         focusedBorder: buildBorder(AppColors.buttons),

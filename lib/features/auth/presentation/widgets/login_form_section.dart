@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/auth/data/models/login_body_model.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/role_drop_down_button.dart';
 
 class LoginFormSection extends StatelessWidget {
@@ -29,15 +31,19 @@ class LoginFormSection extends StatelessWidget {
               style: AppStyles.styleExtraBold24(context),
             ),
             const SizedBox(height: 24),
-            const CustomTextField(
+            CustomTextField(
               hintText: 'Email Address',
               validator: AppValidators.emailValidator,
+              onSaved: (email) => context.read<LoginBodyModel>().email = email,
             ),
             const SizedBox(height: 16),
-            const CustomTextField(
+            CustomTextField(
               hintText: 'Password',
               isPasswordField: true,
               validator: AppValidators.passwordValidator,
+              onSaved: (password) {
+                context.read<LoginBodyModel>().password = password;
+              },
             ),
             const SizedBox(height: 16),
             const RoleDropDownButton(),
