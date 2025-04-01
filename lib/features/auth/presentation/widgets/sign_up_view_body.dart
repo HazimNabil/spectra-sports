@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_prompt_text.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_form_section.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_title_section.dart';
+import 'package:toastification/toastification.dart';
 
 class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
@@ -52,15 +56,21 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           SizedBox(
             height: 48,
             width: double.infinity,
-            child: CustomButton(
-              title: 'Sign up',
-              color: AppColors.buttons,
-              onPressed: () {
-                if (_formKey.currentState!.validate()) {
-                } else {
-                  context.go(AppRouter.adminHomeRoute);
-                  _autovalidateMode.value = AutovalidateMode.always;
-                }
+            child: BlocConsumer<AuthCubit, AuthState>(
+              listener: signUpListener,
+              builder: (context, state) {
+                return CustomButton(
+                  title: 'Sign up',
+                  color: AppColors.buttons,
+                  isLoading: state is AuthLoading,
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                    } else {
+                      context.go(AppRouter.adminHomeRoute);
+                      _autovalidateMode.value = AutovalidateMode.always;
+                    }
+                  },
+                );
               },
             ),
           ),
@@ -71,5 +81,24 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
         ],
       ),
     );
+  }
+
+  void signUpListener(BuildContext context, AuthState state) {
+    switch (state) {
+      case Authenticated():
+        showToast(
+          context: context,
+          title: 'You registered successfully',
+          type: ToastificationType.success,
+        );
+        context.go(AppRouter.adminHomeRoute);
+      case AuthFailure():
+        showToast(
+          context: context,
+          title: state.message,
+          type: ToastificationType.error,
+        );
+      default:
+    }
   }
 }
