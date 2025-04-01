@@ -27,14 +27,22 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: isLoading
-          ? const CircularProgressIndicator(color: AppColors.background)
-          : Text(
-              title,
-              style: AppStyles.styleSemiBold16(
-                context,
-              ).copyWith(color: AppColors.background),
-            ),
+      child: _handleLoadingState(context),
+    );
+  }
+
+  Widget _handleLoadingState(BuildContext context) {
+    if (isLoading) {
+      return const CircularProgressIndicator(
+        color: AppColors.background,
+        strokeWidth: 3.5,
+      );
+    }
+    return Text(
+      title,
+      style: AppStyles.styleSemiBold16(
+        context,
+      ).copyWith(color: AppColors.background),
     );
   }
 }
