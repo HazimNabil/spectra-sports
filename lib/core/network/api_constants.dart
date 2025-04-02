@@ -3,6 +3,7 @@ class ApiConstants {
 
   static const baseUrl = 'https://gp-t1br.onrender.com/api';
   static const login = '/auth/login';
+  static const register = '/auth/register/admin';
 
   static const messageKey = 'message';
   static const tokenKey = 'token';

@@ -48,7 +48,7 @@ class AuthRepoImpl implements AuthRepo {
   ApiResult<UserModel> signUp(SignUpBodyModel signUpBody) async {
     try {
       final jsonData = await _apiService.post(
-        ApiConstants.login,
+        ApiConstants.register,
         signUpBody.toJson(),
       );
 
