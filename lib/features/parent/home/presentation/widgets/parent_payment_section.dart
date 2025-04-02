@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
-import 'package:spectra_sports/features/parent/widgets/parent_payment_list_view.dart';
+import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_payment_list_view.dart';
 
 class ParentPaymentSection extends StatelessWidget {
   const ParentPaymentSection({super.key});

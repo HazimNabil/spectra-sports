@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:spectra_sports/features/parent/widgets/parent_payment_card.dart';
+import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_payment_card.dart';
 
 class ParentPaymentListView extends StatelessWidget {
   const ParentPaymentListView({super.key});
