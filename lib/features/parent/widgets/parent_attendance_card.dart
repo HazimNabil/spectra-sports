@@ -14,20 +14,11 @@ class ParentAttendanceCard extends StatelessWidget {
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 12),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: const CircleAvatar(
-          radius: 25,
-          backgroundColor: AppColors.text,
-          backgroundImage: NetworkImage(
-            'https://cdn.sofifa.net/players/242/516/22_120.png',
-          ),
-        ),
-        title: Center(
-          child: Text(
-            '4 / 2 / 2025',
-            style: AppStyles.styleSemiBold16(
-              context,
-            ).copyWith(color: AppColors.icons),
-          ),
+        title: Text(
+          '4 / 2 / 2025',
+          style: AppStyles.styleSemiBold16(
+            context,
+          ).copyWith(color: AppColors.icons),
         ),
         trailing: Image.asset(AppImages.imagesPresent),
       ),
