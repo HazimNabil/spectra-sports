@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/login_prompt_text.dart';
 import 'package:spectra_sports/features/auth/presentation/widgets/sign_up_form_section.dart';
@@ -21,12 +23,14 @@ class SignUpViewBody extends StatefulWidget {
 class _SignUpViewBodyState extends State<SignUpViewBody> {
   late final GlobalKey<FormState> _formKey;
   late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+  late final SignUpBodyModel signUpBody;
 
   @override
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
     _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+    signUpBody = SignUpBodyModel();
   }
 
   @override
@@ -47,9 +51,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
           ValueListenableBuilder(
             valueListenable: _autovalidateMode,
             builder: (_, value, __) {
-              return SignUpFormSection(
-                formKey: _formKey,
-                autovalidateMode: value,
+              return Provider.value(
+                value: signUpBody,
+                child: SignUpFormSection(
+                  formKey: _formKey,
+                  autovalidateMode: value,
+                ),
               );
             },
           ),
@@ -65,8 +72,9 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   isLoading: state is AuthLoading,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      context.read<AuthCubit>().signUp(signUpBody);
                     } else {
-                      context.go(AppRouter.adminHomeRoute);
                       _autovalidateMode.value = AutovalidateMode.always;
                     }
                   },
