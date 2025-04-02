@@ -15,13 +15,13 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     super.initState();
-    navigateToLoginView();
+    navigateToAuthGate();
   }
 
-  void navigateToLoginView() {
+  void navigateToAuthGate() {
     Future.delayed(const Duration(seconds: 3), () {
       if (mounted) {
-        context.pushReplacement(AppRouter.loginRoute);
+        context.pushReplacement(AppRouter.authGateRoute);
       }
     });
   }
