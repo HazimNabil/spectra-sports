@@ -28,7 +28,7 @@ class SignUpPromptText extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
             recognizer: TapGestureRecognizer()
-              ..onTap = () => context.push(AppRouter.signUpRoute),
+              ..onTap = () => context.pushReplacement(AppRouter.signUpRoute),
           ),
         ],
       ),
