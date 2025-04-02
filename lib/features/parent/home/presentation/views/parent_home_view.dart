@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
 import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
-import 'package:spectra_sports/core/widgets/match_result.dart';
+import 'package:spectra_sports/features/parent/widgets/parent_attendance_list_view.dart';
 import 'package:spectra_sports/features/parent/widgets/parent_matches_section.dart';
 
 class ParentHomeView extends StatelessWidget {
@@ -22,6 +22,7 @@ class ParentHomeView extends StatelessWidget {
               child: TabBarView(
                 children: [
                   ParentMatchesSection(),
+                  ParentAttendanceListVew(),
                   
                   
                 ],
