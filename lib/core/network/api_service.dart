@@ -8,6 +8,11 @@ class ApiService {
     _dio.options.baseUrl = ApiConstants.baseUrl;
   }
 
+  Future get(String endpoint) async {
+    final response = await _dio.get(endpoint);
+    return response.data;
+  }
+
   Future post(String endpoint, Map<String, dynamic> data) async {
     final response = await _dio.post(endpoint, data: data);
     return response.data;
