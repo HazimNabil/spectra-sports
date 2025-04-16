@@ -33,9 +33,20 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   }
 
   @override
-  ApiResult<Unit> addMatch(MatchModel match) {
-    // TODO: implement addMatch
-    throw UnimplementedError();
+  ApiResult<Unit> addMatch(MatchModel match) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      await _apiService.post(
+        ApiConstants.addMatch,
+        match.toJson(),
+        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+      );
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
   @override
