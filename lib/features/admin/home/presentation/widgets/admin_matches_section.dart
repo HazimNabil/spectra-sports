@@ -14,8 +14,8 @@ class AdminMatchesSection extends StatelessWidget {
     return Column(
       spacing: 16,
       children: [
-        const Expanded(
-          child: MatchCardListView(),
+        Expanded(
+          child: MatchCardListView(matches: matches),
         ),
         Container(
           width: double.infinity,

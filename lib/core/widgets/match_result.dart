@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
 class MatchResult extends StatelessWidget {
-  const MatchResult({super.key});
+  final int? team1Score;
+  final int? team2Score;
+
+  const MatchResult({
+    super.key,
+    required this.team1Score,
+    required this.team2Score,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +17,11 @@ class MatchResult extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          '1',
+          team1Score?.toString() ?? '',
           style: AppStyles.styleExtraBold24(context),
         ),
         Text(
-          '0',
+          team2Score?.toString() ?? '',
           style: AppStyles.styleExtraBold24(context),
         ),
       ],
