@@ -10,7 +10,8 @@ class Addplayer1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
         children: [
-          Center(child: CustomButton(title: "Next", onPressed: () => onNext(false), color: AppColors.highlight))
+          
+          Center(child: CustomButton(title: "Next", onPressed: () => onNext(true), color: AppColors.highlight))
         ],
         mainAxisAlignment: MainAxisAlignment.center,
        );
