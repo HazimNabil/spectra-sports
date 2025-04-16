@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/models/coach_id.dart';
 import 'package:spectra_sports/core/models/player.dart';
+import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/coach_card.dart';
@@ -42,12 +44,16 @@ class AdminMembersSection extends StatelessWidget {
               CustomButton(
                 title: 'Add Player',
                 color: AppColors.highlight,
-                onPressed: () {},
+                onPressed: () {
+                  context.push(AppRouter.addPlayerRoute);
+                },
               ),
               CustomButton(
                 title: 'Add Coach',
                 color: AppColors.highlight,
-                onPressed: () {},
+                onPressed: () {
+                  
+                },
               ),
             ],
           ),
