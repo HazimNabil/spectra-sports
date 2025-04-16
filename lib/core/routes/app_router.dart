@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/models/team.dart';
+import 'package:spectra_sports/features/admin/home/presentation/views/add_match_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_home_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_team_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/auth_gate.dart';
@@ -18,6 +19,7 @@ abstract class AppRouter {
   static const adminTeamRoute = '/admin_team';
   static const coachHomeRoute = '/coach_home';
   static const parentHomeRoute = '/parent_home';
+  static const addMatchRoute = '/add_match';
 
   static final router = GoRouter(
     routes: [
@@ -54,6 +56,10 @@ abstract class AppRouter {
       GoRoute(
         path: parentHomeRoute,
         builder: (context, state) => const ParentHomeView(),
+      ),
+      GoRoute(
+        path: addMatchRoute,
+        builder: (context, state) => const AddMatchView(),
       ),
     ],
   );
