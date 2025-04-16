@@ -4,9 +4,15 @@ class ApiConstants {
   static const baseUrl = 'https://gp-t1br.onrender.com/api';
   static const login = '/auth/login';
   static const register = '/auth/register/admin';
+  static const getTeams = '/admin/teams';
+  static const getMatches = '/coach/matches';
+  static const addMatch = '/coach/add-match';
 
+  static const authorization = 'Authorization';
   static const messageKey = 'message';
   static const tokenKey = 'token';
+  static const teamsKey = 'teams';
+  static const bearer = 'Bearer';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';
