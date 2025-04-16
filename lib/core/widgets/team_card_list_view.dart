@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/core/widgets/team_card.dart';
 
 class TeamCardListView extends StatelessWidget {
-  const TeamCardListView({super.key});
+  final List<Team> teams;
+
+  const TeamCardListView({super.key, required this.teams});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      itemCount: 10,
+      itemCount: teams.length,
       itemBuilder: (_, index) {
-        return const TeamCard();
+        return TeamCard(team: teams[index]);
       },
     );
   }
