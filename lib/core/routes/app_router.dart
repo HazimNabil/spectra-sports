@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_home_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_team_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/auth_gate.dart';
@@ -42,7 +43,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: adminTeamRoute,
-        builder: (context, state) => const AdminTeamView(),
+        builder: (context, state) {
+          return AdminTeamView(team: state.extra as Team);
+        },
       ),
       GoRoute(
         path: coachHomeRoute,

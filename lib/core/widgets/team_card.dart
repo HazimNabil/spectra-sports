@@ -18,7 +18,7 @@ class TeamCard extends StatelessWidget {
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 18),
       elevation: 4,
       child: ListTile(
-        onTap: () => context.push(AppRouter.adminTeamRoute),
+        onTap: () => context.push(AppRouter.adminTeamRoute, extra: team),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: Image.asset(AppImages.imagesTeamLogo),
         title: Text(

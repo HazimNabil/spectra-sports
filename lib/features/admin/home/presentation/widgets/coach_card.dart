@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/models/coach_id.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
 class CoachCard extends StatelessWidget {
-  const CoachCard({super.key});
+  final CoachId coachId;
+
+  const CoachCard({super.key, required this.coachId});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class CoachCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Coach Name',
+          coachId.name,
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),

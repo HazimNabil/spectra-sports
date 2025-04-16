@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/models/player.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
 class AdminPlayerCard extends StatelessWidget {
-  const AdminPlayerCard({super.key});
+  final Player player;
+
+  const AdminPlayerCard({super.key, required this.player});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +23,7 @@ class AdminPlayerCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          'Cody Gakpo',
+          player.shortName,
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),
