@@ -1,37 +1,39 @@
-class MatchModel {
-  final String name;
+import 'package:equatable/equatable.dart';
+
+class MatchModel extends Equatable {
+  final String id;
   final String team1;
   final String team2;
   final DateTime date;
-  final int team1Score;
-  final int team2Score;
+  final int? team1Score;
+  final int? team2Score;
   final String status;
 
-  MatchModel({
-    required this.name,
+  const MatchModel({
+    required this.id,
     required this.team1,
     required this.team2,
     required this.date,
-    required this.team1Score,
-    required this.team2Score,
+    this.team1Score,
+    this.team2Score,
     required this.status,
   });
 
   factory MatchModel.fromJson(Map<String, dynamic> json) {
     return MatchModel(
-      name: json['_id'] as String,
+      id: json['_id'] as String,
       team1: json['team1'] as String,
       team2: json['team2'] as String,
       date: DateTime.parse(json['date'] as String),
-      team1Score: json['team1Score'] as int,
-      team2Score: json['team2Score'] as int,
+      team1Score: json['team1Score'] as int?,
+      team2Score: json['team2Score'] as int?,
       status: json['status'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      '_id': name,
+      '_id': id,
       'team1': team1,
       'team2': team2,
       'date': date.toIso8601String(),
@@ -39,5 +41,18 @@ class MatchModel {
       'team2Score': team2Score,
       'status': status,
     };
+  }
+
+  @override
+  List<Object?> get props {
+    return [
+      id,
+      team1,
+      team2,
+      date,
+      team1Score,
+      team2Score,
+      status,
+    ];
   }
 }

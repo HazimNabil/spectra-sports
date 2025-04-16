@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/core/models/coach_id.dart';
 import 'package:spectra_sports/core/models/player.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
@@ -7,12 +6,10 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/coach_ca
 import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_player_card.dart';
 
 class AdminMembersSection extends StatelessWidget {
-  final CoachId? coachId;
   final List<Player> players;
 
   const AdminMembersSection({
     super.key,
-    required this.coachId,
     required this.players,
   });
 
@@ -27,7 +24,7 @@ class AdminMembersSection extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                if (coachId != null) CoachCard(coachId: coachId!),
+                CoachCard(coachName: players[0].coachName),
                 const SizedBox(height: 12),
                 ...List.generate(
                   players.length,
