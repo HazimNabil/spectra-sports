@@ -7,7 +7,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/coach_ca
 import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_player_card.dart';
 
 class AdminMembersSection extends StatelessWidget {
-  final CoachId coachId;
+  final CoachId? coachId;
   final List<Player> players;
 
   const AdminMembersSection({
@@ -27,7 +27,7 @@ class AdminMembersSection extends StatelessWidget {
             child: ListView(
               padding: EdgeInsets.zero,
               children: [
-                CoachCard(coachId: coachId),
+                if (coachId != null) CoachCard(coachId: coachId!),
                 const SizedBox(height: 12),
                 ...List.generate(
                   players.length,
