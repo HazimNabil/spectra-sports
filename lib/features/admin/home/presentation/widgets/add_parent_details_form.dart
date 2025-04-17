@@ -14,7 +14,7 @@ class AddParentDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
 
-        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 50,),
           Title(color: AppColors.highlight, child: Text("Add Player")),

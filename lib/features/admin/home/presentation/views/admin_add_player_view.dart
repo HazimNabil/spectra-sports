@@ -33,7 +33,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
           Addplayer1(
             onNext: (bool isGoalKeaper) {
               int pagenumber = 1;
-              if (isGoalKeaper == true) {
+              if (isGoalKeaper == false) {
                 pagenumber = 2;
               }
               _controller.animateToPage(

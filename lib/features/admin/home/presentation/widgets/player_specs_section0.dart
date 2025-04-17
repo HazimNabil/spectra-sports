@@ -172,6 +172,7 @@ class PlayerSpecsSection0 extends StatelessWidget {
             ),
           ],
         ),
+        
 
       ],
     );

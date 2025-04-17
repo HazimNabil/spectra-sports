@@ -14,7 +14,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
-    this.fieldWidth=100, //screen width
+    this.fieldWidth=double.infinity, //screen width
     this.isPasswordField = false,
     this.validator,
     this.keyboardType,
