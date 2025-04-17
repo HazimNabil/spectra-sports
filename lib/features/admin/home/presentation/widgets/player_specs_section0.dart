@@ -13,35 +13,33 @@ class PlayerSpecsSection0 extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          
-          
           const SizedBox(
             height: 50,
           ),
           Title(color: AppColors.highlight, child: Text("Add Player")),
           Title(color: AppColors.highlight, child: Text("Player Specs")),
-           Column(
-                children: [
-                  Text(
-                    'Player Short Name',
-                    style: AppStyles.styleSemiBold12(
-                      context,
-                    ).copyWith(
-                      color: AppColors.text,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  CustomTextField(
-                    
-                    fieldWidth: 400,
-                    hintText: 'Player Name',
-                    validator: AppValidators.requiredFieldValidator,
-                    onSaved: (defending) {},
-                  ),],
+          Column(
+            children: [
+              Text(
+                'Player Short Name',
+                style: AppStyles.styleSemiBold12(
+                  context,
+                ).copyWith(
+                  color: AppColors.text,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
+              const SizedBox(height: 8),
+              CustomTextField(
+                fieldWidth: 400,
+                hintText: 'Player Name',
+                validator: AppValidators.requiredFieldValidator,
+                onSaved: (defending) {},
+              ),
+            ],
+          ),
           const SizedBox(height: 24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -59,7 +57,6 @@ class PlayerSpecsSection0 extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   CustomTextField(
-                    
                     fieldWidth: 100,
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
@@ -85,29 +82,28 @@ class PlayerSpecsSection0 extends StatelessWidget {
                     validator: AppValidators.requiredFieldValidator,
                     onSaved: (dribbling) {},
                   ),
-                 
                 ],
               ),
-               Column(
-                    children: [
-                      Text(
-                        'Attacking',
-                        style: AppStyles.styleSemiBold12(
-                          context,
-                        ).copyWith(
-                          color: AppColors.text,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        fieldWidth: 100,
-                        hintText: '0',
-                        validator: AppValidators.requiredFieldValidator,
-                        onSaved: (passing) {},
-                      ),
-                    ],
+              Column(
+                children: [
+                  Text(
+                    'Attacking',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (passing) {},
+                  ),
+                ],
+              ),
             ],
           ),
           Row(
@@ -175,8 +171,6 @@ class PlayerSpecsSection0 extends StatelessWidget {
               ),
             ],
           ),
-          
-      
         ],
       ),
     );

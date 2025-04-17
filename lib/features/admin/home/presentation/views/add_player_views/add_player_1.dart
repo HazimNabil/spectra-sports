@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
-import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+
 import 'package:spectra_sports/features/admin/home/presentation/widgets/player_specs_section0.dart';
 
 class Addplayer1 extends StatefulWidget {
@@ -20,7 +20,6 @@ class _Addplayer1State extends State<Addplayer1> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
-        
         children: [
           Form(
               child: Column(

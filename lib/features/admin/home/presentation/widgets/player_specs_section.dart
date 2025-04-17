@@ -12,8 +12,8 @@ class PlayerSpecsSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(
             height: 50,
@@ -37,7 +37,6 @@ class PlayerSpecsSection extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   CustomTextField(
-                    
                     fieldWidth: 100,
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
@@ -63,29 +62,28 @@ class PlayerSpecsSection extends StatelessWidget {
                     validator: AppValidators.requiredFieldValidator,
                     onSaved: (dribbling) {},
                   ),
-                 
                 ],
               ),
-               Column(
-                    children: [
-                      Text(
-                        'Passing',
-                        style: AppStyles.styleSemiBold12(
-                          context,
-                        ).copyWith(
-                          color: AppColors.text,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                      CustomTextField(
-                        fieldWidth: 100,
-                        hintText: '0',
-                        validator: AppValidators.requiredFieldValidator,
-                        onSaved: (passing) {},
-                      ),
-                    ],
+              Column(
+                children: [
+                  Text(
+                    'Passing',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (passing) {},
+                  ),
+                ],
+              ),
             ],
           ),
           Row(

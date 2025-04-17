@@ -27,7 +27,6 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
-      
         controller: _controller,
         children: [
           Addplayer1(
@@ -43,37 +42,33 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
               );
             },
           ),
-          AddPlayerGoalkeeper(
-            onNext: () {
-              int pagenumber = 2;
-              
-              _controller.animateToPage(
-                pagenumber,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-  }),
-          AddPlayer2(
-            onNext: () {
-              int pagenumber = 3;
-              
-              _controller.animateToPage(
-                pagenumber,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-  }),
-   AddPlayer3(
-            onNext: () {
-              int pagenumber = 0;
-              
-              _controller.animateToPage(
-                pagenumber,
-                duration: Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-  }),
-   
+          AddPlayerGoalkeeper(onNext: () {
+            int pagenumber = 2;
+
+            _controller.animateToPage(
+              pagenumber,
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }),
+          AddPlayer2(onNext: () {
+            int pagenumber = 3;
+
+            _controller.animateToPage(
+              pagenumber,
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }),
+          AddPlayer3(onNext: () {
+            int pagenumber = 0;
+
+            _controller.animateToPage(
+              pagenumber,
+              duration: Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }),
         ],
       ),
     );
