@@ -26,6 +26,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+      
         controller: _controller,
         children: [
           Addplayer1(
