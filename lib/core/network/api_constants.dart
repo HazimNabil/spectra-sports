@@ -11,10 +11,11 @@ class ApiConstants {
   static const updateMatch = '/coach/update-match';
 
   static const authorization = 'Authorization';
+  static const bearer = 'Bearer';
   static const messageKey = 'message';
   static const tokenKey = 'token';
   static const teamsKey = 'teams';
-  static const bearer = 'Bearer';
+  static const matchesKey = 'matches';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';

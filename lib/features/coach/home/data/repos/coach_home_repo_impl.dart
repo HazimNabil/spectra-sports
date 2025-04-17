@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spectra_sports/core/errors/server_failure.dart';
+import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/core/network/api_constants.dart';
 import 'package:spectra_sports/core/network/api_service.dart';
@@ -45,6 +46,26 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       );
 
       return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  ApiResult<List<MatchModel>> getMatches() async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+
+      final jsonData = await _apiService.get(
+        ApiConstants.getMatches,
+        {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+      );
+      final jsonMatches = jsonData[ApiConstants.matchesKey] as List;
+      final matches = jsonMatches.map((e) => MatchModel.fromJson(e)).toList();
+      
+      return Right(matches);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {
