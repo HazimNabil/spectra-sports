@@ -7,6 +7,8 @@ class ApiConstants {
   static const getTeams = '/admin/teams';
   static const getMatches = '/coach/matches';
   static const addMatch = '/coach/add-match';
+  static const getTeam = '/admin/teams';
+  static const updateMatch = '/coach/update-match';
 
   static const authorization = 'Authorization';
   static const messageKey = 'message';
@@ -30,4 +32,5 @@ class ApiConstants {
   static const unknownMessage = 'Something went wrong. Please try again later.';
   static const sendTimeoutMessage =
       'Failed to send request. Please check your connection.';
+
 }

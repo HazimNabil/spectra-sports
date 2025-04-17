@@ -1,4 +1,6 @@
 class AppValidators {
+  AppValidators._();
+
   static String? requiredFieldValidator(String? text) {
     if (text?.isEmpty ?? true) {
       return 'This field is required';

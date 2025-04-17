@@ -26,9 +26,11 @@ class AdminTeamView extends StatelessWidget {
             Expanded(
               child: TabBarView(
                 children: [
-                  const AdminMatchesSection(),
+                  AdminMatchesSection(
+                    matches: team.matches,
+                    teamId: team.id,
+                  ),
                   AdminMembersSection(
-                    coachId: team.coachId,
                     players: team.players,
                   ),
                 ],

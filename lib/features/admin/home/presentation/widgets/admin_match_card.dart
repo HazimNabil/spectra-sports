@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/match_result.dart';
 
 class AdminMatchCard extends StatelessWidget {
-  const AdminMatchCard({super.key});
+  final MatchModel match;
+
+  const AdminMatchCard({super.key, required this.match});
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +22,13 @@ class AdminMatchCard extends StatelessWidget {
           spacing: 10,
           children: [
             Text(
-              '3 November 2022, 11.30',
+              match.status!,
               style: AppStyles.styleSemiBold16(context),
             ),
             Row(
               children: [
                 Text(
-                  'Team 1',
+                  match.team1,
                   style: AppStyles.styleRegular14(
                     context,
                   ).copyWith(color: AppColors.icons),
@@ -39,17 +42,20 @@ class AdminMatchCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  'Team 2',
+                  match.team2,
                   style: AppStyles.styleRegular14(
                     context,
                   ).copyWith(color: AppColors.icons),
                 ),
               ],
             ),
-            const Visibility(
-              visible: false,
+            Visibility(
+              visible: match.team1Score != null && match.team2Score != null,
               maintainState: false,
-              child: MatchResult(),
+              child: MatchResult(
+                team1Score: match.team1Score,
+                team2Score: match.team2Score,
+              ),
             ),
           ],
         ),
