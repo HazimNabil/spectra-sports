@@ -26,4 +26,6 @@ class AppImages {
   static const imagesStadiumLights = "assets/images/stadium_lights.png";
 
   static const imagesTeamLogo = "assets/images/team_logo.png";
+
+  static const imagesPlayerPosition = "assets/images/player_position.png";
 }
