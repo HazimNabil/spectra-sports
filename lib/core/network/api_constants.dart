@@ -7,6 +7,7 @@ class ApiConstants {
   static const getTeams = '/admin/teams';
   static const getMatches = '/coach/matches';
   static const addMatch = '/coach/add-match';
+  static const getTeam = '/admin/teams';
 
   static const authorization = 'Authorization';
   static const messageKey = 'message';
