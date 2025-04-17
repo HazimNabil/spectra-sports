@@ -22,7 +22,7 @@ class AdminMatchCard extends StatelessWidget {
           spacing: 10,
           children: [
             Text(
-              match.status,
+              match.status!,
               style: AppStyles.styleSemiBold16(context),
             ),
             Row(

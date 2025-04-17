@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 
 class MatchModel extends Equatable {
   final String id;
@@ -7,7 +8,7 @@ class MatchModel extends Equatable {
   final DateTime date;
   final int? team1Score;
   final int? team2Score;
-  final String status;
+  final String? status;
 
   const MatchModel({
     required this.id,
@@ -16,7 +17,7 @@ class MatchModel extends Equatable {
     required this.date,
     this.team1Score,
     this.team2Score,
-    required this.status,
+    this.status,
   });
 
   factory MatchModel.fromJson(Map<String, dynamic> json) {
@@ -27,7 +28,7 @@ class MatchModel extends Equatable {
       date: DateTime.parse(json['date'] as String),
       team1Score: json['team1Score'] as int?,
       team2Score: json['team2Score'] as int?,
-      status: json['status'] as String,
+      status: json['status'] as String?,
     );
   }
 
@@ -41,6 +42,15 @@ class MatchModel extends Equatable {
       'team2Score': team2Score,
       'status': status,
     };
+  }
+
+  factory MatchModel.fromAddMatchInput(AddMatchInput addMatchInput) {
+    return MatchModel(
+      id: addMatchInput.matchName!,
+      team1: addMatchInput.myTeam,
+      team2: addMatchInput.opponentTeam!,
+      date: addMatchInput.date!,
+    );
   }
 
   @override

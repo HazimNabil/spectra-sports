@@ -59,7 +59,9 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: addMatchRoute,
-        builder: (context, state) => const AddMatchView(),
+        builder: (context, state) {
+          return AddMatchView(teamId: state.extra as String);
+        },
       ),
     ],
   );

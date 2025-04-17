@@ -3,15 +3,18 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 
 class AddMatchForm extends StatelessWidget {
   final GlobalKey<FormState> formKey;
   final AutovalidateMode autovalidateMode;
+  final AddMatchInput addMatchInput;
 
   const AddMatchForm({
     super.key,
     required this.formKey,
     required this.autovalidateMode,
+    required this.addMatchInput,
   });
 
   @override
@@ -26,15 +29,20 @@ class AddMatchForm extends StatelessWidget {
             hintText: 'Match Name',
             validator: (matchName) =>
                 AppValidators.requiredFieldValidator(matchName),
+            onSaved: (matchName) => addMatchInput.matchName = matchName,
           ),
           CustomTextField(
             hintText: 'Opponent Team Name',
             validator: (opponentTeam) =>
                 AppValidators.requiredFieldValidator(opponentTeam),
+            onSaved: (opponentTeam) =>
+                addMatchInput.opponentTeam = opponentTeam,
           ),
           CustomButton(
             title: 'Select Match Date & Time',
-            onPressed: () async => await selectDateTime(context),
+            onPressed: () async {
+              addMatchInput.date = await selectDateTime(context);
+            },
             color: AppColors.highlight,
           ),
         ],

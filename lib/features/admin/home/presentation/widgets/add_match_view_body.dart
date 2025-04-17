@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_match_form.dart';
 
 class AddMatchViewBody extends StatefulWidget {
-  const AddMatchViewBody({super.key});
+  final String teamId;
+
+  const AddMatchViewBody({super.key, required this.teamId});
 
   @override
   State<AddMatchViewBody> createState() => _AddMatchViewBodyState();
@@ -14,12 +18,14 @@ class AddMatchViewBody extends StatefulWidget {
 class _AddMatchViewBodyState extends State<AddMatchViewBody> {
   late final GlobalKey<FormState> _formKey;
   late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+  late final AddMatchInput _addMatchInput;
 
   @override
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
     _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+    _addMatchInput = AddMatchInput(widget.teamId);
   }
 
   @override
@@ -44,6 +50,7 @@ class _AddMatchViewBodyState extends State<AddMatchViewBody> {
                   return AddMatchForm(
                     formKey: _formKey,
                     autovalidateMode: value,
+                    addMatchInput: _addMatchInput,
                   );
                 },
               ),
@@ -56,6 +63,7 @@ class _AddMatchViewBodyState extends State<AddMatchViewBody> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _formKey.currentState!.save();
+                      MatchModel.fromAddMatchInput(_addMatchInput);
                     } else {
                       _autovalidateMode.value = AutovalidateMode.always;
                     }
