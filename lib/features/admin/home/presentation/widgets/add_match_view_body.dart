@@ -4,8 +4,23 @@ import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_match_form.dart';
 
-class AddMatchViewBody extends StatelessWidget {
+class AddMatchViewBody extends StatefulWidget {
   const AddMatchViewBody({super.key});
+
+  @override
+  State<AddMatchViewBody> createState() => _AddMatchViewBodyState();
+}
+
+class _AddMatchViewBodyState extends State<AddMatchViewBody> {
+  late final GlobalKey<FormState> _formKey;
+  late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +38,28 @@ class AddMatchViewBody extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 48),
-              const AddMatchForm(),
+              ValueListenableBuilder(
+                valueListenable: _autovalidateMode,
+                builder: (_, value, __) {
+                  return AddMatchForm(
+                    formKey: _formKey,
+                    autovalidateMode: value,
+                  );
+                },
+              ),
               const SizedBox.expand(),
               SizedBox(
                 width: double.infinity,
                 child: CustomButton(
                   title: 'Add',
                   color: AppColors.highlight,
-                  onPressed: () {},
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                    } else {
+                      _autovalidateMode.value = AutovalidateMode.always;
+                    }
+                  },
                 ),
               )
             ],
