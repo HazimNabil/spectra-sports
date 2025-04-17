@@ -34,8 +34,21 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   }
 
   @override
-  ApiResult<Unit> addMatchResult(MatchResultBody matchResultBody) {
-    // TODO: implement addMatchResult
-    throw UnimplementedError();
+  ApiResult<Unit> addMatchResult(MatchResultBody matchResultBody) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+
+      await _apiService.post(
+        ApiConstants.updateMatch,
+        matchResultBody.toJson(),
+        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+      );
+
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }
