@@ -20,7 +20,7 @@ class CoachHomeView extends StatelessWidget {
         body: Column(
           children: [
             const CustomAppBar(
-              title: 'Team 2010',
+              title: 'Team Name',
               showBackButton: false,
             ),
             const SizedBox(height: 8),
