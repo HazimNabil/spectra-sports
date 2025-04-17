@@ -18,34 +18,36 @@ class _Addplayer1State extends State<Addplayer1> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Form(
-            child: Column(
-          children: [
-            PlayerSpecsSection0(),
-            CheckboxListTile(
-              value: _isGoalKeeper,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  _isGoalKeeper = newValue!;
-                });
-              },
-              activeColor: AppColors.highlight,
-              checkColor: AppColors.background,
-              tileColor: Colors.black12,
-              title: const Text("GoalKeeper"),
-              controlAffinity: ListTileControlAffinity.leading,
-            ),
-            Center(
-                child: CustomButton(
-                    title: "Next",
-                    onPressed: () => widget.onNext(_isGoalKeeper),
-                    color: AppColors.highlight)),
-          ],
-        )),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        
+        children: [
+          Form(
+              child: Column(
+            children: [
+              PlayerSpecsSection0(),
+              CheckboxListTile(
+                value: _isGoalKeeper,
+                onChanged: (bool? newValue) {
+                  setState(() {
+                    _isGoalKeeper = newValue!;
+                  });
+                },
+                activeColor: AppColors.highlight,
+                checkColor: AppColors.background,
+                tileColor: Colors.black12,
+                title: const Text("GoalKeeper"),
+                controlAffinity: ListTileControlAffinity.leading,
+              ),
+              Center(
+                  child: CustomButton(
+                      title: "Next",
+                      onPressed: () => widget.onNext(_isGoalKeeper),
+                      color: AppColors.highlight)),
+            ],
+          )),
+        ],
+      ),
     );
   }
 }

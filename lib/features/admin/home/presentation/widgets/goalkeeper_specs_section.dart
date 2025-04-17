@@ -9,148 +9,152 @@ class GoalkeeperSpecsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        const SizedBox(
-          height: 50,
-        ),
-        Title(color: AppColors.highlight, child: Text("Add Player")),
-        Title(color: AppColors.highlight, child: Text("GoalKeeper Specs")),
-        const SizedBox(height: 24),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Text(
-                  'Speed',
-                  style: AppStyles.styleSemiBold12(
-                    context,
-                  ).copyWith(
-                    color: AppColors.text,
-                    fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+         mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const SizedBox(
+            height: 50,
+          ),
+          Title(color: AppColors.highlight, child: Text("Add Player")),
+          Title(color: AppColors.highlight, child: Text("GoalKeeper Specs")),
+          const SizedBox(height: 24),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Speed',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextField(
-                  
-                  fieldWidth: 100,
-                  hintText: '0',
-                  validator: AppValidators.requiredFieldValidator,
-                  onSaved: (defending) {},
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  'Diving',
-                  style: AppStyles.styleSemiBold12(
-                    context,
-                  ).copyWith(
-                    color: AppColors.text,
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (defending) {},
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextField(
-                  fieldWidth: 100,
-                  hintText: '0',
-                  validator: AppValidators.requiredFieldValidator,
-                  onSaved: (dribbling) {},
-                ),
-               
-              ],
-            ),
-             Column(
-                  children: [
-                    Text(
-                      'Handling',
-                      style: AppStyles.styleSemiBold12(
-                        context,
-                      ).copyWith(
-                        color: AppColors.text,
-                        fontWeight: FontWeight.bold,
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Diving',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (dribbling) {},
+                  ),
+                 
+                ],
+              ),
+               Column(
+                    children: [
+                      Text(
+                        'Handling',
+                        style: AppStyles.styleSemiBold12(
+                          context,
+                        ).copyWith(
+                          color: AppColors.text,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
+                      const SizedBox(height: 8),
+                      CustomTextField(
+                        fieldWidth: 100,
+                        hintText: '0',
+                        validator: AppValidators.requiredFieldValidator,
+                        onSaved: (passing) {},
+                      ),
+                    ],
+                  ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Column(
+                children: [
+                  Text(
+                    'Kicking',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
                     ),
-                    const SizedBox(height: 8),
-                    CustomTextField(
-                      fieldWidth: 100,
-                      hintText: '0',
-                      validator: AppValidators.requiredFieldValidator,
-                      onSaved: (passing) {},
+                  ),
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (physic) {},
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Reflexes',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Text(
-                  'Kicking',
-                  style: AppStyles.styleSemiBold12(
-                    context,
-                  ).copyWith(
-                    color: AppColors.text,
-                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextField(
-                  fieldWidth: 100,
-                  hintText: '0',
-                  validator: AppValidators.requiredFieldValidator,
-                  onSaved: (physic) {},
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  'Reflexes',
-                  style: AppStyles.styleSemiBold12(
-                    context,
-                  ).copyWith(
-                    color: AppColors.text,
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (shooting) {},
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextField(
-                  fieldWidth: 100,
-                  hintText: '0',
-                  validator: AppValidators.requiredFieldValidator,
-                  onSaved: (shooting) {},
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                Text(
-                  'Positioning',
-                  style: AppStyles.styleSemiBold12(
-                    context,
-                  ).copyWith(
-                    color: AppColors.text,
-                    fontWeight: FontWeight.bold,
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Positioning',
+                    style: AppStyles.styleSemiBold12(
+                      context,
+                    ).copyWith(
+                      color: AppColors.text,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 8),
-                CustomTextField(
-                  fieldWidth: 100,
-                  hintText: '0',
-                  validator: AppValidators.requiredFieldValidator,
-                  onSaved: (shooting) {},
-                ),
-              ],
-            ),
-          ],
-        )
-      ],
+                  const SizedBox(height: 8),
+                  CustomTextField(
+                    fieldWidth: 100,
+                    hintText: '0',
+                    validator: AppValidators.requiredFieldValidator,
+                    onSaved: (shooting) {},
+                  ),
+                ],
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
