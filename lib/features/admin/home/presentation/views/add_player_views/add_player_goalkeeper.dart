@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/admin/home/presentation/widgets/goalkeeper_specs_section.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/player_specs_section.dart';
 
-class AddPlayer2 extends StatelessWidget {
+class AddPlayerGoalkeeper extends StatelessWidget {
    final void Function() onNext;
-   const AddPlayer2({required this.onNext, Key? key}) : super(key: key);
+   const AddPlayerGoalkeeper({required this.onNext, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +14,7 @@ class AddPlayer2 extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            PlayerSpecsSection(),
+            GoalkeeperSpecsSection(),
             CustomButton(title: "Next", onPressed: () => onNext(), color: AppColors.buttons)
           ],
          ),

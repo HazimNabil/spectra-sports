@@ -9,10 +9,12 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
   final void Function(String?)? onSaved;
+  final double fieldWidth;
 
   const CustomTextField({
     super.key,
     required this.hintText,
+    this.fieldWidth=100, //screen width
     this.isPasswordField = false,
     this.validator,
     this.keyboardType,
@@ -29,23 +31,27 @@ class _CustomTextFieldState extends State<CustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: AppColors.buttons,
-      obscureText: widget.isPasswordField && _obscureText,
-      keyboardType: widget.keyboardType,
-      validator: widget.validator,
-      onChanged: widget.onChanged,
-      onSaved: widget.onSaved,
-      decoration: InputDecoration(
-        border: buildBorder(),
-        focusedBorder: buildBorder(AppColors.buttons),
-        hintText: widget.hintText,
-        hintStyle: AppStyles.styleRegular14(context),
-        suffixIcon: Visibility(
-          visible: widget.isPasswordField,
-          child: IconButton(
-            icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
-            onPressed: () => setState(() => _obscureText = !_obscureText),
+    return SizedBox(
+      width: widget.fieldWidth,
+      child: TextFormField(
+        
+        cursorColor: AppColors.buttons,
+        obscureText: widget.isPasswordField && _obscureText,
+        keyboardType: widget.keyboardType,
+        validator: widget.validator,
+        onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
+        decoration: InputDecoration(
+          border: buildBorder(),
+          focusedBorder: buildBorder(AppColors.buttons),
+          hintText: widget.hintText,
+          hintStyle: AppStyles.styleRegular14(context),
+          suffixIcon: Visibility(
+            visible: widget.isPasswordField,
+            child: IconButton(
+              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              onPressed: () => setState(() => _obscureText = !_obscureText),
+            ),
           ),
         ),
       ),
@@ -56,6 +62,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide(color: color),
+
     );
   }
 }

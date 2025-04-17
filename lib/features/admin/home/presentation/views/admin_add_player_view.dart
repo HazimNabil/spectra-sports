@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_1.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_2.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_3.dart';
+import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_goalkeeper.dart';
 
 class AdminAddPlayerView extends StatefulWidget {
   @override
@@ -42,9 +43,19 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
               );
             },
           ),
-          AddPlayer2(
+          AddPlayerGoalkeeper(
             onNext: () {
               int pagenumber = 2;
+              
+              _controller.animateToPage(
+                pagenumber,
+                duration: Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+  }),
+          AddPlayer2(
+            onNext: () {
+              int pagenumber = 3;
               
               _controller.animateToPage(
                 pagenumber,
@@ -61,7 +72,8 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                 duration: Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
-  })
+  }),
+   
         ],
       ),
     );
