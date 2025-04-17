@@ -101,7 +101,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
           title: 'You are logged in successfully',
           type: ToastificationType.success,
         );
-        navigateByRole(user.role, context);
+        navigateByRole(user, context);
       case AuthFailure():
         showToast(
           context: context,
