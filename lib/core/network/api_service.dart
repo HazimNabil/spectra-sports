@@ -28,4 +28,17 @@ class ApiService {
     );
     return response.data;
   }
+
+  Future patch(
+    String endpoint,
+    Map<String, dynamic> data, {
+    Map<String, dynamic>? headers,
+  }) async {
+    final response = await _dio.patch(
+      endpoint,
+      data: data,
+      options: Options(headers: headers),
+    );
+    return response.data;
+  }
 }
