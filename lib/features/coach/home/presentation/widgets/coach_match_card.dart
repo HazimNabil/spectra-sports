@@ -4,6 +4,7 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/match_result.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/add_match_result_dialog.dart';
 
 class CoachMatchCard extends StatelessWidget {
   final MatchModel match;
@@ -55,7 +56,7 @@ class CoachMatchCard extends StatelessWidget {
                   .add(const Duration(minutes: 120))
                   .isBefore(DateTime.now()),
               maintainState: false,
-              child: displayMatchResult(),
+              child: displayMatchResult(context),
             ),
           ],
         ),
@@ -63,12 +64,15 @@ class CoachMatchCard extends StatelessWidget {
     );
   }
 
-  Widget displayMatchResult() {
+  Widget displayMatchResult(BuildContext context) {
     if (match.team1Score == null && match.team2Score == null) {
       return Align(
         child: CustomButton(
           title: 'Add Result',
-          onPressed: () {},
+          onPressed: () => showDialog(
+            context: context,
+            builder: (context) => const AddMatchResultDialog(),
+          ),
           color: AppColors.highlight,
         ),
       );
