@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/match_result.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/coach_matches_cubit/coach_matches_cubit.dart';
@@ -26,7 +27,7 @@ class CoachMatchCard extends StatelessWidget {
           spacing: 16,
           children: [
             Text(
-              match.status!,
+              formatDate(match.date),
               style: AppStyles.styleSemiBold16(context),
             ),
             Row(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/match_result.dart';
 
 class AdminMatchCard extends StatelessWidget {
@@ -22,7 +23,7 @@ class AdminMatchCard extends StatelessWidget {
           spacing: 16,
           children: [
             Text(
-              match.status!,
+              formatDate(match.date),
               style: AppStyles.styleSemiBold16(context),
             ),
             Row(
