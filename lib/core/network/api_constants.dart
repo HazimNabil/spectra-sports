@@ -6,9 +6,9 @@ class ApiConstants {
   static const register = '/auth/register/admin';
   static const getTeams = '/admin/teams';
   static const getMatches = '/coach/matches';
-  static const addMatch = '/coach/add-match';
+  static const addMatch = '/match';
   static const getTeam = '/admin/teams';
-  static const updateMatch = '/coach/update-match';
+  static const updateMatch = '/match';
 
   static const authorization = 'Authorization';
   static const bearer = 'Bearer';
