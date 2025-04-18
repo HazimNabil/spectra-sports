@@ -43,7 +43,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
             },
           ),
           AddPlayerGoalkeeper(onNext: () {
-            int pagenumber = 2;
+            int pagenumber = 3;
 
             _controller.animateToPage(
               pagenumber,

@@ -62,6 +62,21 @@ class AddCoachDetails extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
+            'Coach Phone Number',
+            style: AppStyles.styleSemiBold12(
+              context,
+            ).copyWith(
+              color: AppColors.text,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 8),
+          CustomTextField(
+            hintText: '01099362016',
+            onSaved: (parentName) {},
+          ),
+          const SizedBox(height: 24),
+          Text(
             'Password',
             style: AppStyles.styleSemiBold12(
               context,
@@ -73,6 +88,7 @@ class AddCoachDetails extends StatelessWidget {
           const SizedBox(height: 8),
           CustomTextField(
             hintText: 'Password',
+            isPasswordField: true,
             validator: AppValidators.passwordValidator,
             onSaved: (password) {},
           ),

@@ -74,7 +74,7 @@ class AddParentDetails extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            'Parent Name',
+            'Password',
             style: AppStyles.styleSemiBold12(
               context,
             ).copyWith(
@@ -85,6 +85,7 @@ class AddParentDetails extends StatelessWidget {
           const SizedBox(height: 8),
           CustomTextField(
             hintText: 'Password',
+            isPasswordField: true,
             validator: AppValidators.passwordValidator,
             onSaved: (password) {},
           ),
