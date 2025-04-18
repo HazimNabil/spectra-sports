@@ -65,7 +65,7 @@ class CoachMatchCard extends StatelessWidget {
   }
 
   Widget displayMatchResult(BuildContext context) {
-    if (match.team1Score == null && match.team2Score == null) {
+    if (match.team1Score == 0 && match.team2Score == 0) {
       return Align(
         child: CustomButton(
           title: 'Add Result',
