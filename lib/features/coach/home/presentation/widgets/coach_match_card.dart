@@ -71,7 +71,11 @@ class CoachMatchCard extends StatelessWidget {
           title: 'Add Result',
           onPressed: () => showDialog(
             context: context,
-            builder: (context) => const AddMatchResultDialog(),
+            builder: (context) {
+              return AddMatchResultDialog(
+                matchId: match.id,
+              );
+            },
           ),
           color: AppColors.highlight,
         ),

@@ -1,7 +1,9 @@
 class MatchResultBody {
-  String? matchId;
+  String matchId;
   int? team1Score;
   int? team2Score;
+
+  MatchResultBody(this.matchId);
 
   Map<String, dynamic> toJson() {
     return {
