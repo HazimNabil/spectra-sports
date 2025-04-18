@@ -4,9 +4,15 @@ import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
 
-class PlayerSpecsSection0 extends StatelessWidget {
+class PlayerSpecsSection0 extends StatefulWidget {
   const PlayerSpecsSection0({super.key});
 
+  @override
+  State<PlayerSpecsSection0> createState() => _PlayerSpecsSection0State();
+}
+
+class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
+  int _value = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -18,8 +24,8 @@ class PlayerSpecsSection0 extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-          Title(color: AppColors.highlight, child: Text("Add Player")),
-          Title(color: AppColors.highlight, child: Text("Player Specs")),
+          Title(color: AppColors.highlight, child: Text("Add Player",style:AppStyles.styleBold20(context).copyWith(color: AppColors.text,fontWeight: FontWeight.bold))),
+          Title(color: AppColors.highlight, child: Text("Player Specs",)),
           Column(
             children: [
               Text(
@@ -161,12 +167,44 @@ class PlayerSpecsSection0 extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  CustomTextField(
-                    fieldWidth: 100,
-                    hintText: '0',
-                    validator: AppValidators.requiredFieldValidator,
-                    onSaved: (shooting) {},
-                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Radio(
+                              value: 1,
+                              groupValue: _value,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value!;
+                                });
+                              }),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text("Right"),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Radio(
+                              value: 2,
+                              groupValue: _value,
+                              onChanged: (value) {
+                                setState(() {
+                                  _value = value!;
+                                });
+                              }),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Text("Left"),
+                        ],
+                      )
+                    ],
+                  )
                 ],
               ),
             ],

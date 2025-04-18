@@ -10,14 +10,20 @@ class AddPlayer2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          PlayerSpecsSection(),
-          CustomButton(
-              title: "Next",
-              onPressed: () => onNext(),
-              color: AppColors.buttons)
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            PlayerSpecsSection(),
+            SizedBox(
+              width: double.infinity,
+              child: CustomButton(
+                  title: "Next",
+                  onPressed: () => onNext(),
+                  color: AppColors.highlight),
+            )
+          ],
+        ),
       ),
     );
   }

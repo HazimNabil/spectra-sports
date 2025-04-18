@@ -15,8 +15,13 @@ class AddPlayer3 extends StatelessWidget {
     return SingleChildScrollView(
         child: Column(children: [
       const AddParentDetails(),
-      CustomButton(
-          title: "Apply", onPressed: () => onNext(), color: AppColors.text),
+      SizedBox(
+        width: double.infinity,
+        child: CustomButton(
+            title: "Apply",
+            onPressed: () => onNext(),
+            color: AppColors.highlight),
+      ),
     ]));
   }
 }
