@@ -77,7 +77,7 @@ class CoachMatchCard extends StatelessWidget {
               return BlocProvider.value(
                 value: context.read<CoachMatchesCubit>(),
                 child: AddMatchResultDialog(
-                  matchId: match.id,
+                  match: match,
                 ),
               );
             },

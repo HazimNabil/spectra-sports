@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
@@ -11,11 +12,11 @@ import 'package:spectra_sports/features/coach/home/presentation/view_models/coac
 import 'package:toastification/toastification.dart';
 
 class AddMatchResultDialog extends StatefulWidget {
-  final String matchId;
+  final MatchModel match;
 
   const AddMatchResultDialog({
     super.key,
-    required this.matchId,
+    required this.match,
   });
 
   @override
@@ -30,7 +31,10 @@ class _AddMatchResultDialogState extends State<AddMatchResultDialog> {
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
-    _matchResultBody = MatchResultBody(widget.matchId);
+    _matchResultBody = MatchResultBody(
+      matchId: widget.match.id,
+      date: widget.match.date,
+    );
   }
 
   @override

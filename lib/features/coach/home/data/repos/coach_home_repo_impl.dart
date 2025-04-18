@@ -21,7 +21,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       final jsonTeam = await _apiService.get(
-        '${ApiConstants.getTeam}?$coachId',
+        '${ApiConstants.getTeam}/$coachId',
         {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
       final team = Team.fromJson(jsonTeam);
@@ -39,8 +39,8 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
     try {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
-      await _apiService.post(
-        ApiConstants.updateMatch,
+      await _apiService.patch(
+        '${ApiConstants.updateMatch}/${matchResultBody.matchId}',
         matchResultBody.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
