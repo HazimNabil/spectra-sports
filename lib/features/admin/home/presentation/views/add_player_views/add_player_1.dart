@@ -38,12 +38,15 @@ class _Addplayer1State extends State<Addplayer1> {
                 title: const Text("GoalKeeper"),
                 controlAffinity: ListTileControlAffinity.leading,
               ),
-              SizedBox(
-                width: double.infinity,
-                child: CustomButton(
-                    title: "Next",
-                    onPressed: () => widget.onNext(_isGoalKeeper),
-                    color: AppColors.highlight),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  child: CustomButton(
+                      title: "Next",
+                      onPressed: () => widget.onNext(_isGoalKeeper),
+                      color: AppColors.highlight),
+                ),
               ),
             ],
           )),

@@ -49,7 +49,7 @@ class AdminMembersSection extends StatelessWidget {
                 title: 'Add Coach',
                 color: AppColors.highlight,
                 onPressed: () {
-                  
+                  context.push(AppRouter.addCoachRoute);
                 },
               ),
             ],

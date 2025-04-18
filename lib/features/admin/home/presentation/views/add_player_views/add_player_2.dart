@@ -15,12 +15,15 @@ class AddPlayer2 extends StatelessWidget {
         child: Column(
           children: [
             PlayerSpecsSection(),
-            SizedBox(
-              width: double.infinity,
-              child: CustomButton(
-                  title: "Next",
-                  onPressed: () => onNext(),
-                  color: AppColors.highlight),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SizedBox(
+                width: double.infinity,
+                child: CustomButton(
+                    title: "Next",
+                    onPressed: () => onNext(),
+                    color: AppColors.highlight),
+              ),
             )
           ],
         ),

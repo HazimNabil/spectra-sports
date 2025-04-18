@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/models/team.dart';
+import 'package:spectra_sports/features/admin/home/presentation/views/add_coach_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_add_player_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_match_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_home_view.dart';
@@ -26,6 +27,7 @@ abstract class AppRouter {
   static const parentHomeRoute = '/parent_home';
   static const addPlayerRoute = '/admin_add_player';
   static const addMatchRoute = '/add_match';
+  static const addCoachRoute = '/add_coach';
 
   static final router = GoRouter(
     routes: [
@@ -79,6 +81,11 @@ abstract class AppRouter {
         builder: (context, state) {
           return AddMatchView(teamId: state.extra as String);
         },
+      ),
+       GoRoute(
+         path: addCoachRoute,
+        builder: (context, state) =>  AddCoachView(),
+        
       )
     ],
   );

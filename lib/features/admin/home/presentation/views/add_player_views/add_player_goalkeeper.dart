@@ -13,12 +13,15 @@ class AddPlayerGoalkeeper extends StatelessWidget {
       child: Column(
         children: [
           const GoalkeeperSpecsSection(),
-          SizedBox(
-            width: double.infinity,
-            child: CustomButton(
-                title: "Next",
-                onPressed: () => onNext(),
-                color: AppColors.highlight),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SizedBox(
+              width: double.infinity,
+              child: CustomButton(
+                  title: "Next",
+                  onPressed: () => onNext(),
+                  color: AppColors.highlight),
+            ),
           )
         ],
       ),
