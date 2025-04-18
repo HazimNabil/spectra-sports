@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/match_result.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/coach_matches_cubit/coach_matches_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/add_match_result_dialog.dart';
 
 class CoachMatchCard extends StatelessWidget {
@@ -65,15 +67,18 @@ class CoachMatchCard extends StatelessWidget {
   }
 
   Widget displayMatchResult(BuildContext context) {
-    if (match.team1Score == 0 && match.team2Score == 0) {
+    if (match.team1Score == null && match.team2Score == null) {
       return Align(
         child: CustomButton(
           title: 'Add Result',
           onPressed: () => showDialog(
             context: context,
-            builder: (context) {
-              return AddMatchResultDialog(
-                matchId: match.id,
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<CoachMatchesCubit>(),
+                child: AddMatchResultDialog(
+                  matchId: match.id,
+                ),
               );
             },
           ),
