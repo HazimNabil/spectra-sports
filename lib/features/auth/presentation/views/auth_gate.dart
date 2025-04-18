@@ -30,7 +30,7 @@ class _AuthGateState extends State<AuthGate> {
       listener: (context, state) {
         switch (state) {
           case Authenticated(user: final user):
-            navigateByRole(user.role, context);
+            navigateByRole(user, context);
           case Unauthenticated():
             context.pushReplacement(AppRouter.loginRoute);
           default:

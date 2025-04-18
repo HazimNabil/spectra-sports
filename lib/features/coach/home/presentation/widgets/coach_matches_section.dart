@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/coach_matches_cubit/coach_matches_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_match_card_list_view.dart';
 
 class CoachMatchesSection extends StatelessWidget {
@@ -6,6 +8,21 @@ class CoachMatchesSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CoachMatchCardListView();
+    return BlocBuilder<CoachMatchesCubit, CoachMatchesState>(
+      builder: (context, state) {
+        return switch (state) {
+          CoachMatchesLoading() => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          CoachMatchesSuccess(matches: final matches) => CoachMatchCardListView(
+              matches: matches,
+            ),
+          CoachMatchesFailure(message: final message) => Center(
+              child: Text(message),
+            ),
+          _ => const Placeholder(),
+        };
+      },
+    );
   }
 }

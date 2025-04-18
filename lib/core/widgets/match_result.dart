@@ -13,18 +13,21 @@ class MatchResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          team1Score?.toString() ?? '',
-          style: AppStyles.styleExtraBold24(context),
-        ),
-        Text(
-          team2Score?.toString() ?? '',
-          style: AppStyles.styleExtraBold24(context),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            team1Score?.toString() ?? '',
+            style: AppStyles.styleExtraBold24(context),
+          ),
+          Text(
+            team2Score?.toString() ?? '',
+            style: AppStyles.styleExtraBold24(context),
+          ),
+        ],
+      ),
     );
   }
 }

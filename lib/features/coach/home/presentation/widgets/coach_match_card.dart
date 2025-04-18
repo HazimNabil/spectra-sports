@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/core/widgets/match_result.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/coach_matches_cubit/coach_matches_cubit.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/add_match_result_dialog.dart';
 
 class CoachMatchCard extends StatelessWidget {
-  const CoachMatchCard({super.key});
+  final MatchModel match;
+
+  const CoachMatchCard({super.key, required this.match});
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +23,16 @@ class CoachMatchCard extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
+          spacing: 16,
           children: [
             Text(
-              '3 November 2022, 11.30',
+              match.status!,
               style: AppStyles.styleSemiBold16(context),
             ),
             Row(
               children: [
                 Text(
-                  'Team 1',
+                  match.team1,
                   style: AppStyles.styleRegular14(
                     context,
                   ).copyWith(color: AppColors.icons),
@@ -39,7 +46,7 @@ class CoachMatchCard extends StatelessWidget {
                 ),
                 const Spacer(),
                 Text(
-                  'Team 2',
+                  match.team2,
                   style: AppStyles.styleRegular14(
                     context,
                   ).copyWith(color: AppColors.icons),
@@ -47,19 +54,42 @@ class CoachMatchCard extends StatelessWidget {
               ],
             ),
             Visibility(
-              visible: true,
+              visible: match.date
+                  .add(const Duration(minutes: 120))
+                  .isBefore(DateTime.now()),
               maintainState: false,
-              child: Align(
-                child: CustomButton(
-                  title: 'Add Result',
-                  onPressed: () {},
-                  color: AppColors.highlight,
-                ),
-              ),
+              child: displayMatchResult(context),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Widget displayMatchResult(BuildContext context) {
+    if (match.team1Score == null && match.team2Score == null) {
+      return Align(
+        child: CustomButton(
+          title: 'Add Result',
+          onPressed: () => showDialog(
+            context: context,
+            builder: (_) {
+              return BlocProvider.value(
+                value: context.read<CoachMatchesCubit>(),
+                child: AddMatchResultDialog(
+                  matchId: match.id,
+                ),
+              );
+            },
+          ),
+          color: AppColors.highlight,
+        ),
+      );
+    } else {
+      return MatchResult(
+        team1Score: match.team1Score,
+        team2Score: match.team2Score,
+      );
+    }
   }
 }

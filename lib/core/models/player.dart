@@ -6,7 +6,7 @@ class Player extends Equatable {
   final String coachName;
   final String teamName;
   final String preferredFoot;
-  final String clubPosition;
+  final String? clubPosition;
   final int weakFoot;
   final double weightKg;
   final int pace;
@@ -31,7 +31,7 @@ class Player extends Equatable {
     required this.coachName,
     required this.teamName,
     required this.preferredFoot,
-    required this.clubPosition,
+    this.clubPosition,
     required this.weakFoot,
     required this.weightKg,
     required this.pace,
@@ -58,7 +58,7 @@ class Player extends Equatable {
       coachName: json['coachName'] as String,
       teamName: json['Team_name'] as String,
       preferredFoot: json['preferred_foot'] as String,
-      clubPosition: json['club_position'] as String,
+      clubPosition: json['club_position'] as String?,
       weakFoot: json['weak_foot'] as int,
       weightKg: (json['weight_kg'] as num).toDouble(),
       pace: json['pace'] as int,
