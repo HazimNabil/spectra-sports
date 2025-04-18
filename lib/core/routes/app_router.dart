@@ -74,7 +74,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: addPlayerRoute,
-        builder: (context, state) => AdminAddPlayerView(),
+        builder: (context, state) => const AdminAddPlayerView(),
       ),
       GoRoute(
         path: addMatchRoute,
@@ -84,7 +84,7 @@ abstract class AppRouter {
       ),
        GoRoute(
          path: addCoachRoute,
-        builder: (context, state) =>  AddCoachView(),
+        builder: (context, state) =>  const AddCoachView(),
         
       )
     ],

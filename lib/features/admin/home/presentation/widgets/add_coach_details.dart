@@ -25,7 +25,7 @@ class AddCoachDetails extends StatelessWidget {
               child: Text("Add coach",
                   style: AppStyles.styleBold20(context).copyWith(
                       color: AppColors.text, fontWeight: FontWeight.bold))),
-          Title(color: AppColors.highlight, child: Text("Coach Details")),
+          Title(color: AppColors.highlight, child: const Text("Coach Details")),
           const SizedBox(height: 24),
           Text(
             'Email Address',

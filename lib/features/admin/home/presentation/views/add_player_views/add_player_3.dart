@@ -8,7 +8,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/add_pare
 
 class AddPlayer3 extends StatelessWidget {
   final void Function() onNext;
-  const AddPlayer3({required this.onNext, Key? key}) : super(key: key);
+  const AddPlayer3({required this.onNext, super.key});
 
   @override
   Widget build(BuildContext context) {

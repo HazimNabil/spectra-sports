@@ -5,6 +5,8 @@ import 'package:spectra_sports/features/admin/home/presentation/views/add_player
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_goalkeeper.dart';
 
 class AdminAddPlayerView extends StatefulWidget {
+  const AdminAddPlayerView({super.key});
+
   @override
   State<AdminAddPlayerView> createState() => _AdminAddPlayerViewState();
 }
@@ -37,7 +39,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
               }
               _controller.animateToPage(
                 pagenumber,
-                duration: Duration(milliseconds: 300),
+                duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
             },
@@ -47,7 +49,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
 
             _controller.animateToPage(
               pagenumber,
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           }),
@@ -56,7 +58,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
 
             _controller.animateToPage(
               pagenumber,
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           }),
@@ -65,7 +67,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
 
             _controller.animateToPage(
               pagenumber,
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           }),

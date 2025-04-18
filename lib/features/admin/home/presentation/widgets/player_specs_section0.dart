@@ -25,7 +25,7 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
             height: 50,
           ),
           Title(color: AppColors.highlight, child: Text("Add Player",style:AppStyles.styleBold20(context).copyWith(color: AppColors.text,fontWeight: FontWeight.bold))),
-          Title(color: AppColors.highlight, child: Text("Player Specs",)),
+          Title(color: AppColors.highlight, child: const Text("Player Specs",)),
           Column(
             children: [
               Text(
@@ -181,10 +181,10 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                                   _value = value!;
                                 });
                               }),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
-                          Text("Right"),
+                          const Text("Right"),
                         ],
                       ),
                       Row(
@@ -197,10 +197,10 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                                   _value = value!;
                                 });
                               }),
-                          SizedBox(
+                          const SizedBox(
                             width: 8,
                           ),
-                          Text("Left"),
+                          const Text("Left"),
                         ],
                       )
                     ],

@@ -5,7 +5,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/goalkeep
 
 class AddPlayerGoalkeeper extends StatelessWidget {
   final void Function() onNext;
-  const AddPlayerGoalkeeper({required this.onNext, Key? key}) : super(key: key);
+  const AddPlayerGoalkeeper({required this.onNext, super.key});
 
   @override
   Widget build(BuildContext context) {

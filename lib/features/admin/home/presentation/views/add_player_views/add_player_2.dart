@@ -5,7 +5,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/player_s
 
 class AddPlayer2 extends StatelessWidget {
   final void Function() onNext;
-  const AddPlayer2({required this.onNext, Key? key}) : super(key: key);
+  const AddPlayer2({required this.onNext, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AddPlayer2 extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            PlayerSpecsSection(),
+            const PlayerSpecsSection(),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: SizedBox(

@@ -7,7 +7,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/player_s
 class Addplayer1 extends StatefulWidget {
   final void Function(bool) onNext;
 
-  const Addplayer1({required this.onNext, Key? key}) : super(key: key);
+  const Addplayer1({required this.onNext, super.key});
 
   @override
   State<Addplayer1> createState() => _Addplayer1State();
@@ -24,7 +24,7 @@ class _Addplayer1State extends State<Addplayer1> {
           Form(
               child: Column(
             children: [
-              PlayerSpecsSection0(),
+              const PlayerSpecsSection0(),
               CheckboxListTile(
                 value: _isGoalKeeper,
                 onChanged: (bool? newValue) {
