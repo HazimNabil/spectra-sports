@@ -13,6 +13,7 @@ class PlayerSpecsSection0 extends StatefulWidget {
 
 class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
   int _value = 0;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -24,8 +25,21 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
           const SizedBox(
             height: 50,
           ),
-          Title(color: AppColors.highlight, child: Text("Add Player",style:AppStyles.styleBold20(context).copyWith(color: AppColors.text,fontWeight: FontWeight.bold))),
-          Title(color: AppColors.highlight, child: const Text("Player Specs",)),
+          Title(
+            color: AppColors.highlight,
+            child: Text(
+              "Add Player",
+              style: AppStyles.styleBold20(
+                context,
+              ).copyWith(color: AppColors.text, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Title(
+            color: AppColors.highlight,
+            child: const Text(
+              "Player Specs",
+            ),
+          ),
           Column(
             children: [
               Text(
@@ -118,7 +132,7 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
               Column(
                 children: [
                   Text(
-                    'Weigt in kg',
+                    'Weight in kg',
                     style: AppStyles.styleSemiBold12(
                       context,
                     ).copyWith(
@@ -158,7 +172,7 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
               Column(
                 children: [
                   Text(
-                    'Preferd Foot',
+                    'Preferred Foot',
                     style: AppStyles.styleSemiBold12(
                       context,
                     ).copyWith(
@@ -174,13 +188,14 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
-                              value: 1,
-                              groupValue: _value,
-                              onChanged: (value) {
-                                setState(() {
-                                  _value = value!;
-                                });
-                              }),
+                            value: 1,
+                            groupValue: _value,
+                            onChanged: (value) {
+                              setState(() {
+                                _value = value!;
+                              });
+                            },
+                          ),
                           const SizedBox(
                             width: 8,
                           ),
@@ -190,13 +205,14 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
-                              value: 2,
-                              groupValue: _value,
-                              onChanged: (value) {
-                                setState(() {
-                                  _value = value!;
-                                });
-                              }),
+                            value: 2,
+                            groupValue: _value,
+                            onChanged: (value) {
+                              setState(() {
+                                _value = value!;
+                              });
+                            },
+                          ),
                           const SizedBox(
                             width: 8,
                           ),

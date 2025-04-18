@@ -13,6 +13,7 @@ class AdminAddPlayerView extends StatefulWidget {
 
 class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
   late final PageController _controller;
+
   @override
   void initState() {
     super.initState();
@@ -31,42 +32,42 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
       body: PageView(
         controller: _controller,
         children: [
-          Addplayer1(
-            onNext: (bool isGoalKeaper) {
-              int pagenumber = 1;
-              if (isGoalKeaper == false) {
-                pagenumber = 2;
+          AddPlayer1(
+            onNext: (bool isGoalKeeper) {
+              int pageNumber = 1;
+              if (isGoalKeeper) {
+                pageNumber = 2;
               }
               _controller.animateToPage(
-                pagenumber,
+                pageNumber,
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
             },
           ),
           AddPlayerGoalkeeper(onNext: () {
-            int pagenumber = 3;
+            int pageNumber = 3;
 
             _controller.animateToPage(
-              pagenumber,
+              pageNumber,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           }),
           AddPlayer2(onNext: () {
-            int pagenumber = 3;
+            int pageNumber = 3;
 
             _controller.animateToPage(
-              pagenumber,
+              pageNumber,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );
           }),
           AddPlayer3(onNext: () {
-            int pagenumber = 0;
+            int pageNumber = 0;
 
             _controller.animateToPage(
-              pagenumber,
+              pageNumber,
               duration: const Duration(milliseconds: 300),
               curve: Curves.easeInOut,
             );

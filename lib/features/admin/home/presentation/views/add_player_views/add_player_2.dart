@@ -5,6 +5,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/player_s
 
 class AddPlayer2 extends StatelessWidget {
   final void Function() onNext;
+
   const AddPlayer2({required this.onNext, super.key});
 
   @override
@@ -20,9 +21,10 @@ class AddPlayer2 extends StatelessWidget {
               child: SizedBox(
                 width: double.infinity,
                 child: CustomButton(
-                    title: "Next",
-                    onPressed: () => onNext(),
-                    color: AppColors.highlight),
+                  title: "Next",
+                  onPressed: () => onNext(),
+                  color: AppColors.highlight,
+                ),
               ),
             )
           ],

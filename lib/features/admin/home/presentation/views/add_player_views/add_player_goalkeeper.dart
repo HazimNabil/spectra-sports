@@ -18,9 +18,10 @@ class AddPlayerGoalkeeper extends StatelessWidget {
             child: SizedBox(
               width: double.infinity,
               child: CustomButton(
-                  title: "Next",
-                  onPressed: () => onNext(),
-                  color: AppColors.highlight),
+                title: "Next",
+                onPressed: () => onNext(),
+                color: AppColors.highlight,
+              ),
             ),
           )
         ],

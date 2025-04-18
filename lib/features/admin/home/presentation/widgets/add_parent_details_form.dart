@@ -20,8 +20,17 @@ class AddParentDetails extends StatelessWidget {
           const SizedBox(
             height: 50,
           ),
-           Title(color: AppColors.highlight, child: Text("Add Player",style:AppStyles.styleBold20(context).copyWith(color: AppColors.text,fontWeight: FontWeight.bold))),
-          Title(color: AppColors.highlight, child: const Text("Parent Details")),
+          Title(
+            color: AppColors.highlight,
+            child: Text(
+              "Add Player",
+              style: AppStyles.styleBold20(
+                context,
+              ).copyWith(color: AppColors.text, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Title(
+              color: AppColors.highlight, child: const Text("Parent Details")),
           const SizedBox(height: 24),
           Text(
             'Email Address',
