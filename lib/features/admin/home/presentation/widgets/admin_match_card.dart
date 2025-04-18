@@ -19,7 +19,7 @@ class AdminMatchCard extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
+          spacing: 16,
           children: [
             Text(
               match.status!,
