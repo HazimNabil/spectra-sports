@@ -55,7 +55,7 @@ class CoachMatchCard extends StatelessWidget {
             ),
             Visibility(
               visible: match.date
-                  .add(const Duration(minutes: 120))
+                  .add(const Duration(minutes: 90))
                   .isBefore(DateTime.now()),
               maintainState: false,
               child: displayMatchResult(context),
