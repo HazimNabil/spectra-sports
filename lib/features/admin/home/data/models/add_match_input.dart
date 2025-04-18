@@ -2,7 +2,12 @@ class AddMatchInput {
   String? matchName;
   String? opponentTeam;
   DateTime? date;
-  final String myTeam;
 
-  AddMatchInput(this.myTeam);
+  Map<String, dynamic> toJson() {
+    return {
+      'matchName': matchName,
+      'opponentTeam': opponentTeam,
+      'date': date!.toIso8601String(),
+    };
+  }
 }

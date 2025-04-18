@@ -7,6 +7,7 @@ import 'package:spectra_sports/core/network/api_constants.dart';
 import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo.dart';
 
 class AdminHomeRepoImpl implements AdminHomeRepo {
@@ -33,12 +34,12 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   }
 
   @override
-  ApiResult<Unit> addMatch(MatchModel match) async {
+  ApiResult<Unit> addMatch(AddMatchInput input) async {
     try {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
       await _apiService.post(
         ApiConstants.addMatch,
-        match.toJson(),
+        input.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
       return const Right(unit);

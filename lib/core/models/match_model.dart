@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
+// import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 
 class MatchModel extends Equatable {
   final String id;
@@ -42,15 +42,6 @@ class MatchModel extends Equatable {
       'team2Score': team2Score,
       'status': status,
     };
-  }
-
-  factory MatchModel.fromAddMatchInput(AddMatchInput addMatchInput) {
-    return MatchModel(
-      id: addMatchInput.matchName!,
-      team1: addMatchInput.myTeam,
-      team2: addMatchInput.opponentTeam!,
-      date: addMatchInput.date!,
-    );
   }
 
   @override

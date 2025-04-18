@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:spectra_sports/core/models/match_model.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/extensions.dart';
@@ -31,7 +30,7 @@ class _AddMatchViewBodyState extends State<AddMatchViewBody> {
     super.initState();
     _formKey = GlobalKey<FormState>();
     _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
-    _addMatchInput = AddMatchInput(widget.teamId);
+    _addMatchInput = AddMatchInput();
   }
 
   @override
@@ -83,10 +82,9 @@ class _AddMatchViewBodyState extends State<AddMatchViewBody> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          final match = MatchModel.fromAddMatchInput(
-                            _addMatchInput,
-                          );
-                          context.read<AddMatchCubit>().addMatch(match);
+                          context
+                              .read<AddMatchCubit>()
+                              .addMatch(_addMatchInput);
                         } else {
                           _autovalidateMode.value = AutovalidateMode.always;
                         }
