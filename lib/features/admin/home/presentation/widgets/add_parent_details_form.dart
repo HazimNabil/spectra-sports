@@ -30,7 +30,9 @@ class AddParentDetails extends StatelessWidget {
             ),
           ),
           Title(
-              color: AppColors.highlight, child: const Text("Parent Details")),
+            color: AppColors.highlight,
+            child: const Text("Parent Details"),
+          ),
           const SizedBox(height: 24),
           Text(
             'Email Address',
