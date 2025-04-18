@@ -28,3 +28,9 @@ void showToast({
     autoCloseDuration: const Duration(seconds: 3),
   );
 }
+
+String formatDate(DateTime date) {
+  final formattedDate = '${date.day}/${date.month}/${date.year}';
+  final formattedTime = '${date.hour}:${date.minute}';
+  return '$formattedDate $formattedTime';
+}
