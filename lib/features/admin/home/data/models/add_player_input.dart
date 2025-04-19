@@ -6,6 +6,7 @@ class AddPlayerInput {
   String? clubPosition;
   int? weakFoot;
   double? weightKg;
+  int? attackingCrossing;
   int? pace;
   int? shooting;
   int? passing;
