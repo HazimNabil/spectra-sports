@@ -47,6 +47,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
           coachName: widget.coachName,
         ),
         child: PageView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: _controller,
           children: [
             AddPlayer1(
@@ -62,6 +63,18 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                 );
               },
             ),
+            AddPlayer2(
+              onNext: () {
+                int pageNumber = 2;
+
+                _controller.animateToPage(
+                  pageNumber,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+              playersCubit: widget.playersCubit,
+            ),
             AddPlayerGoalkeeper(onNext: () {
               int pageNumber = 3;
 
@@ -70,16 +83,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeInOut,
               );
-            }),
-            AddPlayer2(onNext: () {
-              int pageNumber = 3;
-
-              _controller.animateToPage(
-                pageNumber,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            }),
+            }, playersCubit: widget.playersCubit),
             AddPlayer3(onNext: () {
               int pageNumber = 0;
 

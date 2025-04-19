@@ -25,28 +25,31 @@ class AdminMembersSection extends StatelessWidget {
       child: Column(
         spacing: 16,
         children: [
-          BlocBuilder<PlayersCubit, PlayersState>(
-            builder: (context, state) {
-              return switch (state) {
-                PlayersLoading() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                PlayersSuccess(players: final players) => Column(
-                    children: [
-                      CoachCard(coachName: players[0].coachName),
-                      const SizedBox(height: 16),
-                      ...List.generate(
-                        players.length,
-                        (index) => AdminPlayerCard(player: players[index]),
-                      ),
-                    ],
-                  ),
-                PlayersFailure(message: final message) => Center(
-                    child: Text(message),
-                  ),
-                _ => const Placeholder(),
-              };
-            },
+          Expanded(
+            child: BlocBuilder<PlayersCubit, PlayersState>(
+              builder: (context, state) {
+                return switch (state) {
+                  PlayersLoading() => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                  PlayersSuccess(players: final players) => ListView(
+                      padding: EdgeInsets.zero,
+                      children: [
+                        CoachCard(coachName: players[0].coachName),
+                        const SizedBox(height: 16),
+                        ...List.generate(
+                          players.length,
+                          (index) => AdminPlayerCard(player: players[index]),
+                        ),
+                      ],
+                    ),
+                  PlayersFailure(message: final message) => Center(
+                      child: Text(message),
+                    ),
+                  _ => const Placeholder(),
+                };
+              },
+            ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
