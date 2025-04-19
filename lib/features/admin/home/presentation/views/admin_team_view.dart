@@ -38,8 +38,9 @@ class AdminTeamView extends StatelessWidget {
                     create: (context) => PlayersCubit(
                       locator<AdminHomeRepoImpl>(),
                     )..getPlayers(team.name),
-                    child: AdminMembersSection(
-                      players: team.players,
+                    child:  AdminMembersSection(
+                      teamName: team.name,
+                      coachName: team.players[0].coachName,
                     ),
                   ),
                 ],
