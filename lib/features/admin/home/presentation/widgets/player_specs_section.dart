@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
 
 class PlayerSpecsSection extends StatelessWidget {
   const PlayerSpecsSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final addPlayerInput = context.read<AddPlayerInput>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -52,7 +55,9 @@ class PlayerSpecsSection extends StatelessWidget {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (defending) {},
+                    onSaved: (defending) {
+                      addPlayerInput.defending = int.parse(defending!);
+                    },
                   ),
                 ],
               ),
@@ -73,7 +78,9 @@ class PlayerSpecsSection extends StatelessWidget {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (dribbling) {},
+                    onSaved: (dribbling) {
+                      addPlayerInput.dribbling = int.parse(dribbling!);
+                    },
                   ),
                 ],
               ),
@@ -94,7 +101,9 @@ class PlayerSpecsSection extends StatelessWidget {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (passing) {},
+                    onSaved: (passing) {
+                      addPlayerInput.passing = int.parse(passing!);
+                    },
                   ),
                 ],
               ),
@@ -120,7 +129,9 @@ class PlayerSpecsSection extends StatelessWidget {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (physic) {},
+                    onSaved: (physic) {
+                      addPlayerInput.physic = int.parse(physic!);
+                    },
                   ),
                 ],
               ),
@@ -141,7 +152,9 @@ class PlayerSpecsSection extends StatelessWidget {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (shooting) {},
+                    onSaved: (shooting) {
+                      addPlayerInput.shooting = int.parse(shooting!);
+                    },
                   ),
                 ],
               ),
