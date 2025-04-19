@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
 
 class PlayerSpecsSection0 extends StatefulWidget {
   const PlayerSpecsSection0({super.key});
@@ -12,10 +14,11 @@ class PlayerSpecsSection0 extends StatefulWidget {
 }
 
 class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
-  int _value = 0;
+  String _value = '';
 
   @override
   Widget build(BuildContext context) {
+    final addPlayerInput = context.read<AddPlayerInput>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -56,7 +59,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                 fieldWidth: 400,
                 hintText: 'Player Name',
                 validator: AppValidators.requiredFieldValidator,
-                onSaved: (defending) {},
+                onSaved: (name) {
+                  addPlayerInput.shortName = name;
+                },
               ),
             ],
           ),
@@ -81,7 +86,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (defending) {},
+                    onSaved: (weakFoot) {
+                      addPlayerInput.weakFoot = int.parse(weakFoot!);
+                    },
                   ),
                 ],
               ),
@@ -102,7 +109,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (dribbling) {},
+                    onSaved: (pace) {
+                      addPlayerInput.pace = int.parse(pace!);
+                    },
                   ),
                 ],
               ),
@@ -123,7 +132,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (passing) {},
+                    onSaved: (attacking) {
+                      addPlayerInput.attackingCrossing = int.parse(attacking!);
+                    },
                   ),
                 ],
               ),
@@ -149,7 +160,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (physic) {},
+                    onSaved: (weight) {
+                      addPlayerInput.weightKg = double.parse(weight!);
+                    },
                   ),
                 ],
               ),
@@ -170,7 +183,9 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                     hintText: '0',
                     validator: AppValidators.requiredFieldValidator,
                     keyboardType: TextInputType.number,
-                    onSaved: (shooting) {},
+                    onSaved: (height) {
+                      addPlayerInput.heightCm = double.parse(height!);
+                    },
                   ),
                 ],
               ),
@@ -193,9 +208,10 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
-                            value: 1,
+                            value: 'right',
                             groupValue: _value,
                             onChanged: (value) {
+                              addPlayerInput.preferredFoot = value;
                               setState(() {
                                 _value = value!;
                               });
@@ -210,9 +226,10 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
-                            value: 2,
+                            value: 'left',
                             groupValue: _value,
                             onChanged: (value) {
+                              addPlayerInput.preferredFoot = value;
                               setState(() {
                                 _value = value!;
                               });
