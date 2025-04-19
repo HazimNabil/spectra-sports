@@ -17,7 +17,12 @@ final class PlayersLoading extends PlayersState {
 }
 
 final class PlayersSuccess extends PlayersState {
-  const PlayersSuccess();
+  final List<Player> players;
+
+  const PlayersSuccess(this.players);
+
+  @override
+  List<Object> get props => [players];
 }
 
 final class PlayersFailure extends PlayersState {
