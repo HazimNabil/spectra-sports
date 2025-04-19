@@ -74,7 +74,13 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: addPlayerRoute,
-        builder: (context, state) => const AdminAddPlayerView(),
+        builder: (context, state) {
+          final (teamName, coachName) = state.extra as (String, String);
+          return AdminAddPlayerView(
+            teamName: teamName,
+            coachName: coachName,
+          );
+        },
       ),
       GoRoute(
         path: addMatchRoute,
@@ -82,10 +88,9 @@ abstract class AppRouter {
           return AddMatchView(teamId: state.extra as String);
         },
       ),
-       GoRoute(
-         path: addCoachRoute,
-        builder: (context, state) =>  const AddCoachView(),
-        
+      GoRoute(
+        path: addCoachRoute,
+        builder: (context, state) => const AddCoachView(),
       )
     ],
   );

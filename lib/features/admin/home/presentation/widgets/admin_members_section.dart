@@ -42,7 +42,10 @@ class AdminMembersSection extends StatelessWidget {
                 title: 'Add Player',
                 color: AppColors.highlight,
                 onPressed: () {
-                  context.push(AppRouter.addPlayerRoute);
+                  context.push(
+                    AppRouter.addPlayerRoute,
+                    extra: (players[0].teamName, players[0].coachName),
+                  );
                 },
               ),
               CustomButton(
