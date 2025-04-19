@@ -9,6 +9,7 @@ class ApiConstants {
   static const addMatch = '/match';
   static const getTeam = '/admin/teams';
   static const updateMatch = '/match';
+  static const addPlayer = '/players';
 
   static const authorization = 'Authorization';
   static const bearer = 'Bearer';

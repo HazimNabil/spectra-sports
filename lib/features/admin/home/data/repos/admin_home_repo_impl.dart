@@ -8,6 +8,7 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
+import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
 import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo.dart';
 
 class AdminHomeRepoImpl implements AdminHomeRepo {
@@ -54,5 +55,24 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   ApiResult<List<MatchModel>> getMatches() {
     // TODO: implement getMatches
     throw UnimplementedError();
+  }
+
+  @override
+  ApiResult<Unit> addPlayer(AddPlayerInput input) async {
+    try {
+      final token = CacheHelper.getSecureData(ApiConstants.tokenKey);
+
+      await _apiService.post(
+        ApiConstants.addPlayer,
+        input.toJson(),
+        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+      );
+
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 }
