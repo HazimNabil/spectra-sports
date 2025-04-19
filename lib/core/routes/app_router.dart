@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/models/team.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_coach_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_add_player_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_match_view.dart';
@@ -75,10 +76,11 @@ abstract class AppRouter {
       GoRoute(
         path: addPlayerRoute,
         builder: (context, state) {
-          final (teamName, coachName) = state.extra as (String, String);
+          final arguments = state.extra as (String, String, PlayersCubit);
           return AdminAddPlayerView(
-            teamName: teamName,
-            coachName: coachName,
+            teamName: arguments.$1,
+            coachName: arguments.$2,
+            playersCubit: arguments.$3,
           );
         },
       ),

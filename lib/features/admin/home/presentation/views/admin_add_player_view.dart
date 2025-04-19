@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_1.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_2.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_3.dart';
@@ -9,11 +10,13 @@ import 'package:spectra_sports/features/admin/home/presentation/views/add_player
 class AdminAddPlayerView extends StatefulWidget {
   final String teamName;
   final String coachName;
+  final PlayersCubit playersCubit;
 
   const AdminAddPlayerView({
     super.key,
     required this.teamName,
     required this.coachName,
+    required this.playersCubit,
   });
 
   @override

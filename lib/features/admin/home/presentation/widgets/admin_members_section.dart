@@ -57,7 +57,7 @@ class AdminMembersSection extends StatelessWidget {
                 onPressed: () {
                   context.push(
                     AppRouter.addPlayerRoute,
-                    extra: (teamName, coachName),
+                    extra: (teamName, coachName, context.read<PlayersCubit>()),
                   );
                 },
               ),
