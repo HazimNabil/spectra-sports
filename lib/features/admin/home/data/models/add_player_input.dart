@@ -1,7 +1,7 @@
 class AddPlayerInput {
   String? shortName;
-  String? coachName;
-  String? teamName;
+  String coachName;
+  String teamName;
   String? preferredFoot;
   String? clubPosition;
   int? weakFoot;
