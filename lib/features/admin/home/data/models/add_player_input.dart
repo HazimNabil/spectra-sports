@@ -23,4 +23,31 @@ class AddPlayerInput {
   int? goalkeepingSpeed;
 
   AddPlayerInput({required this.coachName, required this.teamName});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'short_name': shortName,
+      'coachName': coachName,
+      'Team_name': teamName,
+      'preferred_foot': preferredFoot,
+      'club_position': clubPosition,
+      'weak_foot': weakFoot,
+      'weight_kg': weightKg,
+      'pace': pace,
+      'shooting': shooting,
+      'passing': passing,
+      'dribbling': dribbling,
+      'height_cm': heightCm,
+      'defending': defending,
+      'overall': overall,
+      'physic': physic,
+      'player_face_url': playerFaceUrl,
+      'goalkeeping_diving': goalkeepingDiving,
+      'goalkeeping_handling': goalkeepingHandling,
+      'goalkeeping_kicking': goalkeepingKicking,
+      'goalkeeping_positioning': goalkeepingPositioning,
+      'goalkeeping_reflexes': goalkeepingReflexes,
+      'goalkeeping_speed': goalkeepingSpeed,
+    };
+  }
 }
