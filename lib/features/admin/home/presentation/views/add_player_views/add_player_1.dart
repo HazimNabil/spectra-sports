@@ -14,7 +14,17 @@ class AddPlayer1 extends StatefulWidget {
 }
 
 class _AddPlayer1State extends State<AddPlayer1> {
-  bool _isGoalKeeper = false;
+  late bool _isGoalKeeper;
+  late final GlobalKey<FormState> _formKey;
+  late final AutovalidateMode _autovalidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _isGoalKeeper = false;
+    _formKey = GlobalKey<FormState>();
+    _autovalidateMode = AutovalidateMode.disabled;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +32,8 @@ class _AddPlayer1State extends State<AddPlayer1> {
       child: Column(
         children: [
           Form(
+            key: _formKey,
+            autovalidateMode: _autovalidateMode,
             child: Column(
               children: [
                 const PlayerSpecsSection0(),
@@ -44,7 +56,16 @@ class _AddPlayer1State extends State<AddPlayer1> {
                     width: double.infinity,
                     child: CustomButton(
                       title: "Next",
-                      onPressed: () => widget.onNext(_isGoalKeeper),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          _formKey.currentState!.save();
+                          widget.onNext(_isGoalKeeper);
+                        } else {
+                          setState(() {
+                            _autovalidateMode = AutovalidateMode.always;
+                          });
+                        }
+                      },
                       color: AppColors.highlight,
                     ),
                   ),
