@@ -1,9 +1,11 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/attendance_cubit/attendance_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card_list_view.dart';
 
 class AttendanceSection extends StatelessWidget {
@@ -14,8 +16,24 @@ class AttendanceSection extends StatelessWidget {
     return Column(
       spacing: 16,
       children: [
-        const Expanded(
-          child: AttendanceCardListView(),
+        Expanded(
+          child: BlocBuilder<AttendanceCubit, AttendanceState>(
+            builder: (context, state) {
+              return switch (state) {
+                AttendanceLoading() => const Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                AttendanceSuccess(attendees: final attendees) =>
+                  AttendanceCardListView(
+                    attendees: attendees,
+                  ),
+                AttendanceFailure(message: final message) => Center(
+                    child: Text(message),
+                  ),
+                _ => const Placeholder(),
+              };
+            },
+          ),
         ),
         Container(
           width: double.infinity,

@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
 
 class AttendanceCard extends StatelessWidget {
-  const AttendanceCard({super.key});
+  final Attendee attendee;
+
+  const AttendanceCard({super.key, required this.attendee});
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +17,8 @@ class AttendanceCard extends StatelessWidget {
       margin: const EdgeInsets.only(left: 16, right: 16, bottom: 12),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: const CircleAvatar(
-          radius: 25,
-          backgroundColor: AppColors.text,
-          backgroundImage: NetworkImage(
-            'https://cdn.sofifa.net/players/242/516/22_120.png',
-          ),
-        ),
         title: Text(
-          'Cody Gakpo',
+          attendee.name,
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),
