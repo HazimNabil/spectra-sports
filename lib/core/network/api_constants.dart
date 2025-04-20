@@ -8,9 +8,9 @@ class ApiConstants {
   static const getTeams = '/admin/teams';
   static const getMatches = '/coach/matches';
   static const addMatch = '/match';
-  static const getTeam = '/admin/teams';
+  static const getCoachTeam = '/coach/my-team';
   static const updateMatch = '/match';
-  static const addPlayer = '/players';
+  static const addPlayer = '/admin/teams';
   static const predict = '/predict';
   static const predictFaces = '/predict-faces';
 
@@ -19,10 +19,12 @@ class ApiConstants {
   static const messageKey = 'message';
   static const tokenKey = 'token';
   static const teamsKey = 'teams';
+  static const teamKey = 'team';
   static const matchesKey = 'matches';
   static const positionKey = 'prediction_label';
   static const imageKey = 'image';
   static const predictionsKey = 'predictions';
+  static const playersKey = 'players';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';

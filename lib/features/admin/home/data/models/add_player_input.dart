@@ -38,6 +38,7 @@ class AddPlayerInput {
       'shooting': shooting,
       'passing': passing,
       'dribbling': dribbling,
+      'attacking_crossing': attackingCrossing,
       'height_cm': heightCm,
       'defending': defending,
       'overall': overall,

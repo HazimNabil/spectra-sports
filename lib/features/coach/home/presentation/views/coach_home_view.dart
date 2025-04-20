@@ -40,7 +40,8 @@ class CoachHomeView extends StatelessWidget {
                   ),
                   const CoachPlayersSection(),
                   BlocProvider(
-                    create: (context) => AttendanceCubit(locator<CoachHomeRepoImpl>()),
+                    create: (context) =>
+                        AttendanceCubit(locator<CoachHomeRepoImpl>()),
                     child: const AttendanceSection(),
                   ),
                 ],

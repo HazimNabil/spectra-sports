@@ -1,4 +1,4 @@
-import 'package:spectra_sports/core/models/player.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_player.dart';
 
 class PredictPositionInput {
   final int pace;
@@ -9,8 +9,10 @@ class PredictPositionInput {
   final int defending;
   final int physic;
   final double heightCm;
+  final String preferredFoot;
 
   PredictPositionInput({
+    required this.preferredFoot,
     required this.pace,
     required this.shooting,
     required this.passing,
@@ -21,16 +23,17 @@ class PredictPositionInput {
     required this.heightCm,
   });
 
-  factory PredictPositionInput.fromPlayer(Player player) {
+  factory PredictPositionInput.fromPlayer(CoachPlayer player) {
     return PredictPositionInput(
       pace: player.pace,
       shooting: player.shooting,
       passing: player.passing,
-      attackingCrossing: player.attackingCrossing,
+      attackingCrossing: player.attackingCrossing ?? 0,
       dribbling: player.dribbling,
       defending: player.defending,
       physic: player.physic,
-      heightCm: player.heightCm,
+      heightCm: player.height,
+      preferredFoot: player.preferredFoot!,
     );
   }
 
@@ -47,4 +50,3 @@ class PredictPositionInput {
     };
   }
 }
-

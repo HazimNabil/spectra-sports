@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
-import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_1.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_2.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_3.dart';
@@ -10,13 +9,11 @@ import 'package:spectra_sports/features/admin/home/presentation/views/add_player
 class AdminAddPlayerView extends StatefulWidget {
   final String teamName;
   final String coachName;
-  final PlayersCubit playersCubit;
 
   const AdminAddPlayerView({
     super.key,
     required this.teamName,
     required this.coachName,
-    required this.playersCubit,
   });
 
   @override
@@ -73,17 +70,18 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                   curve: Curves.easeInOut,
                 );
               },
-              playersCubit: widget.playersCubit,
             ),
-            AddPlayerGoalkeeper(onNext: () {
-              int pageNumber = 3;
+            AddPlayerGoalkeeper(
+              onNext: () {
+                int pageNumber = 3;
 
-              _controller.animateToPage(
-                pageNumber,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            }, playersCubit: widget.playersCubit),
+                _controller.animateToPage(
+                  pageNumber,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              },
+            ),
             AddPlayer3(onNext: () {
               int pageNumber = 0;
 

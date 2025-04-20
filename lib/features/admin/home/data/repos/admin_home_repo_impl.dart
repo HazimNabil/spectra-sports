@@ -60,10 +60,10 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   @override
   ApiResult<Unit> addPlayer(AddPlayerInput input) async {
     try {
-      final token = CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       await _apiService.post(
-        '${ApiConstants.baseUrl}${ApiConstants.addPlayer}',
+        '${ApiConstants.baseUrl}${ApiConstants.addPlayer}/${input.teamName}/players',
         input.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );

@@ -10,12 +10,10 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/player_s
 
 class AddPlayer2 extends StatefulWidget {
   final void Function() onNext;
-  final PlayersCubit playersCubit;
 
   const AddPlayer2({
     super.key,
     required this.onNext,
-    required this.playersCubit,
   });
 
   @override
@@ -57,8 +55,8 @@ class _AddPlayer2State extends State<AddPlayer2> {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             final addPlayerInput =
-                                context.read<AddPlayerInput>();
-                            await widget.playersCubit.addPlayer(addPlayerInput);
+                                Provider.of<AddPlayerInput>(context, listen: false);
+                            await context.read<PlayersCubit>().addPlayer(addPlayerInput);
                             if (context.mounted) context.pop();
                           } else {
                             setState(() {

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spectra_sports/core/models/team.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
 
 part 'get_team_state.dart';
@@ -10,10 +10,10 @@ class GetTeamCubit extends Cubit<GetTeamState> {
 
   GetTeamCubit(this._coachHomeRepo) : super(const GetTeamInitial());
 
-  Future<void> getTeam(String coachId) async {
+  Future<void> getTeam() async {
     emit(const GetTeamLoading());
 
-    final teamEither = await _coachHomeRepo.getTeam(coachId);
+    final teamEither = await _coachHomeRepo.getTeam();
     teamEither.fold(
       (failure) => emit(GetTeamFailure(failure.message)),
       (team) => emit(GetTeamSuccess(team)),

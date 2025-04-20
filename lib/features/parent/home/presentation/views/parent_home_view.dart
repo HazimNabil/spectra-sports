@@ -11,27 +11,31 @@ class ParentHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const DefaultTabController(
-      length: 3,
-    child:   Scaffold(
-      body: Column(
-        children: [
-          CustomAppBar(title: "Player Name" ,showBackButton: false,) ,// change player name 
-          SizedBox(height: 16,),
-          CustomTabBar(tabs: ['Match','Attendance','Payment']),
-          SizedBox(height: 16,),
-           Expanded(
+        length: 3,
+        child: Scaffold(
+            body: Column(
+          children: [
+            CustomAppBar(
+              title: "Player Name",
+              showBackButton: false,
+            ), // change player name
+            SizedBox(
+              height: 16,
+            ),
+            CustomTabBar(tabs: ['Match', 'Attendance', 'Payment']),
+            SizedBox(
+              height: 16,
+            ),
+            Expanded(
               child: TabBarView(
                 children: [
                   ParentMatchesSection(),
                   ParentAttendanceSection(),
                   ParentPaymentSection(),
-                  
-                  
                 ],
               ),
             ),
-        ],
-      )
-    ));
+          ],
+        )));
   }
 }

@@ -14,7 +14,7 @@ class CustomTextField extends StatefulWidget {
   const CustomTextField({
     super.key,
     required this.hintText,
-    this.fieldWidth=double.infinity, //screen width
+    this.fieldWidth = double.infinity, //screen width
     this.isPasswordField = false,
     this.validator,
     this.keyboardType,
@@ -34,7 +34,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       width: widget.fieldWidth,
       child: TextFormField(
-        
         cursorColor: AppColors.buttons,
         obscureText: widget.isPasswordField && _obscureText,
         keyboardType: widget.keyboardType,
@@ -49,7 +48,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
           suffixIcon: Visibility(
             visible: widget.isPasswordField,
             child: IconButton(
-              icon: Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
+              icon:
+                  Icon(_obscureText ? Icons.visibility_off : Icons.visibility),
               onPressed: () => setState(() => _obscureText = !_obscureText),
             ),
           ),
@@ -62,7 +62,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(12),
       borderSide: BorderSide(color: color),
-
     );
   }
 }

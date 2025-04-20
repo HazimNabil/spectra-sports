@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spectra_sports/core/models/player.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_player.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/position_prediction_cubit/position_prediction_cubit.dart';
 import 'package:toastification/toastification.dart';
 
 class CoachPlayerCard extends StatelessWidget {
-  final Player player;
+  final CoachPlayer player;
 
   const CoachPlayerCard({super.key, required this.player});
 
@@ -24,12 +24,12 @@ class CoachPlayerCard extends StatelessWidget {
         leading: CircleAvatar(
           radius: 25,
           backgroundColor: AppColors.text,
-          backgroundImage: NetworkImage(
-            player.playerFaceUrl,
-          ),
+          // backgroundImage: NetworkImage(
+          //   player.playerFaceUrl,
+          // ),
         ),
         title: Text(
-          player.shortName,
+          player.shortName ?? 'Name',
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),

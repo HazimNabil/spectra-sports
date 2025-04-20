@@ -4,12 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:spectra_sports/core/errors/server_failure.dart';
 import 'package:spectra_sports/core/models/match_model.dart';
-import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/core/network/api_constants.dart';
 import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
@@ -20,15 +20,16 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   CoachHomeRepoImpl(this._apiService);
 
   @override
-  ApiResult<Team> getTeam(String coachId) async {
+  ApiResult<CoachTeam> getTeam() async {
     try {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
-      final jsonTeam = await _apiService.get(
-        '${ApiConstants.baseUrl}${ApiConstants.getTeam}/$coachId',
+      final jsonData = await _apiService.get(
+        '${ApiConstants.baseUrl}${ApiConstants.getCoachTeam}',
         {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
-      final team = Team.fromJson(jsonTeam);
+      final jsonTeam = jsonData[ApiConstants.teamKey] as Map<String, dynamic>;
+      final team = CoachTeam.fromJson(jsonTeam);
 
       return Right(team);
     } on DioException catch (e) {
@@ -84,7 +85,14 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
         '${ApiConstants.aiBaseUrl}${ApiConstants.predict}',
         input.toJson(),
       );
-      final position = json[ApiConstants.positionKey] as String;
+      var position = json[ApiConstants.positionKey] as String;
+      if (position == 'W') {
+        if (input.preferredFoot == 'left') position = 'RW';
+        if (input.preferredFoot == 'right') position = 'LW';
+      } else if (position == 'B') {
+        if (input.preferredFoot == 'left') position = 'RB';
+        if (input.preferredFoot == 'right') position = 'LB';
+      }
       return Right(position);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));

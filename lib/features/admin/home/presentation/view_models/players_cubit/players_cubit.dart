@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +19,10 @@ class PlayersCubit extends Cubit<PlayersState> {
 
     final playerEither = await _adminHomeRepo.addPlayer(input);
     playerEither.fold(
-      (failure) => emit(PlayersFailure(failure.message)),
+      (failure) {
+        log('Fail in add player');
+        emit(PlayersFailure(failure.message));
+      },
       (_) => getPlayers(input.teamName),
     );
   }
@@ -27,7 +32,10 @@ class PlayersCubit extends Cubit<PlayersState> {
 
     final teamsEither = await _adminHomeRepo.getTeams();
     teamsEither.fold(
-      (failure) => emit(PlayersFailure(failure.message)),
+      (failure) {
+        log('Fail in get players');
+        emit(PlayersFailure(failure.message));
+      },
       (teams) {
         final players =
             teams.where((team) => team.name == teamName).first.players;

@@ -47,7 +47,8 @@ class AttendanceSection extends StatelessWidget {
                   await imagePicker.pickImage(source: ImageSource.gallery);
               File? file;
               if (image != null) file = File(image.path);
-              if (file != null) context.read<AttendanceCubit>().takeAttendance(file);
+              if (file != null)
+                context.read<AttendanceCubit>().takeAttendance(file);
             },
           ),
         ),

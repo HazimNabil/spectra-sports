@@ -10,20 +10,17 @@ class AddCoachView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(children: [
-      const AddCoachDetails(),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: CustomButton(
-              title: "Apply",
-              onPressed: () {},
-              color: AppColors.highlight),
+          child: Column(children: [
+        const AddCoachDetails(),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SizedBox(
+            width: double.infinity,
+            child: CustomButton(
+                title: "Apply", onPressed: () {}, color: AppColors.highlight),
+          ),
         ),
-      ),
-    ])),
-
+      ])),
     );
   }
 }

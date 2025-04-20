@@ -9,7 +9,8 @@ part 'position_prediction_state.dart';
 class PositionPredictionCubit extends Cubit<PositionPredictionState> {
   final CoachHomeRepo _coachHomeRepo;
 
-  PositionPredictionCubit(this._coachHomeRepo) : super(const PositionPredictionInitial());
+  PositionPredictionCubit(this._coachHomeRepo)
+      : super(const PositionPredictionInitial());
 
   Future<void> predictPosition(PredictPositionInput input) async {
     emit(const PositionPredictionLoading());

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
@@ -9,12 +10,10 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/goalkeep
 
 class AddPlayerGoalkeeper extends StatefulWidget {
   final void Function() onNext;
-  final PlayersCubit playersCubit;
 
   const AddPlayerGoalkeeper({
     required this.onNext,
     super.key,
-    required this.playersCubit,
   });
 
   @override
@@ -53,9 +52,10 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          final addPlayerInput = context.read<AddPlayerInput>();
+                          final addPlayerInput =
+                              Provider.of<AddPlayerInput>(context, listen: false);
                           addPlayerInput.clubPosition = "GK";
-                          await widget.playersCubit.addPlayer(addPlayerInput);
+                          await context.read<PlayersCubit>().addPlayer(addPlayerInput);
                           if (context.mounted) context.pop();
                         } else {
                           setState(() {

@@ -8,7 +8,7 @@ import 'package:spectra_sports/features/admin/home/presentation/view_models/play
 import 'package:spectra_sports/features/admin/home/presentation/widgets/coach_card.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_player_card.dart';
 
-class AdminMembersSection extends StatelessWidget {
+class AdminMembersSection extends StatefulWidget {
   final String teamName;
   final String coachName;
 
@@ -17,6 +17,17 @@ class AdminMembersSection extends StatelessWidget {
     required this.teamName,
     required this.coachName,
   });
+
+  @override
+  State<AdminMembersSection> createState() => _AdminMembersSectionState();
+}
+
+class _AdminMembersSectionState extends State<AdminMembersSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PlayersCubit>().getPlayers(widget.teamName);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,7 @@ class AdminMembersSection extends StatelessWidget {
                   PlayersSuccess(players: final players) => ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        CoachCard(coachName: players[0].coachName),
+                        CoachCard(coachName: players[0].coachName!),
                         const SizedBox(height: 16),
                         ...List.generate(
                           players.length,
@@ -60,7 +71,10 @@ class AdminMembersSection extends StatelessWidget {
                 onPressed: () {
                   context.push(
                     AppRouter.addPlayerRoute,
-                    extra: (teamName, coachName, context.read<PlayersCubit>()),
+                    extra: (
+                      widget.teamName,
+                      widget.coachName,
+                    ),
                   );
                 },
               ),

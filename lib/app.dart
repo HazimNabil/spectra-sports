@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo_impl.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
 import 'package:spectra_sports/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 
@@ -14,8 +16,15 @@ class SpectraSports extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(locator<AuthRepoImpl>()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => AuthCubit(locator<AuthRepoImpl>()),
+        ),
+        BlocProvider(
+          create: (context) => PlayersCubit(locator<AdminHomeRepoImpl>()),
+        ),
+      ],
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
         title: 'Spectra Sports',
