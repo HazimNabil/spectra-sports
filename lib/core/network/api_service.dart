@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:spectra_sports/core/network/api_constants.dart';
 
 class ApiService {
   final Dio _dio;
 
-  ApiService(this._dio) {
-    _dio.options.baseUrl = ApiConstants.baseUrl;
-  }
+  ApiService(this._dio);
 
   Future get(String endpoint, Map<String, dynamic> headers) async {
     final response = await _dio.get(

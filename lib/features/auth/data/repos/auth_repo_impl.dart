@@ -20,7 +20,7 @@ class AuthRepoImpl implements AuthRepo {
   ApiResult<UserModel> login(LoginBodyModel loginBody) async {
     try {
       final jsonData = await _apiService.post(
-        ApiConstants.login,
+        "${ApiConstants.baseUrl}${ApiConstants.login}",
         loginBody.toJson(),
       );
 
@@ -48,7 +48,7 @@ class AuthRepoImpl implements AuthRepo {
   ApiResult<UserModel> signUp(SignUpBodyModel signUpBody) async {
     try {
       final jsonData = await _apiService.post(
-        ApiConstants.register,
+        "${ApiConstants.baseUrl}${ApiConstants.register}",
         signUpBody.toJson(),
       );
 

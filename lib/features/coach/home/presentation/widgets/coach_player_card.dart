@@ -29,12 +29,12 @@ class CoachPlayerCard extends StatelessWidget {
             context,
           ).copyWith(color: AppColors.icons),
         ),
-        trailing: getPlayerPosition(context),
+        trailing: buildPlayerPositionWidget(context),
       ),
     );
   }
 
-  Widget getPlayerPosition(BuildContext context) {
+  Widget buildPlayerPositionWidget(BuildContext context) {
     if (player.clubPosition != null) {
       return Text(
         player.clubPosition!,

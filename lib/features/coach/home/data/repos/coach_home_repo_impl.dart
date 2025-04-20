@@ -21,7 +21,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       final jsonTeam = await _apiService.get(
-        '${ApiConstants.getTeam}/$coachId',
+        '${ApiConstants.baseUrl}${ApiConstants.getTeam}/$coachId',
         {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
       final team = Team.fromJson(jsonTeam);
@@ -40,7 +40,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       await _apiService.patch(
-        '${ApiConstants.updateMatch}/${matchResultBody.matchId}',
+        '${ApiConstants.baseUrl}${ApiConstants.updateMatch}/${matchResultBody.matchId}',
         matchResultBody.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
@@ -59,12 +59,12 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       final jsonData = await _apiService.get(
-        ApiConstants.getMatches,
+        '${ApiConstants.baseUrl}${ApiConstants.getMatches}',
         {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
       final jsonMatches = jsonData[ApiConstants.matchesKey] as List;
       final matches = jsonMatches.map((e) => MatchModel.fromJson(e)).toList();
-      
+
       return Right(matches);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));

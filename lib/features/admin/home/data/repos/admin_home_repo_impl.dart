@@ -21,7 +21,7 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
     try {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
       final jsonData = await _apiService.get(
-        ApiConstants.getTeams,
+        '${ApiConstants.baseUrl}${ApiConstants.getTeams}',
         {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
       final jsonList = jsonData[ApiConstants.teamsKey] as List;
@@ -39,7 +39,7 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
     try {
       final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
       await _apiService.post(
-        ApiConstants.addMatch,
+        '${ApiConstants.baseUrl}${ApiConstants.addMatch}',
         input.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
@@ -63,7 +63,7 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
       final token = CacheHelper.getSecureData(ApiConstants.tokenKey);
 
       await _apiService.post(
-        ApiConstants.addPlayer,
+        '${ApiConstants.baseUrl}${ApiConstants.addPlayer}',
         input.toJson(),
         headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
       );
