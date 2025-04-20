@@ -11,6 +11,7 @@ class ApiConstants {
   static const getTeam = '/admin/teams';
   static const updateMatch = '/match';
   static const addPlayer = '/players';
+  static const predict = '/predict';
 
   static const authorization = 'Authorization';
   static const bearer = 'Bearer';
@@ -18,6 +19,7 @@ class ApiConstants {
   static const tokenKey = 'token';
   static const teamsKey = 'teams';
   static const matchesKey = 'matches';
+  static const positionKey = 'prediction_label';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';

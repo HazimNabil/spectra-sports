@@ -8,6 +8,7 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
+import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
 
 class CoachHomeRepoImpl implements CoachHomeRepo {
@@ -66,6 +67,22 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final matches = jsonMatches.map((e) => MatchModel.fromJson(e)).toList();
 
       return Right(matches);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  ApiResult<String> predictPosition(PredictPositionInput input) async {
+    try {
+      final json = await _apiService.post(
+        '${ApiConstants.aiBaseUrl}${ApiConstants.predict}',
+        input.toJson(),
+      );
+      final position = json[ApiConstants.positionKey] as String;
+      return Right(position);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {
