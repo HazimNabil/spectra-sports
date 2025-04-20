@@ -12,6 +12,7 @@ class ApiConstants {
   static const updateMatch = '/match';
   static const addPlayer = '/players';
   static const predict = '/predict';
+  static const predictFaces = '/predict-faces';
 
   static const authorization = 'Authorization';
   static const bearer = 'Bearer';
@@ -20,6 +21,8 @@ class ApiConstants {
   static const teamsKey = 'teams';
   static const matchesKey = 'matches';
   static const positionKey = 'prediction_label';
+  static const imageKey = 'image';
+  static const predictionsKey = 'predictions';
 
   static const notFoundMessage = 'Your request not found, Please try later.';
   static const serverErrorMessage = 'Internal Server error, Please try later.';
@@ -37,5 +40,4 @@ class ApiConstants {
   static const unknownMessage = 'Something went wrong. Please try again later.';
   static const sendTimeoutMessage =
       'Failed to send request. Please check your connection.';
-
 }

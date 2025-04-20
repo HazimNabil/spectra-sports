@@ -15,7 +15,7 @@ class ApiService {
 
   Future post(
     String endpoint,
-    Map<String, dynamic> data, {
+    Object data, {
     Map<String, dynamic>? headers,
   }) async {
     final response = await _dio.post(
