@@ -13,6 +13,7 @@ class Player extends Equatable {
   final int shooting;
   final int passing;
   final int dribbling;
+  final int attackingCrossing;
   final double heightCm;
   final int defending;
   final int overall;
@@ -38,6 +39,7 @@ class Player extends Equatable {
     required this.shooting,
     required this.passing,
     required this.dribbling,
+    required this.attackingCrossing,
     required this.heightCm,
     required this.defending,
     required this.overall,
@@ -76,6 +78,7 @@ class Player extends Equatable {
       goalkeepingPositioning: json['goalkeeping_positioning'] as int,
       goalkeepingReflexes: json['goalkeeping_reflexes'] as int,
       goalkeepingSpeed: json['goalkeeping_speed'] as int,
+      attackingCrossing: json['attacking_crossing'] as int,
     );
   }
 
@@ -93,6 +96,7 @@ class Player extends Equatable {
       'shooting': shooting,
       'passing': passing,
       'dribbling': dribbling,
+      'attacking_crossing': attackingCrossing,
       'height_cm': heightCm,
       'defending': defending,
       'overall': overall,
@@ -122,6 +126,7 @@ class Player extends Equatable {
       shooting,
       passing,
       dribbling,
+      attackingCrossing,
       heightCm,
       defending,
       overall,
