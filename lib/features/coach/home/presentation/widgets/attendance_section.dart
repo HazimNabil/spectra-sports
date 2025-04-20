@@ -30,7 +30,7 @@ class AttendanceSection extends StatelessWidget {
                 AttendanceFailure(message: final message) => Center(
                     child: Text(message),
                   ),
-                _ => const Placeholder(),
+                _ => const Text('You haven\'t taken any attendance yet'),
               };
             },
           ),
@@ -45,8 +45,9 @@ class AttendanceSection extends StatelessWidget {
               final imagePicker = ImagePicker();
               final image =
                   await imagePicker.pickImage(source: ImageSource.gallery);
-              final File? file;
+              File? file;
               if (image != null) file = File(image.path);
+              if (file != null) context.read<AttendanceCubit>().takeAttendance(file);
             },
           ),
         ),
