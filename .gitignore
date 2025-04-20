@@ -46,3 +46,6 @@ app.*.map.json
 
 # .vscode
 .vscode
+
+# videos
+ai/edited_match.mp4
