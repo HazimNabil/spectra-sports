@@ -54,6 +54,7 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
                           final addPlayerInput = context.read<AddPlayerInput>();
+                          addPlayerInput.clubPosition = "GK";
                           await widget.playersCubit.addPlayer(addPlayerInput);
                           if (context.mounted) context.pop();
                         } else {
