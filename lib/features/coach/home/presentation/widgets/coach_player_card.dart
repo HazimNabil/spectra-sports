@@ -5,6 +5,7 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
+import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/position_prediction_cubit/position_prediction_cubit.dart';
 import 'package:toastification/toastification.dart';
 
@@ -69,7 +70,11 @@ class CoachPlayerCard extends StatelessWidget {
     }
     return IconButton(
       icon: Image.asset(AppImages.imagesPlayerPosition),
-      onPressed: () {},
+      onPressed: () {
+        context
+            .read<PositionPredictionCubit>()
+            .predictPosition(PredictPositionInput.fromPlayer(player));
+      },
     );
   }
 }
