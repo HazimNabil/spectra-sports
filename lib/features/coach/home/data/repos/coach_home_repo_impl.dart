@@ -22,13 +22,13 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   @override
   ApiResult<CoachTeam> getTeam() async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
 
       final jsonData = await _apiService.get(
-        '${ApiConstants.baseUrl}${ApiConstants.getCoachTeam}',
-        {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.getCoachTeam}',
+        {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
-      final jsonTeam = jsonData[ApiConstants.teamKey] as Map<String, dynamic>;
+      final jsonTeam = jsonData[ApiKeys.team] as Map<String, dynamic>;
       final team = CoachTeam.fromJson(jsonTeam);
 
       return Right(team);
@@ -42,12 +42,12 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   @override
   ApiResult<Unit> addMatchResult(MatchResultBody matchResultBody) async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
 
       await _apiService.patch(
-        '${ApiConstants.baseUrl}${ApiConstants.updateMatch}/${matchResultBody.matchId}',
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.updateMatch}/${matchResultBody.matchId}',
         matchResultBody.toJson(),
-        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
 
       return const Right(unit);
@@ -61,13 +61,13 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   @override
   ApiResult<List<MatchModel>> getMatches() async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
 
       final jsonData = await _apiService.get(
-        '${ApiConstants.baseUrl}${ApiConstants.getMatches}',
-        {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.getMatches}',
+        {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
-      final jsonMatches = jsonData[ApiConstants.matchesKey] as List;
+      final jsonMatches = jsonData[ApiKeys.matches] as List;
       final matches = jsonMatches.map((e) => MatchModel.fromJson(e)).toList();
 
       return Right(matches);
@@ -82,10 +82,10 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   ApiResult<String> predictPosition(PredictPositionInput input) async {
     try {
       final json = await _apiService.post(
-        '${ApiConstants.aiBaseUrl}${ApiConstants.predict}',
+        '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.predict}',
         input.toJson(),
       );
-      var position = json[ApiConstants.positionKey] as String;
+      var position = json[ApiKeys.position] as String;
       if (position == 'W') {
         if (input.preferredFoot == 'left') position = 'RW';
         if (input.preferredFoot == 'right') position = 'LW';
@@ -104,16 +104,16 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   @override
   ApiResult<List<Attendee>> takeAttendance(File image) async {
     final form = FormData.fromMap({
-      ApiConstants.imageKey: await MultipartFile.fromFile(image.path),
+      ApiKeys.image: await MultipartFile.fromFile(image.path),
     });
 
     try {
       final json = await _apiService.post(
-        '${ApiConstants.aiBaseUrl}${ApiConstants.predictFaces}',
+        '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.predictFaces}',
         form,
         headers: {'Content-Type': 'multipart/form-data'},
       );
-      final jsonAttendees = json[ApiConstants.predictionsKey] as List;
+      final jsonAttendees = json[ApiKeys.predictions] as List;
       final attendees = jsonAttendees.map((e) => Attendee.fromJson(e)).toList();
       return Right(attendees);
     } on DioException catch (e) {

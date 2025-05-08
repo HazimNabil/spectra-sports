@@ -20,16 +20,16 @@ class AuthRepoImpl implements AuthRepo {
   ApiResult<UserModel> login(LoginBodyModel loginBody) async {
     try {
       final jsonData = await _apiService.post(
-        "${ApiConstants.baseUrl}${ApiConstants.login}",
+        "${ApiEndpoints.baseUrl}${ApiEndpoints.login}",
         loginBody.toJson(),
       );
 
-      final jsonUser = TokenDecoder.decode(jsonData[ApiConstants.tokenKey]);
+      final jsonUser = TokenDecoder.decode(jsonData[ApiKeys.token]);
       final user = UserModel.fromJson(jsonUser);
 
       await CacheHelper.setSecureData(
-        ApiConstants.tokenKey,
-        jsonData[ApiConstants.tokenKey],
+        ApiKeys.token,
+        jsonData[ApiKeys.token],
       );
 
       return Right(user);
@@ -48,16 +48,16 @@ class AuthRepoImpl implements AuthRepo {
   ApiResult<UserModel> signUp(SignUpBodyModel signUpBody) async {
     try {
       final jsonData = await _apiService.post(
-        "${ApiConstants.baseUrl}${ApiConstants.register}",
+        "${ApiEndpoints.baseUrl}${ApiEndpoints.register}",
         signUpBody.toJson(),
       );
 
-      final jsonUser = TokenDecoder.decode(jsonData[ApiConstants.tokenKey]);
+      final jsonUser = TokenDecoder.decode(jsonData[ApiKeys.token]);
       final user = UserModel.fromJson(jsonUser);
 
       await CacheHelper.setSecureData(
-        ApiConstants.tokenKey,
-        jsonData[ApiConstants.tokenKey],
+        ApiKeys.token,
+        jsonData[ApiKeys.token],
       );
 
       return Right(user);
@@ -74,12 +74,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<void> logout() async {
-    await CacheHelper.deleteSecureData(ApiConstants.tokenKey);
+    await CacheHelper.deleteSecureData(ApiKeys.token);
   }
 
   @override
   Future<UserModel?> checkAuthStatus() async {
-    final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+    final token = await CacheHelper.getSecureData(ApiKeys.token);
 
     if (token.isEmpty) return null;
 
