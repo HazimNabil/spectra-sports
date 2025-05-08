@@ -19,12 +19,12 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   @override
   ApiResult<List<Team>> getTeams() async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
       final jsonData = await _apiService.get(
-        '${ApiConstants.baseUrl}${ApiConstants.getTeams}',
-        {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.getTeams}',
+        {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
-      final jsonList = jsonData[ApiConstants.teamsKey] as List;
+      final jsonList = jsonData[ApiKeys.teams] as List;
       final teams = jsonList.map((team) => Team.fromJson(team)).toList();
       return Right(teams);
     } on DioException catch (e) {
@@ -37,11 +37,11 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   @override
   ApiResult<Unit> addMatch(AddMatchInput input) async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
       await _apiService.post(
-        '${ApiConstants.baseUrl}${ApiConstants.addMatch}',
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.addMatch}',
         input.toJson(),
-        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
       return const Right(unit);
     } on DioException catch (e) {
@@ -60,12 +60,12 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   @override
   ApiResult<Unit> addPlayer(AddPlayerInput input) async {
     try {
-      final token = await CacheHelper.getSecureData(ApiConstants.tokenKey);
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
 
       await _apiService.post(
-        '${ApiConstants.baseUrl}${ApiConstants.addPlayer}/${input.teamName}/players',
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.addPlayer}/${input.teamName}/players',
         input.toJson(),
-        headers: {ApiConstants.authorization: '${ApiConstants.bearer} $token'},
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
 
       return const Right(unit);

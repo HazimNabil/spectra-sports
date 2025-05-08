@@ -1,5 +1,5 @@
-class ApiConstants {
-  ApiConstants._();
+class ApiEndpoints {
+  ApiEndpoints._();
 
   static const baseUrl = 'https://gp-t1br.onrender.com/api';
   static const aiBaseUrl = 'http://127.0.0.1:5000';
@@ -13,33 +13,40 @@ class ApiConstants {
   static const addPlayer = '/admin/teams';
   static const predict = '/predict';
   static const predictFaces = '/predict-faces';
+}
+
+class ApiKeys {
+  ApiKeys._();
 
   static const authorization = 'Authorization';
   static const bearer = 'Bearer';
-  static const messageKey = 'message';
-  static const tokenKey = 'token';
-  static const teamsKey = 'teams';
-  static const teamKey = 'team';
-  static const matchesKey = 'matches';
-  static const positionKey = 'prediction_label';
-  static const imageKey = 'image';
-  static const predictionsKey = 'predictions';
-  static const playersKey = 'players';
+  static const message = 'message';
+  static const token = 'token';
+  static const teams = 'teams';
+  static const team = 'team';
+  static const matches = 'matches';
+  static const position = 'prediction_label';
+  static const image = 'image';
+  static const predictions = 'predictions';
+  static const players = 'players';
+}
 
-  static const notFoundMessage = 'Your request not found, Please try later.';
-  static const serverErrorMessage = 'Internal Server error, Please try later.';
-  static const defaultErrorMessage =
-      'Oops There was an Error, Please try again.';
-  static const connectionTimeoutMessage =
+class ApiErrors {
+  ApiErrors._();
+
+  static const notFound = 'Your request not found, Please try later.';
+  static const serverError = 'Internal Server error, Please try later.';
+  static const defaultError = 'Oops There was an Error, Please try again.';
+  static const connectionTimeout =
       'Connection timed out. Please check your internet connection and try again.';
-  static const receiveTimeoutMessage =
+  static const receiveTimeout =
       'Server is taking too long to respond. Please try again later.';
-  static const badCertificateMessage =
+  static const badCertificate =
       'Secure connection verification failed. Please contact support.';
-  static const cancelledMessage = 'Request was cancelled. Please try again.';
-  static const connectionErrorMessage =
+  static const cancelled = 'Request was cancelled. Please try again.';
+  static const connectionError =
       'Unable to connect to the server. Please check your internet connection.';
-  static const unknownMessage = 'Something went wrong. Please try again later.';
-  static const sendTimeoutMessage =
+  static const unknown = 'Something went wrong. Please try again later.';
+  static const sendTimeout =
       'Failed to send request. Please check your connection.';
 }

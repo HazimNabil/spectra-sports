@@ -8,28 +8,28 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromDioException(DioException exception) {
     return switch (exception.type) {
       DioExceptionType.connectionTimeout => ServerFailure(
-          ApiConstants.connectionTimeoutMessage,
+          ApiErrors.connectionTimeout,
         ),
       DioExceptionType.receiveTimeout => ServerFailure(
-          ApiConstants.receiveTimeoutMessage,
+          ApiErrors.receiveTimeout,
         ),
       DioExceptionType.badCertificate => ServerFailure(
-          ApiConstants.badCertificateMessage,
+          ApiErrors.badCertificate,
         ),
       DioExceptionType.badResponse => ServerFailure.fromResponse(
           exception.response!,
         ),
       DioExceptionType.cancel => ServerFailure(
-          ApiConstants.cancelledMessage,
+          ApiErrors.cancelled,
         ),
       DioExceptionType.connectionError => ServerFailure(
-          ApiConstants.connectionErrorMessage,
+          ApiErrors.connectionError,
         ),
       DioExceptionType.unknown => ServerFailure(
-          ApiConstants.unknownMessage,
+          ApiErrors.unknown,
         ),
       DioExceptionType.sendTimeout => ServerFailure(
-          ApiConstants.sendTimeoutMessage,
+          ApiErrors.sendTimeout,
         ),
     };
   }
@@ -39,10 +39,10 @@ class ServerFailure extends Failure {
     final data = response.data;
 
     return switch (statusCode) {
-      400 || 401 || 403 => ServerFailure(data![ApiConstants.messageKey]),
-      404 => ServerFailure(ApiConstants.notFoundMessage),
-      500 => ServerFailure(ApiConstants.serverErrorMessage),
-      _ => ServerFailure(ApiConstants.defaultErrorMessage)
+      400 || 401 || 403 => ServerFailure(data![ApiKeys.message]),
+      404 => ServerFailure(ApiErrors.notFound),
+      500 => ServerFailure(ApiErrors.serverError),
+      _ => ServerFailure(ApiErrors.defaultError)
     };
   }
 }
