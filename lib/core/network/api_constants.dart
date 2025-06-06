@@ -2,7 +2,7 @@ class ApiEndpoints {
   ApiEndpoints._();
 
   static const baseUrl = 'https://gp-t1br.onrender.com/api';
-  static const aiBaseUrl = 'http://127.0.0.1:5000';
+  static const aiBaseUrl = 'http://192.168.1.104:5000';
   static const login = '/auth/login';
   static const register = '/auth/register/admin';
   static const getTeams = '/admin/teams';
