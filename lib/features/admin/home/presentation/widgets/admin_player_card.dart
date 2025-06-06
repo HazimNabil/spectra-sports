@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/models/player.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
@@ -15,11 +16,11 @@ class AdminPlayerCard extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: const CircleAvatar(
+        leading: CircleAvatar(
           radius: 25,
           backgroundColor: AppColors.text,
-          backgroundImage: NetworkImage(
-            'https://cdn.sofifa.net/players/242/516/22_120.png',
+          backgroundImage: CachedNetworkImageProvider(
+            player.playerFaceUrl!,
           ),
         ),
         title: Text(
