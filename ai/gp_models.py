@@ -82,7 +82,13 @@ def predict_faces():
         proba = face_model.predict_proba(emb)[0]
         conf = float(np.max(proba))
         name = face_encoder.inverse_transform([yhat])[0]
-        if conf < 0.05: name = 'Unknown'
+        if conf < 0.05:
+            name = 'Unknown'
+        else:
+            name = name.replace('_', ' ').title()
+            parts = name.split()
+            if len(parts) > 2:
+                name = ' '.join(parts[:2])
         preds.append({'name': name, 'confidence': conf, 'box': {'x': x, 'y': y, 'w': w, 'h': h}})
 
     return jsonify({'predictions': preds, 'status': 'success'})
