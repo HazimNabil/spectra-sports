@@ -8,6 +8,6 @@ import 'package:spectra_sports/features/admin/home/data/models/add_player_input.
 abstract interface class AdminHomeRepo {
   ApiResult<List<Team>> getTeams();
   ApiResult<Unit> addMatch(AddMatchInput match);
-  ApiResult<List<MatchModel>> getMatches();
+  ApiResult<List<MatchModel>> getMatches(String teamId);
   ApiResult<Unit> addPlayer(AddPlayerInput input);
 }

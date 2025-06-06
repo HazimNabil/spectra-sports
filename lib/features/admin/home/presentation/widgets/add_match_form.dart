@@ -23,7 +23,7 @@ class AddMatchForm extends StatelessWidget {
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
-        spacing: 42,
+        spacing: 24,
         children: [
           CustomTextField(
             hintText: 'Match Name',
@@ -35,8 +35,7 @@ class AddMatchForm extends StatelessWidget {
             hintText: 'Opponent Team Name',
             validator: (opponentTeam) =>
                 AppValidators.requiredFieldValidator(opponentTeam),
-            onSaved: (opponentTeam) =>
-                addMatchInput.opponentTeam = opponentTeam,
+            onSaved: (opponentTeam) => addMatchInput.team2 = opponentTeam,
           ),
           CustomButton(
             title: 'Select Match Date & Time',

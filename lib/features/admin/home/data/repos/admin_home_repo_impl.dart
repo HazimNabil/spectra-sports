@@ -52,9 +52,22 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
   }
 
   @override
-  ApiResult<List<MatchModel>> getMatches() {
-    // TODO: implement getMatches
-    throw UnimplementedError();
+  ApiResult<List<MatchModel>> getMatches(String teamId) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
+      final jsonData = await _apiService.get(
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.adminGetMatches}/$teamId/matches',
+        {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+      );
+      final jsonMatches = jsonData[ApiKeys.matches] as List;
+      final matches = jsonMatches.map((e) => MatchModel.fromJson(e)).toList();
+
+      return Right(matches);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
   }
 
   @override

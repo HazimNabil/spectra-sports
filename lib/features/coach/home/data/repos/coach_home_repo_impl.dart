@@ -64,7 +64,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final token = await CacheHelper.getSecureData(ApiKeys.token);
 
       final jsonData = await _apiService.get(
-        '${ApiEndpoints.baseUrl}${ApiEndpoints.getMatches}',
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.coachGetMatches}',
         {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
       final jsonMatches = jsonData[ApiKeys.matches] as List;
