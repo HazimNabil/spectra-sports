@@ -208,6 +208,7 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
+                            activeColor: AppColors.highlight,
                             value: 'right',
                             groupValue: _value,
                             onChanged: (value) {
@@ -226,6 +227,7 @@ class _PlayerSpecsSection0State extends State<PlayerSpecsSection0> {
                       Row(
                         children: [
                           Radio(
+                            activeColor: AppColors.highlight,
                             value: 'left',
                             groupValue: _value,
                             onChanged: (value) {

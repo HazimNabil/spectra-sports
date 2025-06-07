@@ -46,8 +46,7 @@ class _AddPlayer1State extends State<AddPlayer1> {
                   },
                   activeColor: AppColors.highlight,
                   checkColor: AppColors.background,
-                  tileColor: Colors.black12,
-                  title: const Text("GoalKeeper"),
+                  title: const Text("Goal Keeper"),
                   controlAffinity: ListTileControlAffinity.leading,
                 ),
                 Padding(
