@@ -5,6 +5,7 @@ class ApiEndpoints {
   static const aiBaseUrl = 'http://192.168.1.104:5000';
   static const login = '/auth/login';
   static const register = '/auth/register/admin';
+  static const registerParent = '/auth/register/parent';
   static const getTeams = '/admin/teams';
   static const coachGetMatches = '/coach/matches';
   static const adminGetMatches = '/admin/teams';
