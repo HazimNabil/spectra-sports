@@ -12,9 +12,11 @@ class CoachTeam extends Equatable {
   factory CoachTeam.fromJson(Map<String, dynamic> json) => CoachTeam(
         id: json['_id'] as String?,
         name: json['name'] as String?,
-        players: json['players'] == null ? [] : (json['players'] as List<dynamic>)
-            .map((e) => CoachPlayer.fromJson(e as Map<String, dynamic>))
-            .toList(),
+        players: json['players'] == null
+            ? []
+            : (json['players'] as List<dynamic>)
+                .map((e) => CoachPlayer.fromJson(e as Map<String, dynamic>))
+                .toList(),
       );
 
   Map<String, dynamic> toJson() => {

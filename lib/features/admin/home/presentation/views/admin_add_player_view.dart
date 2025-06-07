@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_parent_body.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_1.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_2.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_3.dart';
@@ -82,15 +83,18 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                 );
               },
             ),
-            AddPlayer3(onNext: () {
-              int pageNumber = 0;
+            Provider(
+              create: (context) => RegisterParentBody(),
+              child: AddPlayer3(onNext: () {
+                int pageNumber = 0;
 
-              _controller.animateToPage(
-                pageNumber,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            }),
+                _controller.animateToPage(
+                  pageNumber,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              }),
+            ),
           ],
         ),
       ),

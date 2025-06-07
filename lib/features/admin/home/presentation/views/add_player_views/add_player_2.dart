@@ -54,9 +54,12 @@ class _AddPlayer2State extends State<AddPlayer2> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
-                            final addPlayerInput =
-                                Provider.of<AddPlayerInput>(context, listen: false);
-                            await context.read<PlayersCubit>().addPlayer(addPlayerInput);
+                            final addPlayerInput = Provider.of<AddPlayerInput>(
+                                context,
+                                listen: false);
+                            await context
+                                .read<PlayersCubit>()
+                                .addPlayer(addPlayerInput);
                             if (context.mounted) context.pop();
                           } else {
                             setState(() {

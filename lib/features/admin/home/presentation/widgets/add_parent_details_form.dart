@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
-import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_parent_body.dart';
 
 class AddParentDetails extends StatelessWidget {
   const AddParentDetails({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final registerParentBody = context.read<RegisterParentBody>();
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
@@ -48,7 +49,7 @@ class AddParentDetails extends StatelessWidget {
             hintText: 'name@gmail.com',
             validator: AppValidators.emailValidator,
             onSaved: (email) {
-              context.read<SignUpBodyModel>().email = email;
+              registerParentBody.email = email;
             },
           ),
           const SizedBox(height: 24),
@@ -65,11 +66,13 @@ class AddParentDetails extends StatelessWidget {
           CustomTextField(
             hintText: 'Parent Name',
             validator: AppValidators.requiredFieldValidator,
-            onSaved: (parentName) {},
+            onSaved: (parentName) {
+              registerParentBody.name = parentName;
+            },
           ),
           const SizedBox(height: 24),
           Text(
-            'Parent Name',
+            'Phone Number',
             style: AppStyles.styleSemiBold12(
               context,
             ).copyWith(
@@ -79,9 +82,11 @@ class AddParentDetails extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           CustomTextField(
-            hintText: 'phone number',
-            validator: AppValidators.requiredFieldValidator,
-            onSaved: (phone) {},
+            hintText: '01099362016',
+            validator: AppValidators.phoneNumberValidator,
+            onSaved: (phone) {
+              registerParentBody.phoneNumber = phone;
+            },
           ),
           const SizedBox(height: 24),
           Text(
@@ -98,7 +103,9 @@ class AddParentDetails extends StatelessWidget {
             hintText: 'Password',
             isPasswordField: true,
             validator: AppValidators.passwordValidator,
-            onSaved: (password) {},
+            onSaved: (password) {
+              registerParentBody.password = password;
+            },
           ),
           const SizedBox(height: 8),
         ],

@@ -52,10 +52,13 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
-                          final addPlayerInput =
-                              Provider.of<AddPlayerInput>(context, listen: false);
+                          final addPlayerInput = Provider.of<AddPlayerInput>(
+                              context,
+                              listen: false);
                           addPlayerInput.clubPosition = "GK";
-                          await context.read<PlayersCubit>().addPlayer(addPlayerInput);
+                          await context
+                              .read<PlayersCubit>()
+                              .addPlayer(addPlayerInput);
                           if (context.mounted) context.pop();
                         } else {
                           setState(() {
