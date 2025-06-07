@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
 import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/player_specs_section.dart';
+import 'package:toastification/toastification.dart';
 
 class AddPlayer2 extends StatefulWidget {
   final void Function() onNext;
@@ -44,7 +45,18 @@ class _AddPlayer2State extends State<AddPlayer2> {
               const PlayerSpecsSection(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: BlocBuilder<PlayersCubit, PlayersState>(
+                child: BlocConsumer<PlayersCubit, PlayersState>(
+                  listener: (context, state) {
+                    if (state is PlayersSuccess) {
+                      widget.onNext();
+                    } else if (state is PlayersFailure) {
+                      showToast(
+                        context: context,
+                        title: state.message,
+                        type: ToastificationType.error,
+                      );
+                    }
+                  },
                   builder: (context, state) {
                     return SizedBox(
                       width: double.infinity,
@@ -60,7 +72,6 @@ class _AddPlayer2State extends State<AddPlayer2> {
                             await context
                                 .read<PlayersCubit>()
                                 .addPlayer(addPlayerInput);
-                            if (context.mounted) context.pop();
                           } else {
                             setState(() {
                               _autovalidateMode = AutovalidateMode.always;
