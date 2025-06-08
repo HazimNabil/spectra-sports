@@ -10,7 +10,7 @@ import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_pl
 
 class AdminMembersSection extends StatefulWidget {
   final String teamName;
-  final String coachName;
+  final String? coachName;
 
   const AdminMembersSection({
     super.key,
@@ -63,27 +63,37 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CustomButton(
-                title: 'Add Player',
-                color: AppColors.highlight,
-                onPressed: () {
-                  context.push(
-                    AppRouter.addPlayerRoute,
-                    extra: (
-                      widget.teamName,
-                      widget.coachName,
-                    ),
-                  );
-                },
+              Expanded(
+                child: CustomButton(
+                  title: 'Add Player',
+                  color: AppColors.highlight,
+                  onPressed: () {
+                    context.push(
+                      AppRouter.addPlayerRoute,
+                      extra: (
+                        widget.teamName,
+                        widget.coachName,
+                      ),
+                    );
+                  },
+                ),
               ),
-              CustomButton(
-                title: 'Add Coach',
-                color: AppColors.highlight,
-                onPressed: () {
-                  context.push(AppRouter.addCoachRoute);
-                },
+              Visibility(
+                visible: widget.coachName?.isEmpty ?? true,
+                child: const SizedBox(width: 32),
+              ),
+              Visibility(
+                visible: widget.coachName?.isEmpty ?? true,
+                child: Expanded(
+                  child: CustomButton(
+                    title: 'Add Coach',
+                    color: AppColors.highlight,
+                    onPressed: () {
+                      context.push(AppRouter.addCoachRoute);
+                    },
+                  ),
+                ),
               ),
             ],
           ),
