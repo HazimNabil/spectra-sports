@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
-import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
 
 class AddCoachDetails extends StatelessWidget {
   const AddCoachDetails({super.key});
@@ -17,15 +15,23 @@ class AddCoachDetails extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(
-            height: 50,
+          const SizedBox(height: 50),
+          Title(
+            color: AppColors.highlight,
+            child: Text(
+              "Add coach",
+              style: AppStyles.styleBold20(
+                context,
+              ).copyWith(
+                color: AppColors.text,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
           ),
           Title(
-              color: AppColors.highlight,
-              child: Text("Add coach",
-                  style: AppStyles.styleBold20(context).copyWith(
-                      color: AppColors.text, fontWeight: FontWeight.bold))),
-          Title(color: AppColors.highlight, child: const Text("Coach Details")),
+            color: AppColors.highlight,
+            child: const Text("Coach Details"),
+          ),
           const SizedBox(height: 24),
           Text(
             'Email Address',
@@ -40,9 +46,7 @@ class AddCoachDetails extends StatelessWidget {
           CustomTextField(
             hintText: 'name@gmail.com',
             validator: AppValidators.emailValidator,
-            onSaved: (email) {
-              context.read<SignUpBodyModel>().email = email;
-            },
+            onSaved: (email) {},
           ),
           const SizedBox(height: 24),
           Text(
@@ -58,7 +62,7 @@ class AddCoachDetails extends StatelessWidget {
           CustomTextField(
             hintText: 'Coach Name',
             validator: AppValidators.requiredFieldValidator,
-            onSaved: (parentName) {},
+            onSaved: (coachName) {},
           ),
           const SizedBox(height: 24),
           Text(
@@ -73,7 +77,8 @@ class AddCoachDetails extends StatelessWidget {
           const SizedBox(height: 8),
           CustomTextField(
             hintText: '01099362016',
-            onSaved: (parentName) {},
+            validator: AppValidators.phoneNumberValidator,
+            onSaved: (phoneNumber) {},
           ),
           const SizedBox(height: 24),
           Text(
