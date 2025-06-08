@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo_impl.dart';
-import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/members_cubit/members_cubit.dart';
 import 'package:spectra_sports/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 
@@ -22,7 +22,7 @@ class SpectraSports extends StatelessWidget {
           create: (context) => AuthCubit(locator<AuthRepoImpl>()),
         ),
         BlocProvider(
-          create: (context) => PlayersCubit(locator<AdminHomeRepoImpl>()),
+          create: (context) => MembersCubit(locator<AdminHomeRepoImpl>()),
         ),
       ],
       child: MaterialApp.router(

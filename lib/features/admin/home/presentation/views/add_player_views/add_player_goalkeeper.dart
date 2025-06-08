@@ -5,7 +5,7 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
-import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/members_cubit/members_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/goalkeeper_specs_section.dart';
 import 'package:toastification/toastification.dart';
 
@@ -43,11 +43,11 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
             const GoalkeeperSpecsSection(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: BlocConsumer<PlayersCubit, PlayersState>(
+              child: BlocConsumer<MembersCubit, MembersState>(
                 listener: (context, state) {
-                  if (state is PlayersSuccess) {
+                  if (state is MembersSuccess) {
                     widget.onNext();
-                  } else if (state is PlayersFailure) {
+                  } else if (state is MembersFailure) {
                     showToast(
                       context: context,
                       title: state.message,
@@ -60,7 +60,7 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                     width: double.infinity,
                     child: CustomButton(
                       title: "Next",
-                      isLoading: state is PlayersLoading,
+                      isLoading: state is MembersLoading,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           _formKey.currentState!.save();
@@ -70,7 +70,7 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                           );
                           addPlayerInput.clubPosition = "GK";
                           await context
-                              .read<PlayersCubit>()
+                              .read<MembersCubit>()
                               .addPlayer(addPlayerInput);
                         } else {
                           setState(() {
