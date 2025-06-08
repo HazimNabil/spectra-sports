@@ -9,6 +9,7 @@ import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_match_input.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_coach_body.dart';
 import 'package:spectra_sports/features/admin/home/data/models/register_parent_body.dart';
 import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo.dart';
 
@@ -98,6 +99,25 @@ class AdminHomeRepoImpl implements AdminHomeRepo {
       await _apiService.post(
         '${ApiEndpoints.baseUrl}${ApiEndpoints.registerParent}',
         parent.toJson(),
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+      );
+
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  ApiResult<Unit> registerCoach(RegisterCoachBody coach) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
+
+      await _apiService.post(
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.registerCoach}',
+        coach.toJson(),
         headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
 
