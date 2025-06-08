@@ -19,13 +19,13 @@ class AddPlayer3 extends StatefulWidget {
 
 class _AddPlayer3State extends State<AddPlayer3> {
   late final GlobalKey<FormState> _formKey;
-  late final AutovalidateMode _autovalidateMode;
+  late final ValueNotifier<AutovalidateMode> _autovalidateMode;
 
   @override
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
-    _autovalidateMode = AutovalidateMode.disabled;
+    _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
   }
 
   @override
@@ -33,10 +33,15 @@ class _AddPlayer3State extends State<AddPlayer3> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Form(
-            key: _formKey,
-            autovalidateMode: _autovalidateMode,
-            child: const AddParentDetails(),
+          ValueListenableBuilder(
+            valueListenable: _autovalidateMode,
+            builder: (_, value, __) {
+              return Form(
+                key: _formKey,
+                autovalidateMode: value,
+                child: const AddParentDetails(),
+              );
+            },
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -70,9 +75,7 @@ class _AddPlayer3State extends State<AddPlayer3> {
                             .read<RegisterParentCubit>()
                             .registerParent(parent);
                       } else {
-                        setState(() {
-                          _autovalidateMode = AutovalidateMode.always;
-                        });
+                        _autovalidateMode.value = AutovalidateMode.always;
                       }
                     },
                   );
