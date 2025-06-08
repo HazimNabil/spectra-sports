@@ -90,7 +90,10 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
                     title: 'Add Coach',
                     color: AppColors.highlight,
                     onPressed: () {
-                      context.push(AppRouter.addCoachRoute);
+                      context.push(
+                        AppRouter.addCoachRoute,
+                        extra: widget.teamName,
+                      );
                     },
                   ),
                 ),

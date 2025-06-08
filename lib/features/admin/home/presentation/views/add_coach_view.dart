@@ -4,7 +4,8 @@ import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_coach_details.dart';
 
 class AddCoachView extends StatefulWidget {
-  const AddCoachView({super.key});
+  final String teamName;
+  const AddCoachView({super.key, required this.teamName});
 
   @override
   State<AddCoachView> createState() => _AddCoachViewState();

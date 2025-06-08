@@ -82,7 +82,10 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: addCoachRoute,
-        builder: (context, state) => const AddCoachView(),
+        builder: (context, state) {
+          final teamName = state.extra as String;
+          return AddCoachView(teamName: teamName);
+        },
       )
     ],
   );
