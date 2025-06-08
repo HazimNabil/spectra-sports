@@ -61,7 +61,7 @@ class _AddPlayer2State extends State<AddPlayer2> {
                     return SizedBox(
                       width: double.infinity,
                       child: CustomButton(
-                        title: "Add",
+                        title: "Next",
                         isLoading: state is PlayersLoading,
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {

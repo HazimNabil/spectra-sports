@@ -59,7 +59,7 @@ class _AddPlayerGoalkeeperState extends State<AddPlayerGoalkeeper> {
                   return SizedBox(
                     width: double.infinity,
                     child: CustomButton(
-                      title: "Add",
+                      title: "Next",
                       isLoading: state is PlayersLoading,
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
