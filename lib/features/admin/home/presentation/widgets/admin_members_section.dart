@@ -26,7 +26,7 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
   @override
   void initState() {
     super.initState();
-    context.read<MembersCubit>().getPlayers(widget.teamName);
+    context.read<MembersCubit>().getMembers(widget.teamName);
   }
 
   @override
