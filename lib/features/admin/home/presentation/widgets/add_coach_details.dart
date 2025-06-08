@@ -3,9 +3,12 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/app_validators.dart';
 import 'package:spectra_sports/core/widgets/custom_text_field.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_coach_body.dart';
 
 class AddCoachDetails extends StatelessWidget {
-  const AddCoachDetails({super.key});
+  final RegisterCoachBody registerCoachBody;
+
+  const AddCoachDetails({super.key, required this.registerCoachBody});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +49,9 @@ class AddCoachDetails extends StatelessWidget {
           CustomTextField(
             hintText: 'name@gmail.com',
             validator: AppValidators.emailValidator,
-            onSaved: (email) {},
+            onSaved: (email) {
+              registerCoachBody.email = email;
+            },
           ),
           const SizedBox(height: 24),
           Text(
@@ -62,7 +67,9 @@ class AddCoachDetails extends StatelessWidget {
           CustomTextField(
             hintText: 'Coach Name',
             validator: AppValidators.requiredFieldValidator,
-            onSaved: (coachName) {},
+            onSaved: (coachName) {
+              registerCoachBody.name = coachName;
+            },
           ),
           const SizedBox(height: 24),
           Text(
@@ -78,7 +85,9 @@ class AddCoachDetails extends StatelessWidget {
           CustomTextField(
             hintText: '01099362016',
             validator: AppValidators.phoneNumberValidator,
-            onSaved: (phoneNumber) {},
+            onSaved: (phoneNumber) {
+              registerCoachBody.phoneNumber = phoneNumber;
+            },
           ),
           const SizedBox(height: 24),
           Text(
@@ -95,7 +104,9 @@ class AddCoachDetails extends StatelessWidget {
             hintText: 'Password',
             isPasswordField: true,
             validator: AppValidators.passwordValidator,
-            onSaved: (password) {},
+            onSaved: (password) {
+              registerCoachBody.password = password;
+            },
           ),
           const SizedBox(height: 8),
         ],

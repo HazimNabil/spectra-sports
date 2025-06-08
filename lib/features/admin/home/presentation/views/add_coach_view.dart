@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_coach_body.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_coach_details.dart';
 
 class AddCoachView extends StatefulWidget {
@@ -14,12 +15,14 @@ class AddCoachView extends StatefulWidget {
 class _AddCoachViewState extends State<AddCoachView> {
   late final GlobalKey<FormState> _formKey;
   late final AutovalidateMode _autovalidateMode;
+  late final RegisterCoachBody _registerCoachBody;
 
   @override
   void initState() {
     super.initState();
     _formKey = GlobalKey<FormState>();
     _autovalidateMode = AutovalidateMode.disabled;
+    _registerCoachBody = RegisterCoachBody()..teamId = widget.teamName;
   }
 
   @override
@@ -31,7 +34,7 @@ class _AddCoachViewState extends State<AddCoachView> {
             Form(
               key: _formKey,
               autovalidateMode: _autovalidateMode,
-              child: const AddCoachDetails(),
+              child: AddCoachDetails(registerCoachBody: _registerCoachBody),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
