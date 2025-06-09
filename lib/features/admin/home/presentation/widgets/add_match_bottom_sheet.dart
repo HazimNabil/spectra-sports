@@ -43,7 +43,9 @@ class _AddMatchBottomSheetState extends State<AddMatchBottomSheet> {
               alignment: Alignment.topLeft,
               child: Text(
                 'Add Match',
-                style: AppStyles.styleExtraBold24(context),
+                style: AppStyles.styleBold20(
+                  context,
+                ).copyWith(color: AppColors.text),
               ),
             ),
             const SizedBox(height: 24),

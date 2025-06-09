@@ -46,6 +46,7 @@ class AdminMatchesSection extends StatelessWidget {
               showModalBottomSheet(
                 context: context,
                 backgroundColor: AppColors.background,
+                isScrollControlled: true,
                 builder: (_) => BlocProvider.value(
                   value: context.read<AdminMatchesCubit>(),
                   child: IntrinsicHeight(

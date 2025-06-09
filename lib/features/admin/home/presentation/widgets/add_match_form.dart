@@ -23,7 +23,7 @@ class AddMatchForm extends StatelessWidget {
       key: formKey,
       autovalidateMode: autovalidateMode,
       child: Column(
-        spacing: 24,
+        spacing: 16,
         children: [
           CustomTextField(
             hintText: 'Match Name',
