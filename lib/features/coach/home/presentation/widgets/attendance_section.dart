@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
+import 'package:spectra_sports/core/widgets/loading_indicator.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/attendance_cubit/attendance_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card_list_view.dart';
 
@@ -31,9 +32,7 @@ class _AttendanceSectionState extends State<AttendanceSection>
           child: BlocBuilder<AttendanceCubit, AttendanceState>(
             builder: (context, state) {
               return switch (state) {
-                AttendanceLoading() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                AttendanceLoading() => const LoadingIndicator(),
                 AttendanceSuccess(attendees: final attendees) =>
                   AttendanceCardListView(
                     attendees: attendees,

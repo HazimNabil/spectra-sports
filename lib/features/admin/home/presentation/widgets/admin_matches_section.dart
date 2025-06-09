@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/match_card_list_view.dart';
+import 'package:spectra_sports/core/widgets/loading_indicator.dart';
 import 'package:spectra_sports/features/admin/home/presentation/view_models/add_match_cubit/admin_matches_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_match_bottom_sheet.dart';
 
@@ -23,9 +24,7 @@ class AdminMatchesSection extends StatelessWidget {
           child: BlocBuilder<AdminMatchesCubit, AdminMatchesState>(
             builder: (context, state) {
               return switch (state) {
-                AdminMatchesLoading() => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
+                AdminMatchesLoading() => const LoadingIndicator(),
                 AdminMatchesSuccess(:final matches) => MatchCardListView(
                     matches: matches,
                   ),
@@ -46,6 +45,7 @@ class AdminMatchesSection extends StatelessWidget {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
+                backgroundColor: AppColors.background,
                 builder: (_) => BlocProvider.value(
                   value: context.read<AdminMatchesCubit>(),
                   child: IntrinsicHeight(
