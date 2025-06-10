@@ -9,6 +9,7 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_player.dart';
 import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
@@ -116,6 +117,25 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final jsonAttendees = json[ApiKeys.predictions] as List;
       final attendees = jsonAttendees.map((e) => Attendee.fromJson(e)).toList();
       return Right(attendees);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  ApiResult<CoachPlayer> updatePosition(String playerId, String position) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
+
+      final json = await _apiService.patch(
+        '${ApiEndpoints.baseUrl}/players/$playerId/position',
+        {'club_position': position},
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+      );
+
+      return Right(CoachPlayer.fromJson(json));
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {
