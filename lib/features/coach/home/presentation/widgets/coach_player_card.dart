@@ -52,9 +52,8 @@ class CoachPlayerCard extends StatelessWidget {
               return const LoadingIndicator();
             } else if (state is PositionPredictionSuccess) {
               return buildPlayerPositionWidget(context, state.position);
-            } else {
-              return buildPlayerPositionWidget(context, player.clubPosition);
             }
+            return buildPlayerPositionWidget(context, player.clubPosition);
           },
         ),
       ),
@@ -72,10 +71,12 @@ class CoachPlayerCard extends StatelessWidget {
     }
     return IconButton(
       icon: Image.asset(AppImages.imagesPlayerPosition),
-      onPressed: () {
-        context
-            .read<PositionPredictionCubit>()
-            .predictPosition(PredictPositionInput.fromPlayer(player));
+      onPressed: () async {
+        final cubit = context.read<PositionPredictionCubit>();
+        await cubit.predictPosition(
+          player.shortName!,
+          PredictPositionInput.fromPlayer(player),
+        );
       },
     );
   }
