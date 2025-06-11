@@ -28,8 +28,8 @@ class PositionPredictionCubit extends Cubit<PositionPredictionState> {
     final positionEither = await _coachHomeRepo.updatePosition(playerId, position);
     positionEither.fold(
       (failure) => emit(PositionPredictionFailure(failure.message)),
-      (player) {
-        emit(PositionPredictionSuccess(player.clubPosition!));
+      (newPosition) {
+        emit(PositionPredictionSuccess(newPosition));
       },
     );
   }

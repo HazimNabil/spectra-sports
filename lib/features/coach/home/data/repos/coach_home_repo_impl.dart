@@ -9,7 +9,6 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
-import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_player.dart';
 import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
@@ -125,7 +124,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   }
 
   @override
-  ApiResult<CoachPlayer> updatePosition(String playerId, String position) async {
+  ApiResult<String> updatePosition(String playerId, String position) async {
     try {
       final token = await CacheHelper.getSecureData(ApiKeys.token);
 
@@ -135,7 +134,9 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
         headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
 
-      return Right(CoachPlayer.fromJson(json));
+      final newPosition = json['player']['club_position'] as String;
+
+      return Right(newPosition);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {

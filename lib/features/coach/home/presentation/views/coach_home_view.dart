@@ -6,6 +6,7 @@ import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo_impl.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/attendance_cubit/attendance_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/coach_matches_cubit/coach_matches_cubit.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_cubit/get_team_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_matches_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_players_section.dart';
@@ -38,7 +39,12 @@ class CoachHomeView extends StatelessWidget {
                     )..getMatches(),
                     child: const CoachMatchesSection(),
                   ),
-                  const CoachPlayersSection(),
+                  BlocProvider(
+                    create: (context) => GetTeamCubit(
+                      locator<CoachHomeRepoImpl>(),
+                    )..getTeam(),
+                    child: const CoachPlayersSection(),
+                  ),
                   BlocProvider(
                     create: (context) =>
                         AttendanceCubit(locator<CoachHomeRepoImpl>()),

@@ -1,14 +1,10 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_coach_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_add_player_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_home_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_team_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/auth_gate.dart';
-import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo_impl.dart';
-import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_cubit/get_team_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/views/coach_home_view.dart';
 import 'package:spectra_sports/features/parent/home/presentation/views/parent_home_view.dart';
 import 'package:spectra_sports/features/splash/presentation/views/splash_view.dart';
@@ -57,14 +53,7 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: coachHomeRoute,
-        builder: (context, state) {
-          return BlocProvider(
-            create: (context) => GetTeamCubit(
-              locator<CoachHomeRepoImpl>(),
-            )..getTeam(),
-            child: const CoachHomeView(),
-          );
-        },
+        builder: (context, state) => const CoachHomeView(),
       ),
       GoRoute(
         path: parentHomeRoute,
