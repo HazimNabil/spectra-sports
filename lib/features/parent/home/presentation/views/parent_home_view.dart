@@ -28,6 +28,7 @@ class ParentHomeView extends StatelessWidget {
             ),
             Expanded(
               child: TabBarView(
+                physics: NeverScrollableScrollPhysics(),
                 children: [
                   ParentMatchesSection(),
                   ParentAttendanceSection(),

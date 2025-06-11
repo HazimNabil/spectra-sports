@@ -32,6 +32,7 @@ class CoachHomeView extends StatelessWidget {
             const SizedBox(height: 16),
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
                   BlocProvider(
                     create: (context) => CoachMatchesCubit(
