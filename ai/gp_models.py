@@ -14,7 +14,7 @@ app = Flask(__name__)
 CORS(app)
 
 # ─── Load Face Recognition Models ─────────────────────────────────────
-face_data = np.load('ai/face recognition result.npz', allow_pickle=True)
+face_data = np.load('ai/Team1.npz', allow_pickle=True)
 X = face_data['arr_0']
 y = face_data['arr_1']
 face_encoder = LabelEncoder().fit(y)
@@ -82,7 +82,7 @@ def predict_faces():
         proba = face_model.predict_proba(emb)[0]
         conf = float(np.max(proba))
         name = face_encoder.inverse_transform([yhat])[0]
-        if conf < 0.05:
+        if conf < 0.35:
             name = 'Unknown'
         else:
             name = name.replace('_', ' ').title()
