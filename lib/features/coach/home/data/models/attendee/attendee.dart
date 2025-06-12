@@ -6,11 +6,13 @@ class Attendee extends Equatable {
   final Box? box;
   final double? confidence;
   final String name;
+  final bool isPresent;
 
   const Attendee({
     this.box,
     this.confidence,
     required this.name,
+    this.isPresent = true,
   });
 
   factory Attendee.fromJson(Map<String, dynamic> json) {
@@ -32,5 +34,5 @@ class Attendee extends Equatable {
   }
 
   @override
-  List<Object?> get props => [box, confidence, name];
+  List<Object?> get props => [box, confidence, name, isPresent];
 }

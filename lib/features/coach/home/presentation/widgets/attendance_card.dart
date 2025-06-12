@@ -23,7 +23,9 @@ class AttendanceCard extends StatelessWidget {
             context,
           ).copyWith(color: AppColors.icons),
         ),
-        trailing: Image.asset(AppImages.imagesPresent),
+        trailing: attendee.isPresent
+            ? Image.asset(AppImages.imagesPresent)
+            : Image.asset(AppImages.imagesAbsent),
       ),
     );
   }
