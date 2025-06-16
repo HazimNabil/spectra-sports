@@ -8,7 +8,8 @@ part 'register_parent_state.dart';
 class RegisterParentCubit extends Cubit<RegisterParentState> {
   final AdminHomeRepo _adminHomeRepo;
 
-  RegisterParentCubit(this._adminHomeRepo) : super(const RegisterParentInitial());
+  RegisterParentCubit(this._adminHomeRepo)
+      : super(const RegisterParentInitial());
 
   Future<void> registerParent(RegisterParentBody parent) async {
     emit(const RegisterParentLoading());

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/attendee.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card.dart';
 
 class AttendanceCardListView extends StatelessWidget {

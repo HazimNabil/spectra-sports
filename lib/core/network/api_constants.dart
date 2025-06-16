@@ -16,6 +16,8 @@ class ApiEndpoints {
   static const addPlayer = '/admin/teams';
   static const predict = '/predict';
   static const predictFaces = '/predict-faces';
+  static const markAttendance = '/players/multipleAttendance';
+  static const getAttendance = '/players/getFullAttendance';
 }
 
 class ApiKeys {

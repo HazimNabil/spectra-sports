@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/attendee.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
 
 part 'attendance_state.dart';

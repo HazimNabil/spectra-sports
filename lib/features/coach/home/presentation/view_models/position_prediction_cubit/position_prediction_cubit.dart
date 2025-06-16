@@ -12,7 +12,8 @@ class PositionPredictionCubit extends Cubit<PositionPredictionState> {
   PositionPredictionCubit(this._coachHomeRepo)
       : super(const PositionPredictionInitial());
 
-  Future<void> predictPosition(String playerId, PredictPositionInput input) async {
+  Future<void> predictPosition(
+      String playerId, PredictPositionInput input) async {
     final positionEither = await _coachHomeRepo.predictPosition(input);
     positionEither.fold(
       (failure) => emit(PositionPredictionFailure(failure.message)),
@@ -25,7 +26,8 @@ class PositionPredictionCubit extends Cubit<PositionPredictionState> {
   Future<void> updatePosition(String playerId, String position) async {
     emit(const PositionPredictionLoading());
 
-    final positionEither = await _coachHomeRepo.updatePosition(playerId, position);
+    final positionEither =
+        await _coachHomeRepo.updatePosition(playerId, position);
     positionEither.fold(
       (failure) => emit(PositionPredictionFailure(failure.message)),
       (newPosition) {

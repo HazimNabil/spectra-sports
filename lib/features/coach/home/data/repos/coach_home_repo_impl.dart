@@ -8,7 +8,8 @@ import 'package:spectra_sports/core/network/api_constants.dart';
 import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
-import 'package:spectra_sports/features/coach/home/data/models/attendee/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/face_model_response/face_model_response.dart';
 import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
@@ -107,20 +108,51 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       ApiKeys.image: await MultipartFile.fromFile(image.path),
     });
 
+    final token = await CacheHelper.getSecureData(ApiKeys.token);
+
     try {
-      final json = await _apiService.post(
-        '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.predictFaces}',
-        form,
-        headers: {'Content-Type': 'multipart/form-data'},
-      );
-      final jsonAttendees = json[ApiKeys.predictions] as List;
-      final attendees = jsonAttendees.map((e) => Attendee.fromJson(e)).toList();
+      final predictions = await runFaceModel(form);
+      await markAttendance(predictions, token);
+      final attendees = await getAttendance(token);
       return Right(attendees);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
+  }
+
+  Future<List<Attendee>> getAttendance(String token) async {
+    final date =
+        '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
+    final jsonResponse = await _apiService.get(
+      '${ApiEndpoints.baseUrl}${ApiEndpoints.getAttendance}?date=$date',
+      {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+    );
+    final jsonAttendees = jsonResponse as List;
+    final attendees = jsonAttendees.map((e) => Attendee.fromJson(e)).toList();
+    return attendees;
+  }
+
+  Future<void> markAttendance(List<FaceModelResponse> predictions, String token) async {
+    final names = predictions.map((prediction) => prediction.name).toList();
+    await _apiService.post(
+      '${ApiEndpoints.baseUrl}${ApiEndpoints.markAttendance}',
+      {"playerIds": names, "source": "face_recognition"},
+      headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+    );
+  }
+
+  Future<List<FaceModelResponse>> runFaceModel(FormData form) async {
+    final json = await _apiService.post(
+      '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.predictFaces}',
+      form,
+      headers: {'Content-Type': 'multipart/form-data'},
+    );
+    final jsonPredictions = json[ApiKeys.predictions] as List;
+    final predictions =
+        jsonPredictions.map((e) => FaceModelResponse.fromJson(e)).toList();
+    return predictions;
   }
 
   @override

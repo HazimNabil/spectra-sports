@@ -23,8 +23,8 @@ class AdminHomeViewBody extends StatelessWidget {
               return switch (state) {
                 GetTeamsLoading() => const LoadingIndicator(),
                 GetTeamsSuccess(teams: final teams) => TeamCardListView(
-                  teams: teams,
-                ),
+                    teams: teams,
+                  ),
                 GetTeamsFailure(message: final message) => Center(
                     child: Text(message),
                   ),

@@ -2,19 +2,19 @@ import 'package:equatable/equatable.dart';
 
 import 'box.dart';
 
-class Attendee extends Equatable {
+class FaceModelResponse extends Equatable {
   final Box? box;
   final double? confidence;
   final String name;
 
-  const Attendee({
+  const FaceModelResponse({
     this.box,
     this.confidence,
     required this.name,
   });
 
-  factory Attendee.fromJson(Map<String, dynamic> json) {
-    return Attendee(
+  factory FaceModelResponse.fromJson(Map<String, dynamic> json) {
+    return FaceModelResponse(
       box: json['box'] == null
           ? null
           : Box.fromJson(json['box'] as Map<String, dynamic>),
