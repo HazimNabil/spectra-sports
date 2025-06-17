@@ -4,26 +4,28 @@ import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
 import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_attendance_section.dart';
 import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_matches_section.dart';
 import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_payment_section.dart';
+import 'package:spectra_sports/features/parent/home/data/models/parent_player_data/parent_player_data.dart';
 
 class ParentHomeViewBody extends StatelessWidget {
-  const ParentHomeViewBody({super.key});
+  final ParentPlayerData playersData;
+  const ParentHomeViewBody({super.key, required this.playersData});
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         CustomAppBar(
-          title: "Player Name",
+          title: playersData.player.shortName!,
           showBackButton: false,
-        ), // change player name
-        SizedBox(
+        ),
+        const SizedBox(
           height: 16,
         ),
-        CustomTabBar(tabs: ['Match', 'Attendance', 'Payment']),
-        SizedBox(
+        const CustomTabBar(tabs: ['Match', 'Attendance', 'Payment']),
+        const SizedBox(
           height: 16,
         ),
-        Expanded(
+        const Expanded(
           child: TabBarView(
             physics: NeverScrollableScrollPhysics(),
             children: [
