@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_coach_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_add_player_view.dart';
@@ -10,6 +12,8 @@ import 'package:spectra_sports/features/parent/home/presentation/views/parent_ho
 import 'package:spectra_sports/features/splash/presentation/views/splash_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/login_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/sign_up_view.dart';
+import 'package:spectra_sports/features/parent/home/presentation/view_models/parent_players_cubit/parent_players_cubit.dart';
+import 'package:spectra_sports/features/parent/home/data/repos/parent_home_repo_impl.dart';
 
 abstract class AppRouter {
   static const splashRoute = '/';
@@ -57,7 +61,14 @@ abstract class AppRouter {
       ),
       GoRoute(
         path: parentHomeRoute,
-        builder: (context, state) => const ParentHomeView(),
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => ParentPlayersCubit(
+              locator<ParentHomeRepoImpl>(),
+            )..getPlayersData(),
+            child: const ParentHomeView(),
+          );
+        },
       ),
       GoRoute(
         path: addPlayerRoute,
