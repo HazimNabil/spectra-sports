@@ -8,6 +8,7 @@ import 'package:spectra_sports/features/parent/home/data/models/parent_player_da
 
 class ParentHomeViewBody extends StatelessWidget {
   final ParentPlayerData playersData;
+
   const ParentHomeViewBody({super.key, required this.playersData});
 
   @override
@@ -21,17 +22,21 @@ class ParentHomeViewBody extends StatelessWidget {
         const SizedBox(
           height: 16,
         ),
-        const CustomTabBar(tabs: ['Match', 'Attendance', 'Payment']),
+        const CustomTabBar(
+          tabs: ['Match', 'Attendance', 'Payment'],
+        ),
         const SizedBox(
           height: 16,
         ),
-        const Expanded(
+        Expanded(
           child: TabBarView(
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             children: [
-              ParentMatchesSection(),
-              ParentAttendanceSection(),
-              ParentPaymentSection(),
+              ParentMatchesSection(matches: playersData.matches!),
+              ParentAttendanceSection(
+                attendance: playersData.player.attendance!,
+              ),
+              const ParentPaymentSection(),
             ],
           ),
         ),

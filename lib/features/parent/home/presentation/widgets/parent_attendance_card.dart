@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/features/parent/home/data/models/parent_player_data/attendance.dart';
 
 class ParentAttendanceCard extends StatelessWidget {
-  const ParentAttendanceCard({super.key});
+  final Attendance attendance;
+
+  const ParentAttendanceCard({super.key, required this.attendance});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +18,14 @@ class ParentAttendanceCard extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         title: Text(
-          '4 / 2 / 2025',
+          '${attendance.date.day}/${attendance.date.month}/${attendance.date.year}',
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),
         ),
-        trailing: Image.asset(AppImages.imagesPresent),
+        trailing: attendance.present
+            ? Image.asset(AppImages.imagesPresent)
+            : Image.asset(AppImages.imagesAbsent),
       ),
     );
   }
