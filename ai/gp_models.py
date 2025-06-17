@@ -13,16 +13,44 @@ from ultralytics import YOLO
 app = Flask(__name__)
 CORS(app)
 
-# ─── Load Face Recognition Models ─────────────────────────────────────
-face_data = np.load('ai/Team1.npz', allow_pickle=True)
-X = face_data['arr_0']
-y = face_data['arr_1']
-face_encoder = LabelEncoder().fit(y)
-y_enc = face_encoder.transform(y)
-face_model = SVC(kernel='linear', probability=True).fit(X, y_enc)
-
+# ─── Initialize Face Recognition Components ──────────────────────────
 face_detector = MTCNN()
 face_embedder = FaceNet()
+
+# Cache for loaded models to avoid reloading
+face_models_cache = {}
+
+def load_face_model(team_name):
+    """Load face recognition model for specified team"""
+    if team_name in face_models_cache:
+        return face_models_cache[team_name]
+    
+    # Validate team name
+    if team_name not in ['Team1', 'Team2']:
+        raise ValueError(f"Invalid team name: {team_name}. Must be 'Team1' or 'Team2'")
+    
+    # Load face data
+    face_data_path = f'ai/{team_name}.npz'
+    if not os.path.exists(face_data_path):
+        raise FileNotFoundError(f"Face data file not found: {face_data_path}")
+    
+    face_data = np.load(face_data_path, allow_pickle=True)
+    X = face_data['arr_0']
+    y = face_data['arr_1']
+    
+    # Create and train model
+    face_encoder = LabelEncoder().fit(y)
+    y_enc = face_encoder.transform(y)
+    face_model = SVC(kernel='linear', probability=True).fit(X, y_enc)
+    
+    # Cache the model components
+    model_data = {
+        'model': face_model,
+        'encoder': face_encoder
+    }
+    face_models_cache[team_name] = model_data
+    
+    return model_data
 
 def get_emb(face_img):
     face_img = face_img.astype('float32')
@@ -54,6 +82,7 @@ video_fp = os.path.join(base_dir, 'edited_match.mp4')
 # ─── Route for Face Recognition Prediction ───────────────────────────
 @app.route('/predict-faces', methods=['POST'])
 def predict_faces():
+    # Check for image file
     if 'image' not in request.files:
         return jsonify({'error': 'No image file provided', 'status': 'error'}), 400
 
@@ -61,6 +90,18 @@ def predict_faces():
     if file.filename == '':
         return jsonify({'error': 'Empty filename', 'status': 'error'}), 400
 
+    # Get team parameter (default to Team1 if not provided)
+    team_name = request.form.get('team', 'Team1')
+    
+    try:
+        # Load the appropriate face model
+        model_data = load_face_model(team_name)
+        face_model = model_data['model']
+        face_encoder = model_data['encoder']
+    except (ValueError, FileNotFoundError) as e:
+        return jsonify({'error': str(e), 'status': 'error'}), 400
+
+    # Process image
     img_arr = np.frombuffer(file.read(), np.uint8)
     img = cv2.imdecode(img_arr, cv2.IMREAD_COLOR)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -92,6 +133,8 @@ def predict_faces():
         preds.append({'name': name, 'confidence': conf, 'box': {'x': x, 'y': y, 'w': w, 'h': h}})
 
     return jsonify({'predictions': preds, 'status': 'success'})
+
+
 
 # ─── Route for Soccer Player Prediction ───────────────────────────────
 @app.route("/predict", methods=["POST"])
