@@ -41,7 +41,7 @@ class AdminTeamView extends StatelessWidget {
                   ),
                   AdminMembersSection(
                     teamName: team.name,
-                    coachName: team.players[0].coachName!,
+                    coachName: team.coachName,
                   ),
                 ],
               ),

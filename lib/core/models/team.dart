@@ -7,12 +7,14 @@ class Team extends Equatable {
   final String name;
   final List<Player> players;
   final List<MatchModel> matches;
+  final String coachName;
 
   const Team({
     required this.id,
     required this.name,
     required this.players,
     required this.matches,
+    required this.coachName,
   });
 
   factory Team.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class Team extends Equatable {
       matches: (json['matchSchedule'] as List<dynamic>)
           .map((e) => MatchModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      coachName: json['coachId']['name'] as String,
     );
   }
 
@@ -34,9 +37,10 @@ class Team extends Equatable {
       'name': name,
       'players': players.map((e) => e.toJson()).toList(),
       'matchSchedule': matches.map((e) => e.toJson()).toList(),
+      'coachId': {'_id': coachName, 'name': coachName},
     };
   }
 
   @override
-  List<Object?> get props => [id, name, players, matches];
+  List<Object?> get props => [id, name, players, matches, coachName];
 }

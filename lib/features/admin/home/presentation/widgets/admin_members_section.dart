@@ -45,7 +45,7 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
                   MembersSuccess(players: final players) => ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        CoachCard(coachName: players[0].coachName!),
+                        CoachCard(coachName: widget.coachName ?? 'None'),
                         const SizedBox(height: 16),
                         ...List.generate(
                           players.length,
