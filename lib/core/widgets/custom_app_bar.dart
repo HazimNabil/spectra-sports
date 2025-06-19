@@ -27,10 +27,10 @@ class CustomAppBar extends StatelessWidget {
           image: AssetImage(AppImages.imagesStadiumLights),
           fit: BoxFit.fill,
         ),
-        borderRadius: const BorderRadius.only(
-          bottomLeft: Radius.circular(50),
-          bottomRight: Radius.circular(50),
-        ),
+        // borderRadius: const BorderRadius.only(
+        //   bottomLeft: Radius.circular(50),
+        //   bottomRight: Radius.circular(50),
+        // ),
       ),
       child: Center(
         child: ListTile(
