@@ -34,8 +34,8 @@ class CustomButton extends StatelessWidget {
   Widget _handleLoadingState(BuildContext context) {
     if (isLoading) {
       return const SizedBox(
-        height: 24,
-        width: 24,
+        height: 20,
+        width: 20,
         child: CircularProgressIndicator(
           color: AppColors.background,
           strokeWidth: 3,
