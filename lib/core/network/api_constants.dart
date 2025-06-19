@@ -19,6 +19,7 @@ class ApiEndpoints {
   static const markAttendance = '/players/multipleAttendance';
   static const getAttendance = '/players/getFullAttendance';
   static const getParentPlayers = '/parents/players';
+  static const payment = '/payment/initiate';
 }
 
 class ApiKeys {

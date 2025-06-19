@@ -34,4 +34,23 @@ class ParentHomeRepoImpl implements ParentHomeRepo {
       return Left(ServerFailure(e.toString()));
     }
   }
+
+  @override
+  ApiResult<Unit> payFees(double amount) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
+
+      await _apiService.post(
+        '${ApiEndpoints.baseUrl}${ApiEndpoints.payment}',
+        {'amount': amount},
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+      );
+
+      return const Right(unit);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
 }
