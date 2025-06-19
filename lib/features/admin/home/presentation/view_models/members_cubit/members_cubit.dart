@@ -10,6 +10,7 @@ part 'members_state.dart';
 
 class MembersCubit extends Cubit<MembersState> {
   final AdminHomeRepo _adminHomeRepo;
+  bool _isAddingPlayer = false;
 
   MembersCubit(this._adminHomeRepo) : super(const MembersInitial());
 
@@ -28,13 +29,18 @@ class MembersCubit extends Cubit<MembersState> {
   }
 
   Future<void> addPlayer(AddPlayerInput input) async {
+    if (_isAddingPlayer) return;
+    _isAddingPlayer = true;
     emit(const MembersLoading());
 
     final playerEither = await _adminHomeRepo.addPlayer(input);
     playerEither.fold(
-      (failure) => emit(MembersFailure(failure.message)),
+      (failure) {
+        emit(MembersFailure(failure.message));
+      }, 
       (_) => getMembers(input.teamName),
     );
+    _isAddingPlayer = false;
   }
 
   Future<void> registerCoach(RegisterCoachBody coach) async {
