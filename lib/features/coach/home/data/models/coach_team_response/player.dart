@@ -5,8 +5,8 @@ class CoachPlayer {
   final String shortName;
   final String teamName;
   int? overall;
-  double? height;
-  double? weight;
+  num? height;
+  num? weight;
   String? clubPosition;
   String? clubName;
   int? attackingCrossing;
@@ -48,9 +48,9 @@ class CoachPlayer {
       id: json['id'] as String,
       shortName: json['shortName'] as String,
       teamName: json['teamName'] as String,
-      overall: json['overall'] as int,
-      height: (json['height'] as num?)?.toDouble(),
-      weight: (json['weight'] as num?)?.toDouble(),
+      overall: json['overall'] as int?,
+      height: json['height'] as num?,
+      weight: json['weight'] as num?,
       clubPosition: json['clubPosition'] as String?,
       clubName: json['clubName'] as String?,
       attackingCrossing: json['attackingCrossing'] as int?,

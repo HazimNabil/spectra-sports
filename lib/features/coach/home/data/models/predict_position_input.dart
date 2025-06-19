@@ -8,7 +8,7 @@ class PredictPositionInput {
   final int dribbling;
   final int defending;
   final int physic;
-  final double heightCm;
+  final num heightCm;
   final String preferredFoot;
 
   PredictPositionInput({
