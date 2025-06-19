@@ -16,7 +16,12 @@ final class PaymentLoading extends PaymentState {
 }
 
 final class PaymentSuccess extends PaymentState {
-  const PaymentSuccess();
+  final String paymentLink;
+
+  const PaymentSuccess(this.paymentLink);
+
+  @override
+  List<Object> get props => [paymentLink];
 }
 
 final class PaymentFailure extends PaymentState {

@@ -36,17 +36,18 @@ class ParentHomeRepoImpl implements ParentHomeRepo {
   }
 
   @override
-  ApiResult<Unit> payFees(double amount) async {
+  ApiResult<String> payFees(double amount) async {
     try {
       final token = await CacheHelper.getSecureData(ApiKeys.token);
 
-      await _apiService.post(
+      final json = await _apiService.post(
         '${ApiEndpoints.baseUrl}${ApiEndpoints.payment}',
         {'amount': amount},
         headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
+      final paymentLink = json['iframeURL'] as String;
 
-      return const Right(unit);
+      return Right(paymentLink);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {

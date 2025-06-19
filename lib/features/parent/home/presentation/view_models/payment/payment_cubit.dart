@@ -16,7 +16,7 @@ class PaymentCubit extends Cubit<PaymentState> {
 
     result.fold(
       (failure) => emit(PaymentFailure(failure.message)),
-      (success) => emit(const PaymentSuccess()),
+      (paymentLink) => emit(PaymentSuccess(paymentLink)),
     );
   }
 }
