@@ -26,8 +26,8 @@ def load_face_model(team_name):
         return face_models_cache[team_name]
     
     # Validate team name
-    if team_name not in ['Team1', 'Team2']:
-        raise ValueError(f"Invalid team name: {team_name}. Must be 'Team1' or 'Team2'")
+    if team_name not in ['2015', '2014']:
+        raise ValueError(f"Invalid team name: {team_name}. Must be '2015' or '2014'")
     
     # Load face data
     face_data_path = f'ai/{team_name}.npz'
@@ -90,8 +90,8 @@ def predict_faces():
     if file.filename == '':
         return jsonify({'error': 'Empty filename', 'status': 'error'}), 400
 
-    # Get team parameter (default to Team1 if not provided)
-    team_name = request.form.get('team', 'Team1')
+    # Get team parameter (default to 2015 if not provided)
+    team_name = request.form.get('team', '2015')
     
     try:
         # Load the appropriate face model

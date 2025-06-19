@@ -11,7 +11,9 @@ import 'package:spectra_sports/features/coach/home/presentation/view_models/atte
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_card_list_view.dart';
 
 class AttendanceSection extends StatefulWidget {
-  const AttendanceSection({super.key});
+  final String teamName;
+
+  const AttendanceSection({super.key, required this.teamName});
 
   @override
   State<AttendanceSection> createState() => _AttendanceSectionState();
@@ -65,7 +67,7 @@ class _AttendanceSectionState extends State<AttendanceSection>
               File? file;
               if (image != null) file = File(image.path);
               if (file != null && context.mounted) {
-                await context.read<AttendanceCubit>().takeAttendance(file);
+                await context.read<AttendanceCubit>().takeAttendance(file, widget.teamName);
               }
             },
           ),

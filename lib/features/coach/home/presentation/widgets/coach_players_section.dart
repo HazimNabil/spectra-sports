@@ -14,7 +14,7 @@ class CoachPlayersSection extends StatelessWidget {
         return switch (state) {
           GetTeamLoading() => const LoadingIndicator(),
           GetTeamSuccess(team: final team) => CoachPlayerCardListView(
-              players: team.players,
+              players: team.team?.players ?? [],
             ),
           GetTeamFailure(message: final message) => Center(
               child: Text(message),

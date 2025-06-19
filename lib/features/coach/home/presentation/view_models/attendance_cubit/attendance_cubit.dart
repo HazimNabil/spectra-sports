@@ -12,10 +12,10 @@ class AttendanceCubit extends Cubit<AttendanceState> {
 
   AttendanceCubit(this._coachHomeRepo) : super(const AttendanceInitial());
 
-  Future<void> takeAttendance(File image) async {
+  Future<void> takeAttendance(File image, String teamName) async {
     emit(const AttendanceLoading());
 
-    final attendanceEither = await _coachHomeRepo.takeAttendance(image);
+    final attendanceEither = await _coachHomeRepo.takeAttendance(image, teamName);
     attendanceEither.fold(
       (failure) => emit(AttendanceFailure(failure.message)),
       (attendance) => emit(AttendanceSuccess(attendance)),

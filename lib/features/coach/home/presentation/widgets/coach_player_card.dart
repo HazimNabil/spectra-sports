@@ -5,7 +5,7 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
-import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_player.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team_response/player.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/presentation/view_models/position_prediction_cubit/position_prediction_cubit.dart';
 import 'package:toastification/toastification.dart';
@@ -30,7 +30,7 @@ class CoachPlayerCard extends StatelessWidget {
           ),
         ),
         title: Text(
-          player.shortName ?? 'Name',
+          player.shortName,
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),
@@ -80,7 +80,7 @@ class CoachPlayerCard extends StatelessWidget {
       onPressed: () async {
         final cubit = context.read<PositionPredictionCubit>();
         await cubit.predictPosition(
-          player.shortName!,
+          player.shortName,
           PredictPositionInput.fromPlayer(player),
         );
       },

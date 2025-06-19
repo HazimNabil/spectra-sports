@@ -9,8 +9,8 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
 import 'package:spectra_sports/features/coach/home/data/models/attendee.dart';
+import 'package:spectra_sports/features/coach/home/data/models/coach_team_response/coach_team_response.dart';
 import 'package:spectra_sports/features/coach/home/data/models/face_model_response/face_model_response.dart';
-import 'package:spectra_sports/features/coach/home/data/models/coach_team/coach_team.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
@@ -21,7 +21,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   CoachHomeRepoImpl(this._apiService);
 
   @override
-  ApiResult<CoachTeam> getTeam() async {
+  ApiResult<CoachTeamResponse> getTeam() async {
     try {
       final token = await CacheHelper.getSecureData(ApiKeys.token);
 
@@ -29,8 +29,8 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
         '${ApiEndpoints.baseUrl}${ApiEndpoints.getCoachTeam}',
         {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
       );
-      final jsonTeam = jsonData[ApiKeys.team] as Map<String, dynamic>;
-      final team = CoachTeam.fromJson(jsonTeam);
+      final jsonMap = jsonData as Map<String, dynamic>;
+      final team = CoachTeamResponse.fromJson(jsonMap);
 
       return Right(team);
     } on DioException catch (e) {
@@ -103,9 +103,10 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   }
 
   @override
-  ApiResult<List<Attendee>> takeAttendance(File image) async {
+  ApiResult<List<Attendee>> takeAttendance(File image, String teamName) async {
     final form = FormData.fromMap({
       ApiKeys.image: await MultipartFile.fromFile(image.path),
+      ApiKeys.team: teamName,
     });
 
     final token = await CacheHelper.getSecureData(ApiKeys.token);
@@ -134,7 +135,8 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
     return attendees;
   }
 
-  Future<void> markAttendance(List<FaceModelResponse> predictions, String token) async {
+  Future<void> markAttendance(
+      List<FaceModelResponse> predictions, String token) async {
     final names = predictions.map((prediction) => prediction.name).toList();
     await _apiService.post(
       '${ApiEndpoints.baseUrl}${ApiEndpoints.markAttendance}',

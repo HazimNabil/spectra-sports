@@ -15,7 +15,7 @@ import 'package:spectra_sports/features/auth/presentation/views/sign_up_view.dar
 import 'package:spectra_sports/features/parent/home/presentation/view_models/parent_players_cubit/parent_players_cubit.dart';
 import 'package:spectra_sports/features/parent/home/data/repos/parent_home_repo_impl.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo_impl.dart';
-import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_cubit/get_team_cubit.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_name_cubit/get_team_name_cubit.dart';
 
 abstract class AppRouter {
   static const splashRoute = '/';
@@ -61,9 +61,9 @@ abstract class AppRouter {
         path: coachHomeRoute,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => GetTeamCubit(
+            create: (context) => GetTeamNameCubit(
               locator<CoachHomeRepoImpl>(),
-            )..getTeam(),
+            )..getTeamName(),
             child: const CoachHomeView(),
           );
         },

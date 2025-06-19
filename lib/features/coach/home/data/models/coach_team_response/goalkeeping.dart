@@ -1,14 +1,12 @@
-import 'package:equatable/equatable.dart';
+class Goalkeeping {
+  int? diving;
+  int? handling;
+  int? kicking;
+  int? positioning;
+  int? reflexes;
+  int? speed;
 
-class Goalkeeping extends Equatable {
-  final int? diving;
-  final int? handling;
-  final int? kicking;
-  final int? positioning;
-  final int? reflexes;
-  final int? speed;
-
-  const Goalkeeping({
+  Goalkeeping({
     this.diving,
     this.handling,
     this.kicking,
@@ -34,16 +32,4 @@ class Goalkeeping extends Equatable {
         'reflexes': reflexes,
         'speed': speed,
       };
-
-  @override
-  List<Object?> get props {
-    return [
-      diving,
-      handling,
-      kicking,
-      positioning,
-      reflexes,
-      speed,
-    ];
-  }
 }
