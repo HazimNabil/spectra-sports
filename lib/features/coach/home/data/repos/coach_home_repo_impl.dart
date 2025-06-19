@@ -114,7 +114,7 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
     try {
       final predictions = await runFaceModel(form);
       await markAttendance(predictions, token);
-      final attendees = await getAttendance(token);
+      final attendees = await getAttendance(token, teamName);
       return Right(attendees);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
@@ -123,11 +123,11 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
     }
   }
 
-  Future<List<Attendee>> getAttendance(String token) async {
+  Future<List<Attendee>> getAttendance(String token, String teamName) async {
     final date =
         '${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}';
     final jsonResponse = await _apiService.get(
-      '${ApiEndpoints.baseUrl}${ApiEndpoints.getAttendance}?date=$date',
+      '${ApiEndpoints.baseUrl}${ApiEndpoints.getAttendance}?date=$date&teamId=$teamName',
       {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
     );
     final jsonAttendees = jsonResponse as List;
