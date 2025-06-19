@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
-import 'package:spectra_sports/core/utils/app_images.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/extensions.dart';
 import 'package:spectra_sports/core/widgets/custom_back_button.dart';
@@ -21,16 +20,12 @@ class CustomAppBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 140 * context.heightScaleFactor,
-      decoration: BoxDecoration(
-        color: AppColors.text.withAlpha(230),
-        image: const DecorationImage(
-          image: AssetImage(AppImages.imagesStadiumLights),
-          fit: BoxFit.fill,
+      decoration: const BoxDecoration(
+        color: AppColors.text,
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(12),
+          bottomRight: Radius.circular(12),
         ),
-        // borderRadius: const BorderRadius.only(
-        //   bottomLeft: Radius.circular(50),
-        //   bottomRight: Radius.circular(50),
-        // ),
       ),
       child: Center(
         child: ListTile(
