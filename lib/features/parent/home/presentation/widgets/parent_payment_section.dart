@@ -22,14 +22,10 @@ class _ParentPaymentSectionState extends State<ParentPaymentSection> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: 16,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
-          child: SizedBox(
-            child: Center(
-              child: _isPaid ? const PaidWidget() : const NotPaidWidget(),
-            ),
-          ),
+          child: _isPaid ? const PaidWidget() : const NotPaidWidget(),
         ),
         Container(
           width: double.infinity,
@@ -68,7 +64,7 @@ class _ParentPaymentSectionState extends State<ParentPaymentSection> {
             },
           ),
         ),
-        const SizedBox(height: 0),
+        const SizedBox(height: 16),
       ],
     );
   }
