@@ -4,6 +4,8 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/features/parent/home/presentation/view_models/payment/payment_cubit.dart';
+import 'package:spectra_sports/features/parent/home/presentation/widgets/not_paid_widget.dart';
+import 'package:spectra_sports/features/parent/home/presentation/widgets/paid_widget.dart';
 import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -25,15 +27,7 @@ class _ParentPaymentSectionState extends State<ParentPaymentSection> {
         Expanded(
           child: SizedBox(
             child: Center(
-              child: _isPaid
-                  ? const Text(
-                      'Paid',
-                      style: TextStyle(fontSize: 32),
-                    )
-                  : const Text(
-                      'Not Paid',
-                      style: TextStyle(fontSize: 32),
-                    ),
+              child: _isPaid ? const PaidWidget() : const NotPaidWidget(),
             ),
           ),
         ),
