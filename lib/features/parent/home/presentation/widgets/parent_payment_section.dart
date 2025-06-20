@@ -16,11 +16,16 @@ class ParentPaymentSection extends StatefulWidget {
   State<ParentPaymentSection> createState() => _ParentPaymentSectionState();
 }
 
-class _ParentPaymentSectionState extends State<ParentPaymentSection> {
+class _ParentPaymentSectionState extends State<ParentPaymentSection>
+    with AutomaticKeepAliveClientMixin {
   bool _isPaid = false;
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,7 +41,7 @@ class _ParentPaymentSectionState extends State<ParentPaymentSection> {
                 final uri = Uri.parse(state.paymentLink);
                 if (await canLaunchUrl(uri)) {
                   await launchUrl(uri);
-                  await Future.delayed(const Duration(seconds: 2));
+                  await Future.delayed(const Duration(seconds: 4));
                   setState(() {
                     _isPaid = true;
                   });
