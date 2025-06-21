@@ -17,25 +17,27 @@ class CustomAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 140 * context.heightScaleFactor,
-      decoration: const BoxDecoration(
-        color: AppColors.text,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(12),
-          bottomRight: Radius.circular(12),
-        ),
-      ),
-      child: Center(
-        child: ListTile(
-          leading: showBackButton ? const CustomBackButton() : null,
-          title: Text(
-            title,
-            textAlign: TextAlign.center,
-            style: AppStyles.styleExtraBold30(context),
+    return SafeArea(
+      child: Container(
+        width: double.infinity,
+        height: 90 * context.heightScaleFactor,
+        decoration: const BoxDecoration(
+          color: AppColors.text,
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(12),
+            bottomRight: Radius.circular(12),
           ),
-          trailing: const LogoutPopupMenu(),
+        ),
+        child: Center(
+          child: ListTile(
+            leading: showBackButton ? const CustomBackButton() : null,
+            title: Text(
+              title,
+              textAlign: TextAlign.center,
+              style: AppStyles.styleExtraBold30(context),
+            ),
+            trailing: const LogoutPopupMenu(),
+          ),
         ),
       ),
     );
