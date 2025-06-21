@@ -57,11 +57,43 @@ class AddMatchForm extends StatelessWidget {
         initialDate: DateTime.now(),
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 30)),
+        builder: (context, child) {
+          final colorScheme = Theme.of(context).colorScheme;
+
+          return Theme(
+            data: Theme.of(context).copyWith(
+              datePickerTheme: const DatePickerThemeData(
+                backgroundColor: AppColors.background,
+              ),
+              colorScheme: colorScheme.copyWith(
+                primary: AppColors.highlight,
+              ),
+            ),
+            child: child!,
+          );
+        },
       );
 
       TimeOfDay? pickedTime = await showTimePicker(
         context: context,
         initialTime: TimeOfDay.now(),
+        builder: (context, child) {
+          final colorScheme = Theme.of(context).colorScheme;
+
+          return Theme(
+            data: Theme.of(context).copyWith(
+              timePickerTheme: const TimePickerThemeData(
+                backgroundColor: AppColors.background,
+              ),
+              colorScheme: colorScheme.copyWith(
+                primary: AppColors.highlight,
+                primaryContainer: AppColors.highlight.withAlpha(20),
+                onPrimaryContainer: AppColors.highlight,
+              ),
+            ),
+            child: child!,
+          );
+        },
       );
 
       if (pickedDate != null && pickedTime != null) {
