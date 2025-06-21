@@ -34,7 +34,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return SizedBox(
       width: widget.fieldWidth,
       child: TextFormField(
-        cursorColor: AppColors.buttons,
+        cursorColor: AppColors.highlight,
         obscureText: widget.isPasswordField && _obscureText,
         keyboardType: widget.keyboardType,
         validator: widget.validator,
@@ -42,7 +42,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
         onSaved: widget.onSaved,
         decoration: InputDecoration(
           border: buildBorder(),
-          focusedBorder: buildBorder(AppColors.buttons),
+          focusedBorder: buildBorder(AppColors.highlight),
           hintText: widget.hintText,
           hintStyle: AppStyles.styleRegular14(context),
           suffixIcon: Visibility(

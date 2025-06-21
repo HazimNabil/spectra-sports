@@ -68,7 +68,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               builder: (context, state) {
                 return CustomButton(
                   title: 'Login',
-                  color: AppColors.buttons,
+                  color: AppColors.highlight,
                   isLoading: state is AuthLoading,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {

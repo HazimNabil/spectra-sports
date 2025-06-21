@@ -68,7 +68,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               builder: (context, state) {
                 return CustomButton(
                   title: 'Sign up',
-                  color: AppColors.buttons,
+                  color: AppColors.highlight,
                   isLoading: state is AuthLoading,
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {

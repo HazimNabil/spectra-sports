@@ -11,11 +11,9 @@ class LogoSection extends StatelessWidget {
     return Container(
       height: context.height * 0.38,
       width: double.infinity,
-      color: AppColors.logoBackground,
-      child: Center(
-        child: Image.asset(
-          AppImages.imagesAppLogo,
-        ),
+      color: AppColors.loginImage,
+      child: Image.asset(
+        AppImages.imagesAppLogo,
       ),
     );
   }
