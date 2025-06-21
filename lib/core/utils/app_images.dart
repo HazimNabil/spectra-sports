@@ -3,7 +3,7 @@ class AppImages {
 
   static const imagesAbsent = "assets/images/absent.png";
 
-  static const imagesAppLogo = "assets/images/app_logo.png";
+  static const imagesAppLogo = "assets/images/login_logo.jpg";
 
   static const imagesAttendance = "assets/images/attendance.png";
 
