@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
+import 'package:spectra_sports/core/utils/extensions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
 import 'package:spectra_sports/core/widgets/match_card_list_view.dart';
 import 'package:spectra_sports/core/widgets/loading_indicator.dart';
@@ -47,10 +48,15 @@ class AdminMatchesSection extends StatelessWidget {
                 context: context,
                 backgroundColor: AppColors.background,
                 isScrollControlled: true,
-                builder: (_) => BlocProvider.value(
+                builder: (bottomSheetContext) => BlocProvider.value(
                   value: context.read<AdminMatchesCubit>(),
-                  child: IntrinsicHeight(
-                    child: AddMatchBottomSheet(teamId: teamId),
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: bottomSheetContext.keyboardHeight,
+                    ),
+                    child: IntrinsicHeight(
+                      child: AddMatchBottomSheet(teamId: teamId),
+                    ),
                   ),
                 ),
               );
