@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: double.infinity,
-        height: 90 * context.heightScaleFactor,
+        height: 80 * context.heightScaleFactor,
         color: AppColors.text,
         child: Center(
           child: ListTile(
