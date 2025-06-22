@@ -10,6 +10,7 @@ import 'package:spectra_sports/features/coach/home/presentation/view_models/get_
 import 'package:spectra_sports/features/coach/home/presentation/widgets/attendance_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_matches_section.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/coach_players_section.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/shot_analysis_section.dart';
 
 class CoachHomeViewBody extends StatelessWidget {
   final String teamName;
@@ -26,7 +27,12 @@ class CoachHomeViewBody extends StatelessWidget {
         ),
         const SizedBox(height: 8),
         const CustomTabBar(
-          tabs: ['Matches', 'Players', 'Attendance'],
+          tabs: [
+            'Matches',
+            'Players',
+            'Attendance',
+            'Shot Analysis',
+          ],
         ),
         const SizedBox(height: 16),
         Expanded(
@@ -51,6 +57,7 @@ class CoachHomeViewBody extends StatelessWidget {
                 ),
                 child: AttendanceSection(teamName: teamName),
               ),
+              const ShotAnalysisSection(),
             ],
           ),
         ),

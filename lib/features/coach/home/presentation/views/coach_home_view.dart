@@ -10,7 +10,7 @@ class CoachHomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Scaffold(
         body: BlocBuilder<GetTeamNameCubit, GetTeamNameState>(
           builder: (context, state) {
