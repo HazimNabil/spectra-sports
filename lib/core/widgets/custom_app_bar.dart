@@ -21,13 +21,7 @@ class CustomAppBar extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 90 * context.heightScaleFactor,
-        decoration: const BoxDecoration(
-          color: AppColors.text,
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(12),
-            bottomRight: Radius.circular(12),
-          ),
-        ),
+        color: AppColors.text,
         child: Center(
           child: ListTile(
             leading: showBackButton ? const CustomBackButton() : null,
