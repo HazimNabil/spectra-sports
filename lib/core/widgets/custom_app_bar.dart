@@ -22,17 +22,32 @@ class CustomAppBar extends StatelessWidget {
         width: double.infinity,
         height: 80 * context.heightScaleFactor,
         color: AppColors.text,
-        child: Center(
-          child: ListTile(
-            leading: showBackButton ? const CustomBackButton() : null,
-            title: Text(
-              title,
-              textAlign: TextAlign.center,
-              style: AppStyles.styleExtraBold30(context),
-            ),
-            trailing: const LogoutPopupMenu(),
-          ),
-        ),
+        child: showBackButton
+            ? Center(
+                child: ListTile(
+                  leading: const CustomBackButton(),
+                  title: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: AppStyles.styleExtraBold30(context),
+                  ),
+                  trailing: const LogoutPopupMenu(),
+                ),
+              )
+            : Stack(
+                alignment: Alignment.center,
+                children: [
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: AppStyles.styleExtraBold30(context),
+                  ),
+                  const Align(
+                    alignment: Alignment.centerRight,
+                    child: LogoutPopupMenu(),
+                  ),
+                ],
+              ),
       ),
     );
   }
