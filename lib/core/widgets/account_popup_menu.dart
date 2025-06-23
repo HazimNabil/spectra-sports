@@ -6,8 +6,8 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
 
-class LogoutPopupMenu extends StatelessWidget {
-  const LogoutPopupMenu({super.key});
+class AccountPopupMenu extends StatelessWidget {
+  const AccountPopupMenu({super.key});
 
   @override
   Widget build(BuildContext context) {

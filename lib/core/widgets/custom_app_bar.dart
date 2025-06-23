@@ -3,7 +3,7 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/core/utils/extensions.dart';
 import 'package:spectra_sports/core/widgets/custom_back_button.dart';
-import 'package:spectra_sports/core/widgets/logout_popup_menu.dart';
+import 'package:spectra_sports/core/widgets/account_popup_menu.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String title;
@@ -31,7 +31,7 @@ class CustomAppBar extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: AppStyles.styleExtraBold30(context),
                   ),
-                  trailing: const LogoutPopupMenu(),
+                  trailing: const AccountPopupMenu(),
                 ),
               )
             : Stack(
@@ -44,7 +44,7 @@ class CustomAppBar extends StatelessWidget {
                   ),
                   const Align(
                     alignment: Alignment.centerRight,
-                    child: LogoutPopupMenu(),
+                    child: AccountPopupMenu(),
                   ),
                 ],
               ),
