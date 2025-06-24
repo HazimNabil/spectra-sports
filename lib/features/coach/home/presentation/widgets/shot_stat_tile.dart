@@ -3,21 +3,22 @@ import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
 class ShotStatTile extends StatelessWidget {
-  final ({String title, String value}) stat;
+  final String title;
+  final String stat;
 
-  const ShotStatTile({super.key, required this.stat});
+  const ShotStatTile({super.key, required this.title, required this.stat});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(
-        stat.title,
+        title,
         style: AppStyles.styleSemiBold16(context).copyWith(
           color: AppColors.text,
         ),
       ),
       trailing: Text(
-        stat.value,
+        stat,
         style: AppStyles.styleSemiBold16(context),
       ),
     );

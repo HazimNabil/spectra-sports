@@ -3,17 +3,12 @@ import 'package:spectra_sports/features/coach/home/presentation/widgets/shot_car
 import 'package:spectra_sports/features/coach/home/presentation/widgets/shot_stat_tile.dart';
 
 class ShotCardListView extends StatelessWidget {
-  final shotStats = const [
-    (title: 'Total Shots', value: '10'),
-    (title: 'Total Goals', value: '7'),
-    (title: 'Goals Probability', value: '70%'),
-  ];
-
   const ShotCardListView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListView(
+      padding: EdgeInsets.zero,
       children: [
         ...List.generate(
           10,
@@ -26,13 +21,9 @@ class ShotCardListView extends StatelessWidget {
           endIndent: 16,
           thickness: 1.5,
         ),
-        ...List.generate(
-          shotStats.length,
-          (index) {
-            final stat = shotStats[index];
-            return ShotStatTile(stat: stat);
-          },
-        ),
+        const ShotStatTile(title: 'Total Shots', stat: '10'),
+        const ShotStatTile(title: 'Total Goals', stat: '7'),
+        const ShotStatTile(title: 'Goal Probability', stat: '70%'),
       ],
     );
   }
