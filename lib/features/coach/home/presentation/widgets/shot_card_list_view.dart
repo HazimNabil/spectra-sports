@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/features/coach/home/presentation/widgets/shot_card.dart';
-import 'package:spectra_sports/features/coach/home/presentation/widgets/stat_tile.dart';
+import 'package:spectra_sports/features/coach/home/presentation/widgets/shot_stat_tile.dart';
 
 class ShotCardListView extends StatelessWidget {
   final shotStats = const [
@@ -30,7 +30,7 @@ class ShotCardListView extends StatelessWidget {
           shotStats.length,
           (index) {
             final stat = shotStats[index];
-            return StatTile(stat: stat);
+            return ShotStatTile(stat: stat);
           },
         ),
       ],

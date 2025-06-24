@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 
-class StatTile extends StatelessWidget {
+class ShotStatTile extends StatelessWidget {
   final ({String title, String value}) stat;
 
-  const StatTile({super.key, required this.stat});
+  const ShotStatTile({super.key, required this.stat});
 
   @override
   Widget build(BuildContext context) {
