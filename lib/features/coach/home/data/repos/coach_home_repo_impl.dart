@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
@@ -113,11 +114,9 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
 
     try {
       final predictions = await runFaceModel(form);
-      await markAttendance(predictions, token);
+      await markAttendance(predictions, token, teamName);
       final attendees = await getAttendance(token, teamName);
       return Right(attendees);
-    } on DioException catch (e) {
-      return Left(ServerFailure.fromDioException(e));
     } catch (e) {
       return Left(ServerFailure(e.toString()));
     }
@@ -136,10 +135,11 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   }
 
   Future<void> markAttendance(
-      List<FaceModelResponse> predictions, String token) async {
+      List<FaceModelResponse> predictions, String token, String teamName) async {
     final names = predictions.map((prediction) => prediction.name).toList();
+    log(names.toString());
     await _apiService.post(
-      '${ApiEndpoints.baseUrl}${ApiEndpoints.markAttendance}',
+      '${ApiEndpoints.baseUrl}${ApiEndpoints.markAttendance}?teamId=$teamName',
       {"playerIds": names, "source": "face_recognition"},
       headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
     );
