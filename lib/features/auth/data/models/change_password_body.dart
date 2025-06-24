@@ -1,12 +1,12 @@
 class ChangePasswordBody {
-  final String oldPassword;
-  final String newPassword;
-  final String confirmPassword;
+  String? oldPassword;
+  String? newPassword;
+  String? confirmPassword;
 
   ChangePasswordBody({
-    required this.oldPassword,
-    required this.newPassword,
-    required this.confirmPassword,
+    this.oldPassword,
+    this.newPassword,
+    this.confirmPassword,
   });
 
   Map<String, dynamic> toJson() {
