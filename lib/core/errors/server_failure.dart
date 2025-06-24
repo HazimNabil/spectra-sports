@@ -40,7 +40,7 @@ class ServerFailure extends Failure {
 
     return switch (statusCode) {
       400 || 401 || 403 => ServerFailure(
-          data![ApiKeys.message] as String? ?? ApiErrors.defaultError,
+          data[ApiKeys.message] as String? ?? ApiErrors.defaultError,
         ),
       404 => ServerFailure(ApiErrors.notFound),
       500 => ServerFailure(ApiErrors.serverError),

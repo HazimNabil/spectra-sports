@@ -7,6 +7,7 @@ class ApiEndpoints {
   static const register = '/auth/register/admin';
   static const registerParent = '/auth/register/parent';
   static const registerCoach = '/auth/register/coach';
+  static const changePassword = '/auth/change-password';
   static const getTeams = '/admin/teams';
   static const coachGetMatches = '/coach/matches';
   static const adminGetMatches = '/admin/teams';
