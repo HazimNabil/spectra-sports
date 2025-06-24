@@ -24,7 +24,7 @@ class ParentHomeViewBody extends StatelessWidget {
           showBackButton: false,
         ),
         const SizedBox(
-          height: 16,
+          height: 8,
         ),
         const CustomTabBar(
           tabs: ['Match', 'Attendance', 'Payment'],
