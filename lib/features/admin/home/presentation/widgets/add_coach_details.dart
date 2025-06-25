@@ -89,26 +89,6 @@ class AddCoachDetails extends StatelessWidget {
               registerCoachBody.phoneNumber = phoneNumber;
             },
           ),
-          const SizedBox(height: 24),
-          Text(
-            'Password',
-            style: AppStyles.styleSemiBold12(
-              context,
-            ).copyWith(
-              color: AppColors.text,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          CustomTextField(
-            hintText: 'Password',
-            isPasswordField: true,
-            validator: AppValidators.passwordValidator,
-            onSaved: (password) {
-              registerCoachBody.password = password;
-            },
-          ),
-          const SizedBox(height: 8),
         ],
       ),
     );

@@ -3,14 +3,12 @@ class RegisterCoachBody {
   String? email;
   String? teamId;
   String? phoneNumber;
-  String? password;
 
   RegisterCoachBody({
     this.email,
     this.name,
     this.teamId,
     this.phoneNumber,
-    this.password,
   });
 
   Map<String, dynamic> toJson() {
@@ -20,7 +18,7 @@ class RegisterCoachBody {
       'email': email,
       'teamId': teamId,
       'phoneNumber': phoneNumber,
-      'password': password,
+      'password': 'Abc@$phoneNumber',
     };
   }
 }

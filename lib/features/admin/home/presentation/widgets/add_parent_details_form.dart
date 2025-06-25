@@ -88,26 +88,6 @@ class AddParentDetails extends StatelessWidget {
               registerParentBody.phoneNumber = phone;
             },
           ),
-          const SizedBox(height: 24),
-          Text(
-            'Password',
-            style: AppStyles.styleSemiBold12(
-              context,
-            ).copyWith(
-              color: AppColors.text,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          CustomTextField(
-            hintText: 'Password',
-            isPasswordField: true,
-            validator: AppValidators.passwordValidator,
-            onSaved: (password) {
-              registerParentBody.password = password;
-            },
-          ),
-          const SizedBox(height: 8),
         ],
       ),
     );
