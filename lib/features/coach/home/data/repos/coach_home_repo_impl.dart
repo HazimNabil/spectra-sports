@@ -182,13 +182,9 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
   @override
   ApiResult<ShotAnalysis> analyzeShots(File video) async {
     try {
-      final form = FormData.fromMap({
-        ApiKeys.video: await MultipartFile.fromFile(video.path),
-      });
-
       final json = await _apiService.post(
         '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.detectShots}',
-        form,
+        null,
         headers: {'Content-Type': 'multipart/form-data'},
       );
 

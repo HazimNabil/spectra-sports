@@ -4,7 +4,7 @@ import 'package:spectra_sports/core/utils/app_styles.dart';
 
 class ShotStatTile extends StatelessWidget {
   final String title;
-  final String stat;
+  final num stat;
 
   const ShotStatTile({super.key, required this.title, required this.stat});
 
@@ -18,7 +18,7 @@ class ShotStatTile extends StatelessWidget {
         ),
       ),
       trailing: Text(
-        stat,
+        stat.toString(),
         style: AppStyles.styleSemiBold16(context),
       ),
     );

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
+import 'package:spectra_sports/features/coach/home/data/models/shot_analysis/analysis_result.dart';
 
 class ShotCard extends StatelessWidget {
-  const ShotCard({super.key});
+  final AnalysisResult analysisResult;
+
+  const ShotCard({super.key, required this.analysisResult});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +17,11 @@ class ShotCard extends StatelessWidget {
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         title: Text(
-          'GOAL',
+          analysisResult.result,
           style: AppStyles.styleSemiBold16(context),
         ),
         trailing: Text(
-          '20:00',
+          analysisResult.time,
           style: AppStyles.styleSemiBold16(
             context,
           ).copyWith(color: AppColors.icons),
