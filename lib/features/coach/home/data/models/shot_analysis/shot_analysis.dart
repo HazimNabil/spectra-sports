@@ -1,8 +1,8 @@
-import 'package:spectra_sports/features/coach/home/data/models/shot_analysis/result.dart';
+import 'package:spectra_sports/features/coach/home/data/models/shot_analysis/analysis_result.dart';
 
 class ShotAnalysis {
   final double goalProbability;
-  final List<Result> results;
+  final List<AnalysisResult> results;
   final int totalGoals;
   final int totalShots;
 
@@ -17,7 +17,7 @@ class ShotAnalysis {
     return ShotAnalysis(
       goalProbability: json['goal_probability'] as double,
       results: (json['results'] as List<dynamic>)
-          .map((e) => Result.fromJson(e))
+          .map((e) => AnalysisResult.fromJson(e))
           .toList(),
       totalGoals: json['total_goals'] as int,
       totalShots: json['total_shots'] as int,

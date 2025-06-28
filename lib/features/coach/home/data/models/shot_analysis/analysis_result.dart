@@ -1,14 +1,14 @@
-class Result {
+class AnalysisResult {
   final String result;
   final String time;
 
-  Result({
+  AnalysisResult({
     required this.result,
     required this.time,
   });
 
-  factory Result.fromJson(Map<String, dynamic> json) {
-    return Result(
+  factory AnalysisResult.fromJson(Map<String, dynamic> json) {
+    return AnalysisResult(
       result: json['result'],
       time: json['time'],
     );
