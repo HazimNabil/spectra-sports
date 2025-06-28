@@ -13,10 +13,6 @@ from ultralytics import YOLO
 app = Flask(__name__)
 CORS(app)
 
-# Optimized config for local development
-app.config["MAX_CONTENT_LENGTH"] = 300 * 1024 * 1024  # 300MB
-app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0  # Disable caching for development
-
 # ─── Initialize Face Recognition Components ──────────────────────────
 face_detector = MTCNN()
 face_embedder = FaceNet()
@@ -81,6 +77,7 @@ GOAL_ROI = (899, 198, 1765, 601)
 
 # Base directory for file operations
 base_dir = os.path.dirname(os.path.abspath(__file__))
+video_fp = os.path.join(base_dir, "edited_match.mp4")
 
 
 # ─── Route for Face Recognition Prediction ───────────────────────────
@@ -185,8 +182,6 @@ def predict_player():
 # ─── Route for Shot/Goal Detection ────────────────────────────────────
 @app.route("/detect", methods=["POST"])
 def detect_shots_goals():
-    match_path = "edited_match.mp4"
-    temp_video_path = os.path.join("ai", match_path)
 
     # Define intervals (could be dynamic in real use)
     intervals = [
@@ -202,7 +197,7 @@ def detect_shots_goals():
         (3 * 60 + 6, 3 * 60 + 9),
     ]
 
-    cap = cv2.VideoCapture(temp_video_path)
+    cap = cv2.VideoCapture(video_fp)
     results = []
     total_shots = 0
     total_goals = 0
