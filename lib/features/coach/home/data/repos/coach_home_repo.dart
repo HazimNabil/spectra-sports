@@ -7,6 +7,7 @@ import 'package:spectra_sports/features/coach/home/data/models/attendee.dart';
 import 'package:spectra_sports/features/coach/home/data/models/coach_team_response/coach_team_response.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
+import 'package:spectra_sports/features/coach/home/data/models/shot_analysis/shot_analysis.dart';
 
 abstract interface class CoachHomeRepo {
   ApiResult<CoachTeamResponse> getTeam();
@@ -15,4 +16,5 @@ abstract interface class CoachHomeRepo {
   ApiResult<String> predictPosition(PredictPositionInput input);
   ApiResult<String> updatePosition(String playerId, String position);
   ApiResult<List<Attendee>> takeAttendance(File image, String teamName);
+  ApiResult<ShotAnalysis> analyzeShots(File video);
 }

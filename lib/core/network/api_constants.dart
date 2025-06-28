@@ -19,6 +19,7 @@ class ApiEndpoints {
   static const predictFaces = '/predict-faces';
   static const markAttendance = '/players/multipleAttendance';
   static const getAttendance = '/players/getFullAttendance';
+  static const detectShots = '/detect';
   static const getParentPlayers = '/parents/players';
   static const payment = '/payment/initiate';
 }
@@ -35,6 +36,7 @@ class ApiKeys {
   static const matches = 'matches';
   static const position = 'prediction_label';
   static const image = 'image';
+  static const video = 'video';
   static const predictions = 'predictions';
   static const players = 'players';
 }

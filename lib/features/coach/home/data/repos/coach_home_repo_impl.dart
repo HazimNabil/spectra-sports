@@ -14,6 +14,7 @@ import 'package:spectra_sports/features/coach/home/data/models/coach_team_respon
 import 'package:spectra_sports/features/coach/home/data/models/face_model_response/face_model_response.dart';
 import 'package:spectra_sports/features/coach/home/data/models/match_result_body.dart';
 import 'package:spectra_sports/features/coach/home/data/models/predict_position_input.dart';
+import 'package:spectra_sports/features/coach/home/data/models/shot_analysis/shot_analysis.dart';
 import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo.dart';
 
 class CoachHomeRepoImpl implements CoachHomeRepo {
@@ -134,8 +135,8 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
     return attendees;
   }
 
-  Future<void> markAttendance(
-      List<FaceModelResponse> predictions, String token, String teamName) async {
+  Future<void> markAttendance(List<FaceModelResponse> predictions, String token,
+      String teamName) async {
     final names = predictions.map((prediction) => prediction.name).toList();
     log(names.toString());
     await _apiService.post(
@@ -171,6 +172,29 @@ class CoachHomeRepoImpl implements CoachHomeRepo {
       final newPosition = json['player']['club_position'] as String;
 
       return Right(newPosition);
+    } on DioException catch (e) {
+      return Left(ServerFailure.fromDioException(e));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  ApiResult<ShotAnalysis> analyzeShots(File video) async {
+    try {
+      final form = FormData.fromMap({
+        ApiKeys.video: await MultipartFile.fromFile(video.path),
+      });
+
+      final json = await _apiService.post(
+        '${ApiEndpoints.aiBaseUrl}${ApiEndpoints.detectShots}',
+        form,
+        headers: {'Content-Type': 'multipart/form-data'},
+      );
+
+      final shotAnalysis = ShotAnalysis.fromJson(json);
+
+      return Right(shotAnalysis);
     } on DioException catch (e) {
       return Left(ServerFailure.fromDioException(e));
     } catch (e) {
