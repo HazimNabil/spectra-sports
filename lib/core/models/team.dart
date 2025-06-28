@@ -7,7 +7,7 @@ class Team extends Equatable {
   final String name;
   final List<Player> players;
   final List<MatchModel> matches;
-  final String coachName;
+  final String? coachName;
 
   const Team({
     required this.id,
@@ -27,7 +27,7 @@ class Team extends Equatable {
       matches: (json['matchSchedule'] as List<dynamic>)
           .map((e) => MatchModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      coachName: (json['coachId'] as Map<String, dynamic>?)?['name'] ?? '',
+      coachName: (json['coachId'] as Map<String, dynamic>?)?['name'] as String?,
     );
   }
 
