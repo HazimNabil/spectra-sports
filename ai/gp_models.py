@@ -13,6 +13,10 @@ from ultralytics import YOLO
 app = Flask(__name__)
 CORS(app)
 
+# Optimized config for local development
+app.config['MAX_CONTENT_LENGTH'] = 300 * 1024 * 1024  # 300MB
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable caching for development
+
 # ─── Initialize Face Recognition Components ──────────────────────────
 face_detector = MTCNN()
 face_embedder = FaceNet()
@@ -75,9 +79,8 @@ FEATURE_ORDER = [
 yolo_model = YOLO('ai/best.pt')
 GOAL_ROI = (899, 198, 1765, 601)
 
-# Hardcoded video path
+# Base directory for file operations
 base_dir = os.path.dirname(os.path.abspath(__file__))
-video_fp = os.path.join(base_dir, 'edited_match.mp4')
 
 # ─── Route for Face Recognition Prediction ───────────────────────────
 @app.route('/predict-faces', methods=['POST'])
@@ -174,10 +177,19 @@ def predict_player():
 # ─── Route for Shot/Goal Detection ────────────────────────────────────
 @app.route('/detect', methods=['POST'])
 def detect_shots_goals():
-    if not os.path.exists(video_fp):
-        return jsonify({'error': 'Video file not found'}), 404
+    # Accept a video file via form-data
+    if 'video' not in request.files:
+        return jsonify({'error': 'No video file provided'}), 400
 
-    # Static intervals
+    file = request.files['video']
+    if file.filename == '':
+        return jsonify({'error': 'Empty filename'}), 400
+
+    # Save the uploaded file to a temporary location
+    temp_video_path = os.path.join('ai', 'temp_uploaded_video.mp4')
+    file.save(temp_video_path)
+
+    # Define intervals (could be dynamic in real use)
     intervals = [
         (2*60+25, 2*60+27),
         (2*60+30, 2*60+32),
@@ -191,8 +203,15 @@ def detect_shots_goals():
         (3*60+6,  3*60+9),
     ]
 
-    cap = cv2.VideoCapture(video_fp)
+    cap = cv2.VideoCapture(temp_video_path)
     results = []
+    total_shots = 0
+    total_goals = 0
+
+    def seconds_to_mmss(seconds):
+        m = int(seconds) // 60
+        s = int(seconds) % 60
+        return f"{m:02d}:{s:02d}"
 
     for idx, (start, end) in enumerate(intervals, 1):
         found_goal = False
@@ -206,10 +225,10 @@ def detect_shots_goals():
             res = yolo_model(frame, device='cpu', imgsz=640, conf=0.1)[0]
 
             for box, cls in zip(res.boxes.xyxy.cpu().numpy(),
-                              res.boxes.cls.cpu().numpy().astype(int)):
+                                res.boxes.cls.cpu().numpy().astype(int)):
                 if cls != 0:
                     continue
-                x1,y1,x2,y2 = box
+                x1, y1, x2, y2 = box
                 cx, cy = (x1+x2)/2, (y1+y2)/2
                 if GOAL_ROI[0] < cx < GOAL_ROI[2] and GOAL_ROI[1] < cy < GOAL_ROI[3]:
                     found_goal = True
@@ -219,11 +238,28 @@ def detect_shots_goals():
             t += 0.5
 
         event_type = "GOAL" if found_goal else "SHOT"
-        results.append({'interval': (start, end), 'result': event_type})
+        if event_type == "GOAL":
+            total_goals += 1
+        total_shots += 1
+        # Convert interval end time to mm:ss
+        mmss_time = seconds_to_mmss(end)
+        results.append({'interval': (start, end), 'time': mmss_time, 'result': event_type})
 
     cap.release()
+    # Remove the temporary file
+    try:
+        os.remove(temp_video_path)
+    except Exception:
+        pass
 
-    return jsonify({'results': results})
+    goal_probability = float(total_goals) / total_shots if total_shots > 0 else 0.0
+
+    return jsonify({
+        'results': results,
+        'total_shots': total_shots,
+        'total_goals': total_goals,
+        'goal_probability': goal_probability
+    })
 
 # ─── Main Entry Point ─────────────────────────────────────────────────
 if __name__ == "__main__":
