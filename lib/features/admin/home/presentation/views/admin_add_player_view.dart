@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_parent_body.dart';
+import 'package:spectra_sports/features/admin/home/data/repos/admin_home_repo_impl.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/register_parent_cubit/register_parent_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_1.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_2.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_player_views/add_player_3.dart';
@@ -62,7 +67,7 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
             ),
             AddPlayer2(
               onNext: () {
-                int pageNumber = 2;
+                int pageNumber = 3;
 
                 _controller.animateToPage(
                   pageNumber,
@@ -82,15 +87,15 @@ class _AdminAddPlayerViewState extends State<AdminAddPlayerView> {
                 );
               },
             ),
-            AddPlayer3(onNext: () {
-              int pageNumber = 0;
-
-              _controller.animateToPage(
-                pageNumber,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            }),
+            Provider(
+              create: (context) => RegisterParentBody(),
+              child: BlocProvider(
+                create: (context) => RegisterParentCubit(
+                  locator<AdminHomeRepoImpl>(),
+                ),
+                child: const AddPlayer3(),
+              ),
+            ),
           ],
         ),
       ),

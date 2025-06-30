@@ -1,41 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:spectra_sports/core/widgets/custom_app_bar.dart';
-import 'package:spectra_sports/core/widgets/custom_tab_bar.dart';
-import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_attendance_section.dart';
-import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_matches_section.dart';
-import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_payment_section.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spectra_sports/core/widgets/loading_indicator.dart';
+import 'package:spectra_sports/features/parent/home/presentation/view_models/parent_players_cubit/parent_players_cubit.dart';
+import 'package:spectra_sports/features/parent/home/presentation/widgets/parent_home_view_body.dart';
 
 class ParentHomeView extends StatelessWidget {
   const ParentHomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
-        length: 3,
-        child: Scaffold(
-            body: Column(
-          children: [
-            CustomAppBar(
-              title: "Player Name",
-              showBackButton: false,
-            ), // change player name
-            SizedBox(
-              height: 16,
-            ),
-            CustomTabBar(tabs: ['Match', 'Attendance', 'Payment']),
-            SizedBox(
-              height: 16,
-            ),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  ParentMatchesSection(),
-                  ParentAttendanceSection(),
-                  ParentPaymentSection(),
-                ],
-              ),
-            ),
-          ],
-        )));
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        body: BlocBuilder<ParentPlayersCubit, ParentPlayersState>(
+          builder: (context, state) {
+            return switch (state) {
+              ParentPlayersLoading() => const LoadingIndicator(),
+              ParentPlayersSuccess(:final playersData) => ParentHomeViewBody(
+                  playersData: playersData[0],
+                ),
+              ParentPlayersFailure(:final message) => Center(
+                  child: Text(message),
+                ),
+              _ => const SizedBox.shrink(),
+            };
+          },
+        ),
+      ),
+    );
   }
 }

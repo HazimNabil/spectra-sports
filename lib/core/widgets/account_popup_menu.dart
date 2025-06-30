@@ -5,9 +5,10 @@ import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/app_styles.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
+import 'package:spectra_sports/features/auth/presentation/widgets/change_password_dialog.dart';
 
-class LogoutPopupMenu extends StatelessWidget {
-  const LogoutPopupMenu({super.key});
+class AccountPopupMenu extends StatelessWidget {
+  const AccountPopupMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,20 @@ class LogoutPopupMenu extends StatelessWidget {
               ),
             ),
             onTap: () => context.read<AuthCubit>().logout(),
+          ),
+          PopupMenuItem(
+            child: Center(
+              child: Text(
+                'Change password',
+                style: AppStyles.styleBold15(context),
+              ),
+            ),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => const ChangePasswordDialog(),
+              );
+            },
           ),
         ],
       ),

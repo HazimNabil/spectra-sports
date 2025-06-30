@@ -4,13 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
-import 'package:spectra_sports/features/admin/home/presentation/view_models/players_cubit/players_cubit.dart';
+import 'package:spectra_sports/core/widgets/loading_indicator.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/members_cubit/members_cubit.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/coach_card.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/admin_player_card.dart';
 
 class AdminMembersSection extends StatefulWidget {
   final String teamName;
-  final String coachName;
+  final String? coachName;
 
   const AdminMembersSection({
     super.key,
@@ -26,7 +27,7 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
   @override
   void initState() {
     super.initState();
-    context.read<PlayersCubit>().getPlayers(widget.teamName);
+    context.read<MembersCubit>().getMembers(widget.teamName);
   }
 
   @override
@@ -37,16 +38,14 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
         spacing: 16,
         children: [
           Expanded(
-            child: BlocBuilder<PlayersCubit, PlayersState>(
+            child: BlocBuilder<MembersCubit, MembersState>(
               builder: (context, state) {
                 return switch (state) {
-                  PlayersLoading() => const Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  PlayersSuccess(players: final players) => ListView(
+                  MembersLoading() => const LoadingIndicator(),
+                  MembersSuccess(players: final players) => ListView(
                       padding: EdgeInsets.zero,
                       children: [
-                        CoachCard(coachName: players[0].coachName!),
+                        CoachCard(coachName: widget.coachName ?? 'None'),
                         const SizedBox(height: 16),
                         ...List.generate(
                           players.length,
@@ -54,7 +53,7 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
                         ),
                       ],
                     ),
-                  PlayersFailure(message: final message) => Center(
+                  MembersFailure(message: final message) => Center(
                       child: Text(message),
                     ),
                   _ => const Placeholder(),
@@ -63,27 +62,40 @@ class _AdminMembersSectionState extends State<AdminMembersSection> {
             ),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CustomButton(
-                title: 'Add Player',
-                color: AppColors.highlight,
-                onPressed: () {
-                  context.push(
-                    AppRouter.addPlayerRoute,
-                    extra: (
-                      widget.teamName,
-                      widget.coachName,
-                    ),
-                  );
-                },
+              Expanded(
+                child: CustomButton(
+                  title: 'Add Player',
+                  color: AppColors.highlight,
+                  onPressed: () {
+                    context.push(
+                      AppRouter.addPlayerRoute,
+                      extra: (
+                        widget.teamName,
+                        widget.coachName,
+                      ),
+                    );
+                  },
+                ),
               ),
-              CustomButton(
-                title: 'Add Coach',
-                color: AppColors.highlight,
-                onPressed: () {
-                  context.push(AppRouter.addCoachRoute);
-                },
+              Visibility(
+                visible: widget.coachName?.isEmpty ?? true,
+                child: const SizedBox(width: 32),
+              ),
+              Visibility(
+                visible: widget.coachName?.isEmpty ?? true,
+                child: Expanded(
+                  child: CustomButton(
+                    title: 'Add Coach',
+                    color: AppColors.highlight,
+                    onPressed: () {
+                      context.push(
+                        AppRouter.addCoachRoute,
+                        extra: widget.teamName,
+                      );
+                    },
+                  ),
+                ),
               ),
             ],
           ),

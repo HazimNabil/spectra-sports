@@ -15,7 +15,8 @@ class AddPlayerInput {
   int? defending;
   int? overall;
   int? physic;
-  String playerFaceUrl = 'default_image';
+  String playerFaceUrl =
+      'https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg';
   int? goalkeepingDiving;
   int? goalkeepingHandling;
   int? goalkeepingKicking;

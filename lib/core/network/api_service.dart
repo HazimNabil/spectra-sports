@@ -3,7 +3,11 @@ import 'package:dio/dio.dart';
 class ApiService {
   final Dio _dio;
 
-  ApiService(this._dio);
+  ApiService(this._dio) {
+    _dio.options.connectTimeout = const Duration(seconds: 10);
+    _dio.options.sendTimeout = const Duration(minutes: 4);
+    _dio.options.receiveTimeout = const Duration(minutes: 4);
+  }
 
   Future get(String endpoint, Map<String, dynamic> headers) async {
     final response = await _dio.get(
@@ -15,7 +19,7 @@ class ApiService {
 
   Future post(
     String endpoint,
-    Object data, {
+    Object? data, {
     Map<String, dynamic>? headers,
   }) async {
     final response = await _dio.post(

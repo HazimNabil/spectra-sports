@@ -15,6 +15,8 @@ class CustomTabBar extends StatelessWidget {
       unselectedLabelColor: AppColors.hint,
       dividerHeight: 0,
       indicatorWeight: 0.5,
+      isScrollable: true,
+      tabAlignment: TabAlignment.start,
     );
   }
 }

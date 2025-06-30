@@ -32,5 +32,5 @@ void showToast({
 String formatDate(DateTime date) {
   final formattedDate = '${date.day}/${date.month}/${date.year}';
   final formattedTime = '${date.hour}:${date.minute}';
-  return '$formattedDate $formattedTime';
+  return '$formattedDate, $formattedTime';
 }

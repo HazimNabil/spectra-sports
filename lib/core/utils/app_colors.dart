@@ -7,6 +7,7 @@ abstract class AppColors {
   static const hint = Color(0xFF828282);
   static const buttons = Color(0xFF006FFD);
   static const highlight = Color(0xFFFF5959);
+  static const loginImage = Color(0xFFf73a00);
   static const text = Color(0xFF000000);
   static const logoBackground = Color(0xFFEAF2FF);
 }

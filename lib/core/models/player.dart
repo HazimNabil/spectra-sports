@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 class Player extends Equatable {
   final String id;
   final String shortName;
-  final String? coachName;
   final String? teamName;
   final String? preferredFoot;
   final String? clubPosition;
@@ -29,7 +28,6 @@ class Player extends Equatable {
   const Player({
     required this.id,
     required this.shortName,
-    required this.coachName,
     required this.teamName,
     required this.preferredFoot,
     this.clubPosition,
@@ -57,7 +55,6 @@ class Player extends Equatable {
     return Player(
       id: json['_id'] as String,
       shortName: json['short_name'] as String,
-      coachName: json['coachName'] as String?,
       teamName: json['Team_name'] as String?,
       preferredFoot: json['preferred_foot'] as String?,
       clubPosition: json['club_position'] as String?,
@@ -86,7 +83,6 @@ class Player extends Equatable {
     return {
       '_id': id,
       'short_name': shortName,
-      'coachName': coachName,
       'Team_name': teamName,
       'preferred_foot': preferredFoot,
       'club_position': clubPosition,
@@ -116,7 +112,6 @@ class Player extends Equatable {
     return [
       id,
       shortName,
-      coachName,
       teamName,
       preferredFoot,
       clubPosition,

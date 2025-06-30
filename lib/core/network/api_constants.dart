@@ -2,17 +2,26 @@ class ApiEndpoints {
   ApiEndpoints._();
 
   static const baseUrl = 'https://gp-t1br.onrender.com/api';
-  static const aiBaseUrl = 'http://127.0.0.1:5000';
+  static const aiBaseUrl = 'http://192.168.1.104:5000';
   static const login = '/auth/login';
   static const register = '/auth/register/admin';
+  static const registerParent = '/auth/register/parent';
+  static const registerCoach = '/auth/register/coach';
+  static const changePassword = '/auth/change-password';
   static const getTeams = '/admin/teams';
-  static const getMatches = '/coach/matches';
-  static const addMatch = '/match';
+  static const coachGetMatches = '/coach/matches';
+  static const adminGetMatches = '/admin/teams';
+  static const addMatch = '/admin/matches';
   static const getCoachTeam = '/coach/my-team';
   static const updateMatch = '/match';
   static const addPlayer = '/admin/teams';
   static const predict = '/predict';
   static const predictFaces = '/predict-faces';
+  static const markAttendance = '/players/multipleAttendance';
+  static const getAttendance = '/players/getFullAttendance';
+  static const detectShots = '/detect';
+  static const getParentPlayers = '/parents/players';
+  static const payment = '/payment/initiate';
 }
 
 class ApiKeys {
@@ -27,6 +36,7 @@ class ApiKeys {
   static const matches = 'matches';
   static const position = 'prediction_label';
   static const image = 'image';
+  static const video = 'video';
   static const predictions = 'predictions';
   static const players = 'players';
 }

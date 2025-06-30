@@ -24,7 +24,7 @@ class LoginPromptText extends StatelessWidget {
             style: AppStyles.styleRegular14(
               context,
             ).copyWith(
-              color: AppColors.buttons,
+              color: AppColors.highlight,
               fontWeight: FontWeight.bold,
             ),
             recognizer: TapGestureRecognizer()

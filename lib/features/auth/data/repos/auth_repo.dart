@@ -1,4 +1,5 @@
 import 'package:spectra_sports/core/utils/typedefs.dart';
+import 'package:spectra_sports/features/auth/data/models/change_password_body.dart';
 import 'package:spectra_sports/features/auth/data/models/login_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/user_model.dart';
@@ -8,4 +9,5 @@ abstract interface class AuthRepo {
   ApiResult<UserModel> signUp(SignUpBodyModel signUpBody);
   Future<void> logout();
   Future<UserModel?> checkAuthStatus();
+  ApiResult<String> changePassword(ChangePasswordBody changePasswordBody);
 }

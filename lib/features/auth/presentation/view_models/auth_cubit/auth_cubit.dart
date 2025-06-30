@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:spectra_sports/features/auth/data/models/change_password_body.dart';
 import 'package:spectra_sports/features/auth/data/models/login_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/user_model.dart';
@@ -30,6 +31,16 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(AuthFailure(failure.message)),
       (user) => emit(Authenticated(user)),
+    );
+  }
+
+  Future<void> changePassword(ChangePasswordBody changePasswordBody) async {
+    emit(const AuthLoading());
+
+    final result = await _authRepo.changePassword(changePasswordBody);
+    result.fold(
+      (failure) => emit(AuthFailure(failure.message)),
+      (message) => emit(PasswordChange(message)),
     );
   }
 

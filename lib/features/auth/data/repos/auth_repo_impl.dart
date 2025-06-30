@@ -6,6 +6,7 @@ import 'package:spectra_sports/core/network/api_service.dart';
 import 'package:spectra_sports/core/utils/cache_helper.dart';
 import 'package:spectra_sports/core/utils/token_decoder.dart';
 import 'package:spectra_sports/core/utils/typedefs.dart';
+import 'package:spectra_sports/features/auth/data/models/change_password_body.dart';
 import 'package:spectra_sports/features/auth/data/models/login_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/sign_up_body_model.dart';
 import 'package:spectra_sports/features/auth/data/models/user_model.dart';
@@ -85,5 +86,31 @@ class AuthRepoImpl implements AuthRepo {
 
     final jsonUser = TokenDecoder.decode(token);
     return UserModel.fromJson(jsonUser);
+  }
+
+  @override
+  ApiResult<String> changePassword(
+      ChangePasswordBody changePasswordBody) async {
+    try {
+      final token = await CacheHelper.getSecureData(ApiKeys.token);
+
+      final jsonData = await _apiService.post(
+        "${ApiEndpoints.baseUrl}${ApiEndpoints.changePassword}",
+        changePasswordBody.toJson(),
+        headers: {ApiKeys.authorization: '${ApiKeys.bearer} $token'},
+      );
+
+      final message = jsonData[ApiKeys.message] as String;
+
+      return Right(message);
+    } on DioException catch (e) {
+      return Left(
+        ServerFailure.fromDioException(e),
+      );
+    } catch (e) {
+      return Left(
+        ServerFailure(e.toString()),
+      );
+    }
   }
 }

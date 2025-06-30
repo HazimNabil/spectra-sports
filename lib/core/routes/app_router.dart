@@ -4,17 +4,18 @@ import 'package:spectra_sports/core/di/service_locator.dart';
 import 'package:spectra_sports/core/models/team.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/add_coach_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_add_player_view.dart';
-import 'package:spectra_sports/features/admin/home/presentation/views/add_match_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_home_view.dart';
 import 'package:spectra_sports/features/admin/home/presentation/views/admin_team_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/auth_gate.dart';
-import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo_impl.dart';
-import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_cubit/get_team_cubit.dart';
 import 'package:spectra_sports/features/coach/home/presentation/views/coach_home_view.dart';
 import 'package:spectra_sports/features/parent/home/presentation/views/parent_home_view.dart';
 import 'package:spectra_sports/features/splash/presentation/views/splash_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/login_view.dart';
 import 'package:spectra_sports/features/auth/presentation/views/sign_up_view.dart';
+import 'package:spectra_sports/features/parent/home/presentation/view_models/parent_players_cubit/parent_players_cubit.dart';
+import 'package:spectra_sports/features/parent/home/data/repos/parent_home_repo_impl.dart';
+import 'package:spectra_sports/features/coach/home/data/repos/coach_home_repo_impl.dart';
+import 'package:spectra_sports/features/coach/home/presentation/view_models/get_team_name_cubit/get_team_name_cubit.dart';
 
 abstract class AppRouter {
   static const splashRoute = '/';
@@ -26,7 +27,6 @@ abstract class AppRouter {
   static const coachHomeRoute = '/coach_home';
   static const parentHomeRoute = '/parent_home';
   static const addPlayerRoute = '/admin_add_player';
-  static const addMatchRoute = '/add_match';
   static const addCoachRoute = '/add_coach';
 
   static final router = GoRouter(
@@ -61,16 +61,23 @@ abstract class AppRouter {
         path: coachHomeRoute,
         builder: (context, state) {
           return BlocProvider(
-            create: (context) => GetTeamCubit(
+            create: (context) => GetTeamNameCubit(
               locator<CoachHomeRepoImpl>(),
-            )..getTeam(),
+            )..getTeamName(),
             child: const CoachHomeView(),
           );
         },
       ),
       GoRoute(
         path: parentHomeRoute,
-        builder: (context, state) => const ParentHomeView(),
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => ParentPlayersCubit(
+              locator<ParentHomeRepoImpl>(),
+            )..getPlayersData(),
+            child: const ParentHomeView(),
+          );
+        },
       ),
       GoRoute(
         path: addPlayerRoute,
@@ -83,14 +90,11 @@ abstract class AppRouter {
         },
       ),
       GoRoute(
-        path: addMatchRoute,
-        builder: (context, state) {
-          return AddMatchView(teamId: state.extra as String);
-        },
-      ),
-      GoRoute(
         path: addCoachRoute,
-        builder: (context, state) => const AddCoachView(),
+        builder: (context, state) {
+          final teamName = state.extra as String;
+          return AddCoachView(teamName: teamName);
+        },
       )
     ],
   );

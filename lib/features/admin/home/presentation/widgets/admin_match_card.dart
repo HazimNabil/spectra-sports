@@ -32,7 +32,7 @@ class AdminMatchCard extends StatelessWidget {
                   match.team1,
                   style: AppStyles.styleRegular14(
                     context,
-                  ).copyWith(color: AppColors.icons),
+                  ).copyWith(color: AppColors.highlight),
                 ),
                 const Spacer(),
                 Text(

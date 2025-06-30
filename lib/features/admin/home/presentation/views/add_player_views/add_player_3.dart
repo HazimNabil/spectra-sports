@@ -1,30 +1,85 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/utils/app_colors.dart';
-
+import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/core/widgets/custom_button.dart';
-
+import 'package:spectra_sports/features/admin/home/data/models/add_player_input.dart';
+import 'package:spectra_sports/features/admin/home/data/models/register_parent_body.dart';
 import 'package:spectra_sports/features/admin/home/presentation/widgets/add_parent_details_form.dart';
+import 'package:spectra_sports/features/admin/home/presentation/view_models/register_parent_cubit/register_parent_cubit.dart';
+import 'package:toastification/toastification.dart';
 
-class AddPlayer3 extends StatelessWidget {
-  final void Function() onNext;
+class AddPlayer3 extends StatefulWidget {
+  const AddPlayer3({super.key});
 
-  const AddPlayer3({required this.onNext, super.key});
+  @override
+  State<AddPlayer3> createState() => _AddPlayer3State();
+}
+
+class _AddPlayer3State extends State<AddPlayer3> {
+  late final GlobalKey<FormState> _formKey;
+  late final ValueNotifier<AutovalidateMode> _autovalidateMode;
+
+  @override
+  void initState() {
+    super.initState();
+    _formKey = GlobalKey<FormState>();
+    _autovalidateMode = ValueNotifier(AutovalidateMode.disabled);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const AddParentDetails(),
+          ValueListenableBuilder(
+            valueListenable: _autovalidateMode,
+            builder: (_, value, __) {
+              return Form(
+                key: _formKey,
+                autovalidateMode: value,
+                child: const AddParentDetails(),
+              );
+            },
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
               width: double.infinity,
-              child: CustomButton(
-                title: "Apply",
-                onPressed: () => onNext(),
-                color: AppColors.highlight,
+              child: BlocConsumer<RegisterParentCubit, RegisterParentState>(
+                listener: (context, state) {
+                  if (state is RegisterParentSuccess) {
+                    context.pop();
+                  } else if (state is RegisterParentFailure) {
+                    showToast(
+                      context: context,
+                      title: state.message,
+                      type: ToastificationType.error,
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return CustomButton(
+                    title: "Finish",
+                    isLoading: state is RegisterParentLoading,
+                    color: AppColors.highlight,
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        _formKey.currentState!.save();
+                        final playerName =
+                            context.read<AddPlayerInput>().shortName;
+                        final parent = context.read<RegisterParentBody>();
+                        parent.players = [playerName!];
+                        context
+                            .read<RegisterParentCubit>()
+                            .registerParent(parent);
+                      } else {
+                        _autovalidateMode.value = AutovalidateMode.always;
+                      }
+                    },
+                  );
+                },
               ),
             ),
           ),

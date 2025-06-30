@@ -16,7 +16,7 @@ final class GetTeamLoading extends GetTeamState {
 }
 
 final class GetTeamSuccess extends GetTeamState {
-  final CoachTeam team;
+  final CoachTeamResponse team;
 
   const GetTeamSuccess(this.team);
 

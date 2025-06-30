@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:spectra_sports/core/routes/app_router.dart';
-import 'package:spectra_sports/core/utils/app_colors.dart';
 import 'package:spectra_sports/core/utils/functions.dart';
 import 'package:spectra_sports/features/auth/presentation/view_models/auth_cubit/auth_cubit.dart';
+import 'package:spectra_sports/core/widgets/loading_indicator.dart';
 
 class AuthGate extends StatefulWidget {
   const AuthGate({super.key});
@@ -37,11 +37,7 @@ class _AuthGateState extends State<AuthGate> {
         }
       },
       child: const Scaffold(
-        body: Center(
-          child: CircularProgressIndicator(
-            color: AppColors.buttons,
-          ),
-        ),
+        body: LoadingIndicator(),
       ),
     );
   }
